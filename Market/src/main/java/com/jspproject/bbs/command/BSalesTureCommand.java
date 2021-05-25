@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BDaoProduct;
-import com.jspproject.bbs.dto.BDtoProduct;
+import com.jspproject.bbs.dto.BProductDto;
 import com.jspproject.bbs.homecontroller.BFrontController;
 
 public class BSalesTureCommand implements BCommand {
@@ -16,7 +16,7 @@ public class BSalesTureCommand implements BCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 		BDaoProduct dao = new BDaoProduct();
-		ArrayList<BDtoProduct> dtos1 = null;
+		ArrayList<BProductDto> dtos1 = null;
 		
 		int salesCount = dao.sales();
 		int salesTure = dao.salesTrue();

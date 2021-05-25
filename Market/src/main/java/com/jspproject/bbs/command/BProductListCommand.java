@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BDaoProduct;
-import com.jspproject.bbs.dto.BDtoProduct;
+import com.jspproject.bbs.dto.BProductDto;
 import com.jspproject.bbs.homecontroller.BFrontController;
 
 public class BProductListCommand implements BCommand {
@@ -17,7 +17,7 @@ public class BProductListCommand implements BCommand {
 		// TODO Auto-generated method stub
 		// DB에서 전체정보 읽어서 attribute로 jsp에 전달하기
 		BDaoProduct dao = new BDaoProduct();
-		ArrayList<BDtoProduct> dtos = null;
+		ArrayList<BProductDto> dtos = null;
 		int salesCount = dao.sales();
 		int salesTure = dao.salesTrue();
 		int salesFalse = dao.salesFalse();

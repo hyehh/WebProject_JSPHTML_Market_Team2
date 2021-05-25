@@ -16,8 +16,6 @@ public class BDtoProduct {
 	String pDelete;
 	String pAddDate;
 	
-	
-	
 	public BDtoProduct() {
 		// TODO Auto-generated constructor stub
 	}
@@ -73,7 +71,7 @@ public class BDtoProduct {
 	}
 	
 	public BDtoProduct(int pCode, String pName, int pPrice, int pPriceDC, String pExpirationDate, String pStatus,
-			String pDelete, String pAddDate, String pCategory) {
+			String pAddDate, String pCategory) {
 		super();
 		this.pCode = pCode;
 		this.pName = pName;
@@ -81,7 +79,6 @@ public class BDtoProduct {
 		this.pPriceDC = pPriceDC;
 		this.pExpirationDate = pExpirationDate;
 		this.pStatus = pStatus;
-		this.pDelete = pDelete;
 		this.pAddDate = pAddDate;
 		this.pCategory = pCategory;
 	}

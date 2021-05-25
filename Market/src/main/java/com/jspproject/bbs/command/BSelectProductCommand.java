@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BDaoProduct;
-import com.jspproject.bbs.dto.BDtoProduct;
+import com.jspproject.bbs.dto.BProductDto;
 
 public class BSelectProductCommand implements BCommand {
 
@@ -17,7 +17,7 @@ public class BSelectProductCommand implements BCommand {
 		String pCode = request.getParameter("pCode");
 		System.out.println("커맨드 /" + pCode);
 		BDaoProduct dao = new BDaoProduct();
-		BDtoProduct dto = dao.selectProduct(pCode);
+		BProductDto dto = dao.selectProduct(pCode);
 		ArrayList<String> category = new ArrayList<String>();
 		category.add("세탁용품");
 		category.add("청소용품");

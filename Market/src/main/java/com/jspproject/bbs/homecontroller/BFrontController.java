@@ -324,7 +324,7 @@ public class BFrontController extends HttpServlet {
 			// 이거는 수훈님과 연동할 때 메인페이지로 바꾸기 ****************************
 			viewPage = "CustomerSignOut_View.do";
 			break;
-			// 탈퇴하기
+		// 탈퇴하기
 		case("/SellerSignOut_View.do"):
 			viewPage = "SellerSignOut_View.jsp";
 		break;
@@ -512,7 +512,7 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "OrderCancelList_View.jsp";
 			break;
-			
+		// 메인 페이지 - DH	
 		case("/main.do"):
 			command = new BMainCommand();
 			command.execute(request, response, session);

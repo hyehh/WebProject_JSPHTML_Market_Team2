@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.jspproject.bbs.dto.BDtoProduct;
+import com.jspproject.bbs.dto.BProductDto;
 
 public class BDaoProduct {
 
@@ -86,8 +86,8 @@ public class BDaoProduct {
 	}
 	
 	
-	public ArrayList<BDtoProduct> list(int start, int end){
-		ArrayList<BDtoProduct> dtos = new ArrayList<BDtoProduct>();
+	public ArrayList<BProductDto> list(int start, int end){
+		ArrayList<BProductDto> dtos = new ArrayList<BProductDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
@@ -122,7 +122,7 @@ public class BDaoProduct {
 					pStatus = "품절";
 				}
 				
-				BDtoProduct dto = new BDtoProduct(pCode, pName, pPrice, pPriceDC, pExpirationDate, pStatus, pAddDate, pCategory);
+				BProductDto dto = new BProductDto(pCode, pName, pPrice, pPriceDC, pExpirationDate, pStatus, pAddDate, pCategory);
 				dtos.add(dto);
 			}
 		} catch(Exception e) {
@@ -252,7 +252,7 @@ public class BDaoProduct {
 		
 	}
 	
-	public ArrayList<BDtoProduct> search(String search, String searchtxt, int start, int end) {
+	public ArrayList<BProductDto> search(String search, String searchtxt, int start, int end) {
 		String searchCheck = null;
 		String searchtxtCheck = null;
 		
@@ -270,7 +270,7 @@ public class BDaoProduct {
 		
 		System.out.println(whereStatement);
 		
-		ArrayList<BDtoProduct> dtos = new ArrayList<BDtoProduct>();
+		ArrayList<BProductDto> dtos = new ArrayList<BProductDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
@@ -302,7 +302,7 @@ public class BDaoProduct {
 					pStatus = "품절";
 				}
 				
-				BDtoProduct dto = new BDtoProduct(pCode, pName, pPrice, pPriceDC, pExpirationDate, pStatus, pAddDate, pCategory);
+				BProductDto dto = new BProductDto(pCode, pName, pPrice, pPriceDC, pExpirationDate, pStatus, pAddDate, pCategory);
 				dtos.add(dto);
 			}
 		} catch(Exception e) {
@@ -319,8 +319,8 @@ public class BDaoProduct {
 		return dtos;
 	}
 	
-	public ArrayList<BDtoProduct> salesTureList(int start, int end){
-		ArrayList<BDtoProduct> dtos = new ArrayList<BDtoProduct>();
+	public ArrayList<BProductDto> salesTureList(int start, int end){
+		ArrayList<BProductDto> dtos = new ArrayList<BProductDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
@@ -355,7 +355,7 @@ public class BDaoProduct {
 					pStatus = "품절";
 				}
 				
-				BDtoProduct dto = new BDtoProduct(pCode, pName, pPrice, pPriceDC, pExpirationDate, pStatus, pAddDate, pCategory);
+				BProductDto dto = new BProductDto(pCode, pName, pPrice, pPriceDC, pExpirationDate, pStatus, pAddDate, pCategory);
 				dtos.add(dto);
 			}
 		} catch(Exception e) {
@@ -374,8 +374,8 @@ public class BDaoProduct {
 	}
 	
 	
-	public ArrayList<BDtoProduct> salesFalseList(int start, int end){
-		ArrayList<BDtoProduct> dtos = new ArrayList<BDtoProduct>();
+	public ArrayList<BProductDto> salesFalseList(int start, int end){
+		ArrayList<BProductDto> dtos = new ArrayList<BProductDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
@@ -410,7 +410,7 @@ public class BDaoProduct {
 					pStatus = "품절";
 				}
 				
-				BDtoProduct dto = new BDtoProduct(pCode, pName, pPrice, pPriceDC, pExpirationDate, pStatus, pAddDate, pCategory);
+				BProductDto dto = new BProductDto(pCode, pName, pPrice, pPriceDC, pExpirationDate, pStatus, pAddDate, pCategory);
 				dtos.add(dto);
 			}
 		} catch(Exception e) {
@@ -429,8 +429,8 @@ public class BDaoProduct {
 	}
 	
 	
-	public BDtoProduct selectProduct(String selecCode) {
-		BDtoProduct dto = null;
+	public BProductDto selectProduct(String selecCode) {
+		BProductDto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
@@ -473,7 +473,7 @@ public class BDaoProduct {
 				} else {
 					pStatus = "품절";
 				}
-				dto = new BDtoProduct(pCode, pCategory, pName, pPrice, pPriceDC, pExpirationDate, pProductEA, pStatus, pAddDate, pMainFilePath);
+				dto = new BProductDto(pCode, pCategory, pName, pPrice, pPriceDC, pExpirationDate, pProductEA, pStatus, pAddDate, pMainFilePath);
 				
 			}
 		} catch(Exception e) {
@@ -492,7 +492,7 @@ public class BDaoProduct {
 	
 	
 	public int selectProductBuyCount(String selecCode) {
-		BDtoProduct dto = null;
+		BProductDto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;

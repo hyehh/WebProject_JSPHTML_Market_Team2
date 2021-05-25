@@ -198,7 +198,7 @@
 				<img alt="${product_view.pName } 메인 이미지" src="${product_view.pMainFilePath }">
 			</div>
 			<div class="product_info">
-				<form action="">
+				<form action="CustomerCartInsert.do">
 					<h2>${product_view.pName }</h2>
 					<table>
 						<tr>

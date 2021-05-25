@@ -43,10 +43,13 @@ public class BReviewDao { // 2021.05.16 조혜지 - 리뷰 미작성 목록 불�
 		try {
 			connection = dataSource.getConnection();
 			
-			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c ";
-			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and b.bReviewScore is null and b.bBuyCancelDate is null and c.cId = ? order by b.bSeq desc limit ?, ?";
+			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c, Delivery as d ";
+			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and d.Product_pCode = p.pCode and d.Customer_cId = c.cId and d.Product_pCode = b.Product_pCode and d.Customer_cId = b.Customer_cId and d.bNumber = b.bNumber and ";
+			String queryC =	"b.bReviewScore is null and b.bBuyCancelDate is null and d.dEndDate is not null and c.cId = ? order by b.bSeq desc limit ?, ?";
+//			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c ";
+//			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and b.bReviewScore is null and b.bBuyCancelDate is null and c.cId = ? order by b.bSeq desc limit ?, ?";
 			
-			preparedStatement = connection.prepareStatement(queryA + queryB);
+			preparedStatement = connection.prepareStatement(queryA + queryB + queryC);
 			
 			preparedStatement.setString(1, strcId);
 			preparedStatement.setInt(2, from);
@@ -222,10 +225,17 @@ public class BReviewDao { // 2021.05.16 조혜지 - 리뷰 미작성 목록 불�
 		try {
 			connection = dataSource.getConnection();
 			
-			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c ";
-			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and b.bReviewScore is null and c.cId = ? order by b.bSeq desc";		
+			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c, Delivery as d ";
+			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and d.Product_pCode = p.pCode and d.Customer_cId = c.cId and d.Product_pCode = b.Product_pCode and d.Customer_cId = b.Customer_cId and d.bNumber = b.bNumber and ";
+			String queryC =	"b.bReviewScore is null and b.bBuyCancelDate is null and d.dEndDate is not null and c.cId = ? order by b.bSeq desc limit ?, ?";
+//			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c ";
+//			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and b.bReviewScore is null and b.bBuyCancelDate is null and c.cId = ? order by b.bSeq desc limit ?, ?";
 			
-			preparedStatement = connection.prepareStatement(queryA + queryB);
+			preparedStatement = connection.prepareStatement(queryA + queryB + queryC);
+//			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c ";
+//			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and b.bReviewScore is null and c.cId = ? order by b.bSeq desc";		
+			
+//			preparedStatement = connection.prepareStatement(queryA + queryB);
 			preparedStatement.setString(1, strcId);
 
 			resultset = preparedStatement.executeQuery();

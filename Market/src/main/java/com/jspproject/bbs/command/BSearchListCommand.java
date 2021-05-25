@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BDaoProduct;
-import com.jspproject.bbs.dto.BDtoProduct;
+import com.jspproject.bbs.dto.BProductDto;
 import com.jspproject.bbs.homecontroller.BFrontController;
 
 public class BSearchListCommand implements BCommand {
@@ -68,7 +68,7 @@ public class BSearchListCommand implements BCommand {
 		}
 		
 		System.out.println(search + searchtxt);
-		ArrayList<BDtoProduct> dtos2 = dao.search(search, searchtxt, BFrontController.from, BFrontController.to);
+		ArrayList<BProductDto> dtos2 = dao.search(search, searchtxt, BFrontController.from, BFrontController.to);
 		
 		request.setAttribute("list", dtos2);
 		request.setAttribute("SALESCOUNT", salesCount);

@@ -22,10 +22,10 @@
 		<!-- 최상단 메뉴 -->
 		<div class="top">
 			<ul class="top_list">
-				<li><a href="">장바구니</a></li>
+				<li><a href="CustomerCart_View.do">장바구니</a></li>
 				<li><a href="">로그인</a></li>
 				<li><a href="">회원가입</a></li>
-				<li><a href="">마이페이지</a></li>
+				<li><a href="OrderList_View.do">마이페이지</a></li>
 				<li><a href="">1:1 문의</a></li>
 			</ul>
 		</div>

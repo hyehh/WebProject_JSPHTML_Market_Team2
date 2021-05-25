@@ -22,5 +22,11 @@
 	<form action="SellerSignOut_View.do" method="post">
 		<input type="submit" value="회원 탈퇴">
 	</form>
+	<form action="SellerInfoUpdate_View.do" method="post">
+		<input type="submit" value="판매자 정보 수정">
+	</form>
+	<form action="SellerPwUpdate_View.do" method="post">
+		<input type="submit" value="비밀번호 변경">
+	</form>
 </body>
 </html>
