@@ -62,8 +62,6 @@ $(function(){
 	          } else {
 	              return false;
 	          }
-        	  
-          
       },
       //규칙
       rules: {
@@ -106,9 +104,6 @@ $(function(){
           sNumber: {
         	  required : true
           },
-	          idDuplication:{
-	        	  equalTo : '#idDuplication2'
-          }
       },
       
       //규칙체크 실패시 출력될 메시지

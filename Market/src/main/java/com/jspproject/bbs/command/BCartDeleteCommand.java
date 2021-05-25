@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BCartDao;
 import com.jspproject.bbs.dto.BCartDto;
+import com.jspproject.bbs.util.Share;
 
 public class BCartDeleteCommand implements BCommand { // 2021.05.22 조혜지 - 장바구니 선택 상품 삭제하는 command
 
@@ -22,11 +23,11 @@ public class BCartDeleteCommand implements BCommand { // 2021.05.22 조혜지 - 
 			wId = Integer.parseInt(selectedProduct[i]);
 			
 //		이건 수훈님과 연동할 때 삭제하기 ************************************************************		
-			session.setAttribute("cId", "hyeji");
+//			session.setAttribute("cId", "hyeji");
 			
 //		이건 수훈님과 연동할 때 사용하기 ************************************************************		
-			String cId = (String)session.getAttribute("cId");
-			
+//			String cId = (String)session.getAttribute("cId");
+			String cId = Share.userId;
 			BCartDao dao = new BCartDao();
 			dao.cartDelete(cId, wId);
 			

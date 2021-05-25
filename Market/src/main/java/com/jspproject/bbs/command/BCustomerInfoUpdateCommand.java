@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BCustomerInfoDao;
+import com.jspproject.bbs.util.Share;
 
 public class BCustomerInfoUpdateCommand implements BCommand { // 2021.05.14 조혜지 - 회원 정보 수정 버튼 클릭 시 정보 업데이트 command
 
@@ -29,9 +30,10 @@ public class BCustomerInfoUpdateCommand implements BCommand { // 2021.05.14 조�
 		String cAddress1 = request.getParameter("cAddress1");
 		String cAddress2 = request.getParameter("cAddress2");		
 		
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************
-		String cId = (String)session.getAttribute("cId");
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+
+		String cId = Share.userId;
 		
 		BCustomerInfoDao dao = new BCustomerInfoDao();
 		dao.customerInfoUpdate(cName, cEmail, cBirth, cTel, cPostalCode, cAddress1, cAddress2, cId);

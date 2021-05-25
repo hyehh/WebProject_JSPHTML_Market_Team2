@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BReviewDao;
 import com.jspproject.bbs.dto.BReviewDto;
+import com.jspproject.bbs.util.Share;
 
 public class BReviewDeleteListCommand implements BCommand { // 2021.05.18 조혜지 - 리뷰 작성된 목록 불러오는 command
 
@@ -15,8 +16,10 @@ public class BReviewDeleteListCommand implements BCommand { // 2021.05.18 조혜
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 
-		String cId = (String)session.getAttribute("cId");
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+
+		String cId = Share.userId;	
 
 		BReviewDao dao = new BReviewDao();
 		

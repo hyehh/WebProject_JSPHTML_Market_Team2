@@ -8,14 +8,17 @@ import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BBuyDao;
 import com.jspproject.bbs.dto.BBuyDto;
+import com.jspproject.bbs.util.Share;
 
 public class BCancelListCommand implements BCommand { // 2021.05.23 조혜지 - 주문 취소한 상품 리스트 불러오는 command
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************		
-		String cId = (String)session.getAttribute("cId");
+//		String cId = (String)session.getAttribute("cId");
+////	이건 수훈님과 연동할 때 사용하기 ************************************************************		
+
+		String cId = Share.userId;
 		System.out.println(cId);
 		BBuyDao dao = new BBuyDao();
 		

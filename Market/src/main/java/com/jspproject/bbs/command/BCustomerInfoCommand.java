@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BCustomerInfoDao;
 import com.jspproject.bbs.dto.BCustomerInfoDto;
+import com.jspproject.bbs.util.Share;
 
 public class BCustomerInfoCommand implements BCommand { // 2021.05.13 조혜지 - 회원 정보 수정 시 db에 있는 정보 불러오는 command
 
@@ -13,11 +14,12 @@ public class BCustomerInfoCommand implements BCommand { // 2021.05.13 조혜지 
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub		
 
-//		이건 수훈님과 연동할 때 삭제하기 ************************************************************
-		session.setAttribute("cId", "hyeji");
+//		session.setAttribute("cId", "hyeji");
+//
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
 
-		String cId = (String)session.getAttribute("cId");
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+		String cId = Share.userId;	
 		
 		BCustomerInfoDao dao = new BCustomerInfoDao();
 		BCustomerInfoDto dto = dao.customerinfo(cId);

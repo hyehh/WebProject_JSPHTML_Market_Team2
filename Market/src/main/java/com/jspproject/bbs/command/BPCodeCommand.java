@@ -15,8 +15,8 @@ public class BPCodeCommand implements BCommand { // 2021.05.24 조혜지 - 장�
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		String cId = (String)session.getAttribute("cId");
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
 		String bNumber = (String)session.getAttribute("bNumber");
 		System.out.println(bNumber);
 		

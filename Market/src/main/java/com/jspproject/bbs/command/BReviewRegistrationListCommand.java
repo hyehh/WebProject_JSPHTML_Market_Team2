@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.jspproject.bbs.dao.BReviewDao;
 import com.jspproject.bbs.dto.BBuyDto;
 import com.jspproject.bbs.dto.BReviewDto;
+import com.jspproject.bbs.util.Share;
 
 public class BReviewRegistrationListCommand implements BCommand { // 2021.05.16 조혜지 - 리뷰 미등록한 상품을 DB에서 불러오는 command
 
@@ -16,9 +17,10 @@ public class BReviewRegistrationListCommand implements BCommand { // 2021.05.16 
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************		
-		String cId = (String)session.getAttribute("cId");
-		
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+
+		String cId = Share.userId;
 		
 		BReviewDao dao = new BReviewDao();
 		
