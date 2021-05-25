@@ -6,17 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.jspproject.bbs.dao.BDaoBuy;
-import com.jspproject.bbs.dto.BDtoBuy;
+import com.jspproject.bbs.dao.BDaoQnA;
+import com.jspproject.bbs.dto.BDtoQnA;
 import com.jspproject.bbs.homecontroller.BFrontController;
 
-public class BBuyListCommand implements BCommand {
+public class BQnAListCommand implements BCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		BDaoBuy dao = new BDaoBuy();
-		ArrayList<BDtoBuy> dtos = null;
+		BDaoQnA dao = new BDaoQnA();
+		ArrayList<BDtoQnA> dtos = null;
 		
 		String strPg = request.getParameter("pg"); //list.jsp?pg=?
 
@@ -27,7 +27,7 @@ public class BBuyListCommand implements BCommand {
 		    pg = Integer.parseInt(strPg); //.저장
 		}
 		System.out.println("jsp" + strPg);
-		int total = dao.buy(); //총 게시물 수
+		int total = dao.allQnA(); //총 게시물 수
 		int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
 //		int totalPage = total/rowSize + (total%rowSize==0?0:1);
 		int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
@@ -36,6 +36,11 @@ public class BBuyListCommand implements BCommand {
 		//	(2 * 10) - ( 10 - 1) = 20 - 9 = 11
 		BFrontController.from = (pg * rowSize) - (rowSize-1) - 1; //(1*10)-(10-1)=10-9=1 //from
 		BFrontController.to = 10; //(1*10) = 10 //to
+
+		/* ArrayList<BDto> list = dao.list(from,to); */
+
+
+
 
 		System.out.println("전체 페이지수 : "+allPage);
 		System.out.println("현제 페이지 : "+ strPg);
@@ -55,17 +60,21 @@ public class BBuyListCommand implements BCommand {
 			pageCount.add(i);
 		}
 		
+		
 		dtos = dao.list(BFrontController.from, BFrontController.to);
 		
-		int buyCount = dao.buy();
-		int buyTrue = dao.buyTrue();
-		int buyCancel = dao.buyCancel();
+		
+		// 계속가져갈것
+		int allQnACount = dao.allQnA();
+		int QnATure = dao.QnATure();
+		int QnAFalse = dao.QnAFalse();
 		
 		request.setAttribute("list", dtos);
-		request.setAttribute("BUYCOUNT", buyCount);
-		request.setAttribute("BUYTRUE", buyTrue);
-		request.setAttribute("BUYCANCEL", buyCancel);
+		request.setAttribute("allQnACount", allQnACount);
+		request.setAttribute("QnATure",QnATure);
+		request.setAttribute("QnAFalse",QnAFalse);
 		
+
 		// 페이징 변수들
 		request.setAttribute("PG", pg); // 페이지넘버
 		request.setAttribute("BLOCK", block); // 범위

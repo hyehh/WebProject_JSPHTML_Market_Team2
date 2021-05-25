@@ -6,17 +6,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.jspproject.bbs.dao.BDaoBuy;
-import com.jspproject.bbs.dto.BDtoBuy;
+import com.jspproject.bbs.dao.BDaoProduct;
+import com.jspproject.bbs.dto.BDtoProduct;
 import com.jspproject.bbs.homecontroller.BFrontController;
 
-public class BBuyListCommand implements BCommand {
+public class BProductListCommand implements BCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		BDaoBuy dao = new BDaoBuy();
-		ArrayList<BDtoBuy> dtos = null;
+		// DB에서 전체정보 읽어서 attribute로 jsp에 전달하기
+		BDaoProduct dao = new BDaoProduct();
+		ArrayList<BDtoProduct> dtos = null;
+		int salesCount = dao.sales();
+		int salesTure = dao.salesTrue();
+		int salesFalse = dao.salesFalse();
 		
 		String strPg = request.getParameter("pg"); //list.jsp?pg=?
 
@@ -27,7 +31,7 @@ public class BBuyListCommand implements BCommand {
 		    pg = Integer.parseInt(strPg); //.저장
 		}
 		System.out.println("jsp" + strPg);
-		int total = dao.buy(); //총 게시물 수
+		int total = dao.sales(); //총 게시물 수
 		int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
 //		int totalPage = total/rowSize + (total%rowSize==0?0:1);
 		int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
@@ -36,6 +40,11 @@ public class BBuyListCommand implements BCommand {
 		//	(2 * 10) - ( 10 - 1) = 20 - 9 = 11
 		BFrontController.from = (pg * rowSize) - (rowSize-1) - 1; //(1*10)-(10-1)=10-9=1 //from
 		BFrontController.to = 10; //(1*10) = 10 //to
+
+		/* ArrayList<BDto> list = dao.list(from,to); */
+
+
+
 
 		System.out.println("전체 페이지수 : "+allPage);
 		System.out.println("현제 페이지 : "+ strPg);
@@ -55,16 +64,13 @@ public class BBuyListCommand implements BCommand {
 			pageCount.add(i);
 		}
 		
-		dtos = dao.list(BFrontController.from, BFrontController.to);
 		
-		int buyCount = dao.buy();
-		int buyTrue = dao.buyTrue();
-		int buyCancel = dao.buyCancel();
+		dtos = dao.list(BFrontController.from, BFrontController.to); // 리스트를 구하기 위한메소드
 		
 		request.setAttribute("list", dtos);
-		request.setAttribute("BUYCOUNT", buyCount);
-		request.setAttribute("BUYTRUE", buyTrue);
-		request.setAttribute("BUYCANCEL", buyCancel);
+		request.setAttribute("SALESCOUNT", salesCount);
+		request.setAttribute("SALESTURE", salesTure);
+		request.setAttribute("SALESFALSE", salesFalse);
 		
 		// 페이징 변수들
 		request.setAttribute("PG", pg); // 페이지넘버

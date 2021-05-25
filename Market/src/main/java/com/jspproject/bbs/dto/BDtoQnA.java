@@ -1,5 +1,7 @@
 package com.jspproject.bbs.dto;
 
+import java.sql.Timestamp;
+
 public class BDtoQnA {
 	
 	int qnaCode;
@@ -11,7 +13,16 @@ public class BDtoQnA {
 	String aContent;
 	String answer;
 	String qFilePath;
-	
+	String cId;
+	String sId;
+	String bCondition;
+	String bNumber;
+	String qAnswerStatus;
+	String cName;
+	String aTitle;
+	String pName;
+	Timestamp aDeleteDate;
+	int qnACode;
 	
 	
 	public BDtoQnA() {
@@ -32,7 +43,58 @@ public class BDtoQnA {
 		this.qFilePath = qFilePath;
 	}
 	
-	
+	public BDtoQnA(String cId, String sId, String bCondition, String qContent, String qAddDate, String bNumber) {
+		super();
+		this.cId = cId;
+		this.sId = sId;
+		this.bCondition = bCondition;
+		this.qContent = qContent;
+		this.qAddDate = qAddDate;
+		this.bNumber = bNumber;
+	}
+
+	public BDtoQnA(int qnaCode, String qAddDate, String bNumber, String qTitle, String qAnswerStatus) {
+		super();
+		this.qnaCode = qnaCode;
+		this.qAddDate = qAddDate;
+		this.bNumber = bNumber;
+		this.qTitle = qTitle;
+		this.qAnswerStatus = qAnswerStatus;
+	}
+
+	public BDtoQnA(String qAddDate, String qTitle, String qAnswerStatus) {
+		super();
+		this.qAddDate = qAddDate;
+		this.qTitle = qTitle;
+		this.qAnswerStatus = qAnswerStatus;
+	}
+
+	public BDtoQnA(String qContent, String qAddDate, String bNumber, String qTitle, String cName, String aContent,
+			String pName) {
+		super();
+		this.qContent = qContent;
+		this.qAddDate = qAddDate;
+		this.bNumber = bNumber;
+		this.qTitle = qTitle;
+		this.cName = cName;
+		this.aContent = aContent;
+		this.pName = pName;
+	}
+
+	public BDtoQnA(int qnaCode, String qContent, String qAddDate, String bNumber, String qTitle, String qAnswerStatus,
+			String cName, String aContent, Timestamp aDeleteDate, String aAddDate) {
+		super();
+		this.qnaCode = qnaCode;
+		this.qContent = qContent;
+		this.qAddDate = qAddDate;
+		this.bNumber = bNumber;
+		this.qTitle = qTitle;
+		this.qAnswerStatus = qAnswerStatus;
+		this.cName = cName;
+		this.aContent = aContent;
+		this.aDeleteDate = aDeleteDate;
+		this.aAddDate = aAddDate;
+	}
 
 	public int getQnaCode() {
 		return qnaCode;
@@ -104,6 +166,86 @@ public class BDtoQnA {
 
 	public void setqFilePath(String qFilePath) {
 		this.qFilePath = qFilePath;
+	}
+
+	public String getcId() {
+		return cId;
+	}
+
+	public void setcId(String cId) {
+		this.cId = cId;
+	}
+
+	public String getsId() {
+		return sId;
+	}
+
+	public void setsId(String sId) {
+		this.sId = sId;
+	}
+
+	public String getbCondition() {
+		return bCondition;
+	}
+
+	public void setbCondition(String bCondition) {
+		this.bCondition = bCondition;
+	}
+
+	public String getbNumber() {
+		return bNumber;
+	}
+
+	public void setbNumber(String bNumber) {
+		this.bNumber = bNumber;
+	}
+
+	public String getqAnswerStatus() {
+		return qAnswerStatus;
+	}
+
+	public void setqAnswerStatus(String qAnswerStatus) {
+		this.qAnswerStatus = qAnswerStatus;
+	}
+
+	public String getcName() {
+		return cName;
+	}
+
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+
+	public String getaTitle() {
+		return aTitle;
+	}
+
+	public void setaTitle(String aTitle) {
+		this.aTitle = aTitle;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
+	public Timestamp getaDeleteDate() {
+		return aDeleteDate;
+	}
+
+	public void setaDeleteDate(Timestamp aDeleteDate) {
+		this.aDeleteDate = aDeleteDate;
+	}
+
+	public int getQnACode() {
+		return qnACode;
+	}
+
+	public void setQnACode(int qnACode) {
+		this.qnACode = qnACode;
 	}
 	
 }

@@ -12,7 +12,9 @@ public class BDtoProduct {
 	int pProductEA;
 	String pMainFilePath;
 	String pDetailFilePath;
-	
+	String pStatus;
+	String pDelete;
+	String pAddDate;
 	
 	
 	
@@ -46,6 +48,57 @@ public class BDtoProduct {
 		this.pProductEA = pProductEA;
 		this.pMainFilePath = pMainFilePath;
 		this.pDetailFilePath = pDetailFilePath;
+	}
+	
+	public BDtoProduct(int pCode, String pCategory, String pName, int pPrice, String pExpirationDate, int pProductEA) {
+		super();
+		this.pCode = pCode;
+		this.pCategory = pCategory;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pExpirationDate = pExpirationDate;
+		this.pProductEA = pProductEA;
+	}
+	
+	public BDtoProduct(int pCode, String pCategory, String pName, int pPrice, String pExpirationDate, int pProductEA,
+			String pStatus) {
+		super();
+		this.pCode = pCode;
+		this.pCategory = pCategory;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pExpirationDate = pExpirationDate;
+		this.pProductEA = pProductEA;
+		this.pStatus = pStatus;
+	}
+	
+	public BDtoProduct(int pCode, String pName, int pPrice, int pPriceDC, String pExpirationDate, String pStatus,
+			String pDelete, String pAddDate, String pCategory) {
+		super();
+		this.pCode = pCode;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pPriceDC = pPriceDC;
+		this.pExpirationDate = pExpirationDate;
+		this.pStatus = pStatus;
+		this.pDelete = pDelete;
+		this.pAddDate = pAddDate;
+		this.pCategory = pCategory;
+	}
+
+	public BDtoProduct(int pCode, String pCategory, String pName, int pPrice, int pPriceDC, String pExpirationDate,
+			int pProductEA, String pStatus, String pAddDate, String pMainFilePath) {
+		super();
+		this.pCode = pCode;
+		this.pCategory = pCategory;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pPriceDC = pPriceDC;
+		this.pExpirationDate = pExpirationDate;
+		this.pProductEA = pProductEA;
+		this.pStatus = pStatus;
+		this.pAddDate = pAddDate;
+		this.pMainFilePath = pMainFilePath;
 	}
 
 	public int getpCode() {
@@ -126,6 +179,30 @@ public class BDtoProduct {
 
 	public void setpDetailFilePath(String pDetailFilePath) {
 		this.pDetailFilePath = pDetailFilePath;
+	}
+
+	public String getpStatus() {
+		return pStatus;
+	}
+
+	public void setpStatus(String pStatus) {
+		this.pStatus = pStatus;
+	}
+
+	public String getpDelete() {
+		return pDelete;
+	}
+
+	public void setpDelete(String pDelete) {
+		this.pDelete = pDelete;
+	}
+
+	public String getpAddDate() {
+		return pAddDate;
+	}
+
+	public void setpAddDate(String pAddDate) {
+		this.pAddDate = pAddDate;
 	}
 	
 	

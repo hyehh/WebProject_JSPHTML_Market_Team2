@@ -9,36 +9,6 @@
 <!-- 2021.05.16 조혜지 주문서 작성/결제 view -->
 <title>주문서 작성/결제</title>
 </head>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    function PostalCode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
-				
-                
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
-                document.getElementById("sample4_roadAddress").value = roadAddr;
-                
-
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
-
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-    }
-</script>
 <style>
 	header {
 		display: block;
@@ -94,11 +64,100 @@
 		border-radius: 10px;
 	}
 </style>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+	function buyInfo() {
+		
+		var regExpbRecName = /^[가-힣a-zA-z]{1,10}$/;
+		var regExpbRecTel = /^[0-9]{11,12}$/;
+		var regExpbPayName = /^[가-힣a-zA-z]{1,10}$/;
+		var regExpbPayNumber = /^[0-9]*$/;
+		var regExpbPayPassword = /^[0-9]{4}$/;
+		var form = document.buyForm;
+		var bRecName = form.bRecName.value;
+		var bRecTel = form.bRecTel.value;
+		var bPayName = form.bPayName.value;
+		var bPayNumber = form.bPayNumber.value;
+		var bPayPassword = form.bPayPassword.value;
+		
+		if (!regExpbRecName.test(bRecName)) {
+			alert("수령인의 이름은 한글,영어 1~10자로 입력해주세요!");
+			form.bRecName.select();
+			return;
+		}
+		if(form.bRecPostalCode.value == ""){
+			alert("우편번호 찾기를 통해 우편번호를 입력해 주세요!");
+			form.bRecPostalCode.focus();
+			return;
+		}
+		if(form.bRecAddress1.value == ""){
+			alert("우편번호 찾기를 통해 도로명주소를 입력해 주세요!");
+			form.bRecAddress1.focus();
+			return;
+		}
+		if(form.bRecAddress2.value == ""){
+			alert("상세 주소를 입력해 주세요!");
+			form.bRecAddress2.focus();
+			return;
+		}
+		if (!regExpbRecTel.test(bRecTel)) {
+			alert("전화번호는 -없이 숫자11~12자리로 입력해주세요!");
+			form.bRecTel.select();
+			return;
+		}
+		if (!regExpbPayName.test(bPayName)) {
+			alert("예금주의 이름은 한글,영어 1~10자로 입력해주세요!");
+			form.bRecName.select();
+			return;
+		}
+		if (!regExpbPayName.test(bPayName)) {
+			alert("예금주의 이름은 한글,영어 1~10자로 입력해주세요!");
+			form.bRecName.select();
+			return;
+		}
+		if (!regExpbPayName.test(bPayName)) {
+			alert("예금주의 이름은 한글,영어 1~10자로 입력해주세요!");
+			form.bRecName.select();
+			return;
+		}
+		form.submit();
+		alert("주문이 완료되었습니다!");
+	}
+</script>
+<script>
+    function PostalCode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+				
+                
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample4_postcode').value = data.zonecode;
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                
+
+                var guideTextBox = document.getElementById("guide");
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
+        }).open();
+    }
+</script>
 <body>
 	<%@include file = "header.jsp" %>
 	<div class="container" id="allBuy">
 		<h2>주문서 작성/결제</h2>
-		<form action="AllBuy.do" method="post">
+		<form action="AllBuy.do" method="post" name="buyForm">
 			<table border="0">
 				<caption>주문 상세 내역</caption>
 					<tr>
@@ -207,7 +266,7 @@
 						placeholder="숫자 4자리를 입력해주세요."></td>
 					</tr>
 					<tr>
-						<td align="right"><input class="buttonJSP" type="submit" value="주문하기"></td>
+						<td align="right"><input class="buttonJSP" type="button" value="주문하기" onclick="buyInfo()"></td>
 						</form>
 						<form action="CustomerCart_View.do" method="post">
 						<td align="right"><input class="buttonJSP" type="submit" value="취소하기"></td>

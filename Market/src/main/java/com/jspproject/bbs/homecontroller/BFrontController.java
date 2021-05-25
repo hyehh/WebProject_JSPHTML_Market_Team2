@@ -10,13 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jspproject.bbs.command.BAddProductCommand;
 import com.jspproject.bbs.command.BAllBuyCommand;
 import com.jspproject.bbs.command.BAllBuyListCommand;
 import com.jspproject.bbs.command.BBestCommand;
+import com.jspproject.bbs.command.BBuyCancelCommand;
 import com.jspproject.bbs.command.BBuyCommand;
 import com.jspproject.bbs.command.BBuyConfirmCartDeleteCommand;
 import com.jspproject.bbs.command.BBuyConfirmListCommand;
 import com.jspproject.bbs.command.BBuyListCommand;
+import com.jspproject.bbs.command.BBuySearchListCommand;
+import com.jspproject.bbs.command.BBuyToDeliverCommand;
+import com.jspproject.bbs.command.BBuyTureCommand;
+import com.jspproject.bbs.command.BCBuyListCommand;
 import com.jspproject.bbs.command.BBuyerCommand;
 import com.jspproject.bbs.command.BCancelCommand;
 import com.jspproject.bbs.command.BCancelListCommand;
@@ -33,22 +39,50 @@ import com.jspproject.bbs.command.BCustomerInfoUpdateCommand;
 import com.jspproject.bbs.command.BCustomerPwUpdateCommand;
 import com.jspproject.bbs.command.BCustomerSignOutCommand;
 import com.jspproject.bbs.command.BDeadlineCommand;
+import com.jspproject.bbs.command.BDeliveryEndCommand;
+import com.jspproject.bbs.command.BDeliveryFinishCommand;
+import com.jspproject.bbs.command.BDeliveryForCommand;
+import com.jspproject.bbs.command.BDeliveryINGCommand;
 import com.jspproject.bbs.command.BDeliveryInfoCommand;
+import com.jspproject.bbs.command.BDeliveryListCommand;
+import com.jspproject.bbs.command.BDeliverySearchListCommand;
+import com.jspproject.bbs.command.BFileUpladCommad;
 import com.jspproject.bbs.command.BMainCommand;
 import com.jspproject.bbs.command.BNewCommand;
 import com.jspproject.bbs.command.BOrderListCancelCommand;
 import com.jspproject.bbs.command.BOrderListCommand;
 import com.jspproject.bbs.command.BPCodeCommand;
 import com.jspproject.bbs.command.BProductCommand;
+import com.jspproject.bbs.command.BProductDeleteCommand;
+import com.jspproject.bbs.command.BProductListCommand;
+import com.jspproject.bbs.command.BProductModifyCommand;
 import com.jspproject.bbs.command.BProductQCommand;
+import com.jspproject.bbs.command.BQnAAddCommand;
+import com.jspproject.bbs.command.BQnADeleteCommand;
+import com.jspproject.bbs.command.BQnAEditCommand;
+import com.jspproject.bbs.command.BQnAFalseCommand;
+import com.jspproject.bbs.command.BQnAListCommand;
+import com.jspproject.bbs.command.BQnATureCommand;
 import com.jspproject.bbs.command.BRegister_qCommand;
 import com.jspproject.bbs.command.BReviewBNumCommand;
 import com.jspproject.bbs.command.BReviewDeleteCommand;
 import com.jspproject.bbs.command.BReviewDeleteListCommand;
 import com.jspproject.bbs.command.BReviewRegistrationCommand;
 import com.jspproject.bbs.command.BReviewRegistrationListCommand;
+import com.jspproject.bbs.command.BSalesFalseCommand;
+import com.jspproject.bbs.command.BSalesTureCommand;
 import com.jspproject.bbs.command.BSearchCommand;
+import com.jspproject.bbs.command.BSearchListCommand;
+import com.jspproject.bbs.command.BSelectBuyCommand;
+import com.jspproject.bbs.command.BSelectOrderPageCommand;
+import com.jspproject.bbs.command.BSelectProductCommand;
+import com.jspproject.bbs.command.BSelectQnACommand;
+import com.jspproject.bbs.command.BSellerInfoCommand;
+import com.jspproject.bbs.command.BSellerInfoUpdateCommand;
+import com.jspproject.bbs.command.BSellerPwUpdateCommand;
 import com.jspproject.bbs.command.BSellerSignOutCommand;
+import com.jspproject.bbs.command.BSsearchQnAListCommand;
+import com.jspproject.bbs.command.BStoreCommand;
 import com.jspproject.bbs.command.CIdCheckCommand;
 import com.jspproject.bbs.command.SIdCheckCommand;
 import com.jspproject.bbs.command.SignUpCustomerCommand;
@@ -89,7 +123,11 @@ public class BFrontController extends HttpServlet {
 		actionDo(request, response);
 
 	}
-
+	
+	String fileNameMain;
+	String fileNameDetail;
+	public static int from;
+	public static int to;
 	
 	// actionDo함수
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -246,7 +284,19 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "CustomerInfoUpdate_View.do";
 			break;
-		// 비밀번호 변경하기
+		// 판매자정보 변경 버튼 눌렀을 때 DB에 있는 판매자 정보 불러오기
+		case("/SellerInfoUpdate_View.do"):
+			command = new BSellerInfoCommand();
+			command.execute(request, response, session);
+			viewPage = "SellerInfoUpdate_View.jsp";
+			break;
+		// 판매자정보 변경 페이지에서 확인 눌렀을 때 DB 수정하기
+		case("/SellerInfoUpdate.do"):
+			command = new BSellerInfoUpdateCommand();
+			command.execute(request, response, session);
+			viewPage = "SellerInfoUpdate_View.do";
+			break;
+		// 고객 비밀번호 변경하기
 		case("/CustomerPwUpdate_View.do"):
 			viewPage = "CustomerPwUpdate_View.jsp";
 			break;
@@ -255,6 +305,15 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "CustomerPwUpdate_View.do";
 			break;
+		// 판매자 비밀번호 변경하기
+		case("/SellerPwUpdate_View.do"):
+			viewPage = "SellerPwUpdate_View.jsp";
+		break;
+		case("/SellerPwUpdate.do"):
+			command = new BSellerPwUpdateCommand();
+			command.execute(request, response, session);
+			viewPage = "SellerPwUpdate_View.do";
+		break;
 		// 탈퇴하기
 		case("/CustomerSignOut_View.do"):
 			viewPage = "CustomerSignOut_View.jsp";
@@ -326,7 +385,7 @@ public class BFrontController extends HttpServlet {
 		break;
 		// 선택 상품 구매하기
 		case("/Buy_View.do"):
-			command = new BBuyListCommand();
+			command = new BCBuyListCommand();
 			command.execute(request, response, session);
 			command = new BBuyerCommand();
 			command.execute(request, response, session);
@@ -501,6 +560,206 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "product.jsp";
 			break;
+		// 첫화면
+		case ("/sellerStore.do"):
+			command = new BStoreCommand();
+			command.execute(request, response, session);
+			viewPage = "sellerStore.jsp";
+			break;
+		// 상품리스트 --------------------------------
+			// 리스트 전체보기
+		case ("/productlist.do"):
+			command = new BProductListCommand();
+		command.execute(request, response, session);
+			viewPage = "product_list_management.jsp";
+			break;
+		case ("/productlist.do?*"):
+			System.out.println("컨트롤러문제이니?");
+			command = new BProductListCommand();
+			command.execute(request, response, session);
+			viewPage = "product_list_management.jsp";
+			break;
+			// ---- 끝
+			// 검색 리스트
+		case ("/searchList.do"):
+			command = new BSearchListCommand();
+			command.execute(request, response, session);
+			viewPage = "ProductSearchList.jsp";
+			break;
+			// ---- 
+			// 판매중인 리스트
+		case ("/searchTure.do"):
+			command = new BSalesTureCommand();
+			command.execute(request, response, session);
+			viewPage = "ProductTureList.jsp";
+			break;
+			// ---- 끝
+			// 품절인 리스트
+		case ("/searchFalse.do"):
+			command = new BSalesFalseCommand();
+			command.execute(request, response, session);
+			viewPage = "ProductFalseList.jsp";
+			break;
+			// ---- 끝
+		case ("/selectProduct.do"):
+			System.out.println(request.getParameter("pStatus"));
+			command = new BSelectProductCommand();
+			command.execute(request, response, session);
+			viewPage = "selectProduct_vlew.jsp";
+			break;
+		case ("/productModify.do"):
+			command = new BProductModifyCommand(); 
+			command.execute(request, response, session);
+			viewPage = "productlist.do";
+			break;
+		case ("/productDelete.do"):
+			command = new BProductDeleteCommand(); 
+			command.execute(request, response, session);
+			viewPage = "productlist.do";
+			break;
+		// 상품리스트 -------------------------------- 끝
+		// 상품등록 --------------------------------
+		// ############### Register 테이블에도 업로드될 수 있도록@@@@@@@@@@@@@@@@@@@@@@@
+		case ("/showFirst.do"):
+			viewPage = "firstView.jsp";
+			break;
+		case ("/insert.do"):
+			System.out.println("난다요?");
+			command = new BAddProductCommand(); // insert register 안됨...ㅅㅂ........
+			System.out.println("난다요?");
+			command.execute(request, response, session);
+			viewPage = "productlist.do";
+			break;
+		case ("/imgUpload_view.do"):
+			viewPage = "imgUpload_view.jsp";
+			break;
+		case ("/imgUpload.do"):
+			command = new BFileUpladCommad();
+			command.execute(request, response, session);
+//				fileUpload(request, response);
+			viewPage = "productlist.do";
+			break;
+		// 상품등록 -------------------------------- 끝
+		// 배송현황 --------------------------------
+		case ("/DeliveryList.do"):
+			command = new BDeliveryListCommand();
+			command.execute(request, response, session);
+			viewPage = "DeliveryList.jsp";
+			break;
+		case ("/deliverySearchList.do"):
+			command = new BDeliverySearchListCommand();
+			command.execute(request, response, session);
+			viewPage = "DeliveryList.jsp";
+			break;
+		case ("/DeliveryEnd.do"):
+			command = new BDeliveryEndCommand();
+			command.execute(request, response, session);
+			viewPage = "DeliveryList.jsp";
+			break;
+		case ("/DeliveryING.do"):
+			command = new BDeliveryINGCommand();
+			command.execute(request, response, session);
+			viewPage = "DeliveryList.jsp";
+			break;
+		case ("/selectOrderPage.do"):
+			command = new BSelectOrderPageCommand();
+//				command = new BSelectOrderPgListCommand();
+			command.execute(request, response, session);
+			viewPage = "selectOrderPage_view.jsp";
+			break;
+			// 배송중으로 변경
+		case ("/deliveryFor.do"):
+			command = new BDeliveryForCommand();
+			command.execute(request, response, session);
+			viewPage = "selectOrderPage.do";
+			break;
+		case ("/deliveryFinish.do"):
+			command = new BDeliveryFinishCommand();
+			command.execute(request, response, session);
+			viewPage = "selectOrderPage.do";
+			break;
+			// 배송현황 -------------------------------- 끝
+			// 주문관리 --------------------------------
+		case ("/buyList.do"):
+			command = new BBuyListCommand();
+			command.execute(request, response, session);
+			viewPage = "buyList.jsp";
+			break;
+		case ("/buySearchList.do"):
+			command = new BBuySearchListCommand();
+			command.execute(request, response, session);
+			viewPage = "buySearchList.jsp";
+			break;
+		case ("/buyTure.do"):
+			command = new BBuyTureCommand();
+			command.execute(request, response, session);
+			viewPage = "buyTureList.jsp";
+			break;
+		case ("/buyCancel.do"):
+			command = new BBuyCancelCommand();
+			command.execute(request, response, session);
+			viewPage = "buyCancelList.jsp";
+			break;
+		case ("/selectBuy.do"):
+			command = new BSelectBuyCommand();
+			command.execute(request, response, session);
+			viewPage = "selectBuy_vlew.jsp";
+			break;
+		case ("/buyToDeliver.do"):
+			System.out.println(request.getParameter("bNumber"));
+			command = new BBuyToDeliverCommand();
+			command.execute(request, response, session);
+			System.out.println(request.getAttribute("selectOrderPage"));
+			viewPage = "selectOrderPage_view.jsp";
+			break;
+		// 주문관리 -------------------------------- 끈
+		// 문의관리 --------------------------------
+		case ("/QnAList.do"):
+			command = new BQnAListCommand();
+			command.execute(request, response, session);
+			viewPage = "QnAList.jsp";
+			break;
+			// 문의 검색
+		case ("/searchQnAList.do"):
+			command = new BSsearchQnAListCommand();
+			command.execute(request, response, session);
+			viewPage = "searchQnAList.jsp";
+			break;
+			// ----- 끝
+			// 답변완료
+		case ("/QnATure.do"):
+			command = new BQnATureCommand();
+			command.execute(request, response, session);
+			viewPage = "QnATureList.jsp";
+			break;
+			// ---- 끝
+			// 미답변
+		case ("/QnAFalse.do"):
+			command = new BQnAFalseCommand();
+			command.execute(request, response, session);
+			viewPage = "QnAFalseList.jsp";
+			break;
+			// ---- 끝
+		case ("/selectQnA.do"):
+			command = new BSelectQnACommand();
+			command.execute(request, response, session);
+			viewPage = "selectQnAPage_view.jsp";
+			break;
+		case ("/QnAAdd.do"):
+			command = new BQnAAddCommand();
+			command.execute(request, response, session);
+			viewPage = "QnAList.jsp";
+			break;
+		case ("/QnAEdit.do"):
+			command = new BQnAEditCommand();
+			command.execute(request, response, session);
+			viewPage = "QnAList.jsp";
+			break;
+		case ("/QnADelete.do"):
+			command = new BQnADeleteCommand();
+			command.execute(request, response, session);
+			viewPage = "QnAList.jsp";
+			// 문의관리 -------------------------------- 끝			
 		default:
 			break;
 		}

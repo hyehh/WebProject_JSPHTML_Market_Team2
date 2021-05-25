@@ -66,19 +66,22 @@
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-	function infoUpdate() {
+	function buyInfo() {
 		
-		var regExpbRecName = /^[가-힣a-zA-z]{1,30}$/;
+		var regExpbRecName = /^[가-힣a-zA-z]{1,10}$/;
 		var regExpbRecTel = /^[0-9]{11,12}$/;
-		var regExpcEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-		var form = document.customerInfoUpdateForm;
-		var cName = form.cName.value;
-		var cTel = form.cTel.value;
-		var cEmail = form.cEmail.value;
-		var regExpbPayName = /^[가-힣a-zA-z]{1,30}$/;
+		var regExpbPayName = /^[가-힣a-zA-z]{1,10}$/;
+		var regExpbPayNumber = /^[0-9]*$/;
+		var regExpbPayPassword = /^[0-9]{4}$/;
+		var form = document.buyForm;
+		var bRecName = form.bRecName.value;
+		var bRecTel = form.bRecTel.value;
+		var bPayName = form.bPayName.value;
+		var bPayNumber = form.bPayNumber.value;
+		var bPayPassword = form.bPayPassword.value;
 		
 		if (!regExpbRecName.test(bRecName)) {
-			alert("수령인의 이름은 한글,영어 1~30자로 입력해주세요!");
+			alert("수령인의 이름은 한글,영어 1~10자로 입력해주세요!");
 			form.bRecName.select();
 			return;
 		}
@@ -102,9 +105,23 @@
 			form.bRecTel.select();
 			return;
 		}
-
+		if (!regExpbPayName.test(bPayName)) {
+			alert("예금주의 이름은 한글,영어 1~10자로 입력해주세요!");
+			form.bRecName.select();
+			return;
+		}
+		if (!regExpbPayName.test(bPayName)) {
+			alert("예금주의 이름은 한글,영어 1~10자로 입력해주세요!");
+			form.bRecName.select();
+			return;
+		}
+		if (!regExpbPayName.test(bPayName)) {
+			alert("예금주의 이름은 한글,영어 1~10자로 입력해주세요!");
+			form.bRecName.select();
+			return;
+		}
 		form.submit();
-		alert("회원정보가 수정되었습니다!");
+		alert("주문이 완료되었습니다!");
 	}
 </script>
 <script>
@@ -140,7 +157,7 @@
 	<%@include file = "header.jsp" %>
 	<div class="container">
 		<h2>주문서 작성/결제</h2>
-		<form action="Buy.do" method="post">
+		<form action="Buy.do" method="post" name="buyForm">
 			<table border="0">
 				<caption>주문 상세 내역</caption>
 					<tr>
@@ -249,7 +266,7 @@
 						placeholder="숫자 4자리를 입력해주세요."></td>
 					</tr>
 					<tr>
-			 			<td align="right"><input class="buttonJSP" type="submit" value="주문하기"></td>
+			 			<td align="right"><input class="buttonJSP" type="button" value="주문하기" onclick="buyInfo()"></td>
 			 			</form>
 						<form action="CustomerCart_View.do" method="post">
 						<td align="right"><input class="buttonJSP" type="submit" value="취소하기"></td>

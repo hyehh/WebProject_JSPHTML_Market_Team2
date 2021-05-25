@@ -468,4 +468,41 @@ public class BDao {
 		return dtos;
 	}
 	
+	public int store() {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultset = null;
+		int count = 0;
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select * from Product";
+			
+//			insert into Product (pPrice, pCategory, PExpirationDate, pName, pQuantity)
+//			value ('2000', 'food', '2021-05-13', '콜라', '1');
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+			
+			while (resultset.next()) {
+				count++;
+			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null) resultset.close();
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection != null) connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return count;
+		
+	}
+	
 }
