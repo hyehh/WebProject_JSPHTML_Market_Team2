@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BBuyDao;
 import com.jspproject.bbs.dto.BBuyDto;
+import com.jspproject.bbs.util.Share;
 
 public class BOrderListCommand implements BCommand { // 2021.05.18 조혜지 - 주문 완료한 목록 불러오는 command
 
@@ -15,11 +16,12 @@ public class BOrderListCommand implements BCommand { // 2021.05.18 조혜지 - �
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 		
-//		이건 수훈님과 연동할 때 삭제하기 ************************************************************
-		session.setAttribute("cId", "hyeji");
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************		
-		String cId = (String)session.getAttribute("cId");
-		
+//		session.setAttribute("cId", "hyeji");
+//
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+
+		String cId = Share.userId;
 		
 		BBuyDao dao = new BBuyDao();
 		

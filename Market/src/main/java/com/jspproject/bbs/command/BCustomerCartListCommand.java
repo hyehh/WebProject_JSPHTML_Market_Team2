@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.jspproject.bbs.dao.BCartDao;
 import com.jspproject.bbs.dto.BBuyDto;
 import com.jspproject.bbs.dto.BCartDto;
+import com.jspproject.bbs.util.Share;
 
 public class BCustomerCartListCommand implements BCommand { // 2021.05.16 조혜지 - DB에 있는 장바구니 정보 불러오는 command
 
@@ -16,10 +17,12 @@ public class BCustomerCartListCommand implements BCommand { // 2021.05.16 조혜
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 
-		session.setAttribute("cId", "hyeji");
+//		session.setAttribute("cId", "hyeji");
+//
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
 
-		String cId = (String)session.getAttribute("cId");
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+		String cId = Share.userId;
 
 		BCartDao dao = new BCartDao();
 		String strPg = request.getParameter("pg"); //list.jsp?pg=?

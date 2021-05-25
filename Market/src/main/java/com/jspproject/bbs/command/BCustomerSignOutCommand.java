@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BCustomerInfoDao;
+import com.jspproject.bbs.util.Share;
 
 public class BCustomerSignOutCommand implements BCommand { // 2021.05.15 조혜지 - 회원 탈퇴 command
 
@@ -14,8 +15,10 @@ public class BCustomerSignOutCommand implements BCommand { // 2021.05.15 조혜�
 		String[] cSignOutReason = request.getParameterValues("cSignOutReason");
 		String cSignOutContent =  request.getParameter("cSignOutContent");
 
-		String cId = (String)session.getAttribute("cId");
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
+
+		String cId = Share.userId;
 		
 		BCustomerInfoDao dao = new BCustomerInfoDao();
 		dao.customerSignOut(cSignOutReason, cSignOutContent, cId);

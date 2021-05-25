@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BBuyDao;
 import com.jspproject.bbs.dto.BBuyDto;
+import com.jspproject.bbs.util.Share;
 
 public class BBuyListCommand implements BCommand { // 2021.05.17 조혜지 - 장바구니에서 선택한 상품한 가져오는 command
 
@@ -22,10 +23,12 @@ public class BBuyListCommand implements BCommand { // 2021.05.17 조혜지 - 장
 		for(int i=0; i<selectedProduct.length; i++) {
 			wId = Integer.parseInt(selectedProduct[i]);
 			
-			session.setAttribute("cId", "hyeji");
-			
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************		
-			String cId = (String)session.getAttribute("cId");
+//			session.setAttribute("cId", "hyeji");
+			//
+//					String cId = (String)session.getAttribute("cId");
+////					이건 수훈님과 연동할 때 사용하기 ************************************************************		
+
+			String cId = Share.userId;
 			
 			BBuyDao dao = new BBuyDao();
 			BBuyDto dto = dao.customerBuyList(cId, wId);

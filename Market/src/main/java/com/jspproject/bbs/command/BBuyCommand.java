@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BBuyDao;
+import com.jspproject.bbs.util.Share;
 
 public class BBuyCommand implements BCommand { // 2021.05.19 조혜지 - 선택 상품 주문 선택 시 주문서 작성/결제 창에서 주문 및 결제 정보 insert하는 command
 
@@ -43,10 +44,12 @@ public class BBuyCommand implements BCommand { // 2021.05.19 조혜지 - 선택 
 		String bRecTel = request.getParameter("bRecTel");
 		String bRecContent = request.getParameter("bRecContent");
 		
-		session.setAttribute("cId", "hyeji");
+//		session.setAttribute("cId", "hyeji");
+//
+//		String cId = (String)session.getAttribute("cId");
+////		이건 수훈님과 연동할 때 사용하기 ************************************************************		
 
-//		이건 수훈님과 연동할 때 사용하기 ************************************************************
-		String cId = (String)session.getAttribute("cId");
+		String cId = Share.userId;
 
 		BBuyDao dao = new BBuyDao();		
 		dao.insert(cId, bNumber, bRecName, bRecPostalCode, bRecAddress1, bRecAddress2, bRecTel, bRecContent, session);
