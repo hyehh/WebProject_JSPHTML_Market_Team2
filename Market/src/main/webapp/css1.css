@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/* 전체 */
+* {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+li {
+	list-style: none;
+}
+
+/* header */
+header {
+	height: 230px;
+}
+
+/* 상단 메뉴 */
+.top {
+	height: 30px;
+	width: 100%;
+    float: center;
+    margin-right: 20px;
+    top: 0;
+    left: 0;
+}
+.top_list {
+	float: right;
+	margin: auto;
+	list-style: none;
+}
+.top_list li {
+    float: left;
+    width: 80px;
+}
+.top_list li a {
+    display: block;
+    text-align: center;
+    padding: 5px;
+}
+
+/* 로고 */
+.logo {
+	height: 150px;
+}
+.logo h1{
+	font-size: 50px;
+	text-align: center;
+	line-height: 150px;
+}
+
+/* 카테고리 */
+.category {
+	height: 50px;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border-top: 1px solid #FEFEFE
+}
+nav {
+	width: 1000px;
+	margin: auto;
+}
+.category_list {
+	margin: auto;
+    list-style: none;
+}
+.category_list li {
+    float: left;
+    width: 100px;
+    height: 50px;
+}
+.category_list li a {
+    display: block;
+    text-align: center;
+    color: #111;
+    line-height: 50px;
+}
+.category_list li a:hover {
+    background: #555;
+    color: #fff;
+}
+
+/* footer */
+.content {
+	width: 1000px;
+	height: 100px;
+	margin: auto;
+	padding-top: 30px;
+}
+
