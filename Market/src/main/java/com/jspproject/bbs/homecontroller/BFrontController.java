@@ -90,6 +90,7 @@ import com.jspproject.bbs.command.SignUpSellerCommand;
 import com.jspproject.bbs.command.findIdActionCommand;
 import com.jspproject.bbs.command.findPwActionCommand;
 import com.jspproject.bbs.command.loginActionCommand;
+import com.jspproject.bbs.util.Share;
 
 /**
  * Servlet implementation class BFrontController
@@ -224,7 +225,9 @@ public class BFrontController extends HttpServlet {
 		case("/loginaction.do"):
 			command = new loginActionCommand();
 			command.execute(request, response, session);
-			
+			session.setAttribute("userId", Share.userId);
+
+			System.out.println(session.getAttribute("userId"));
 			//Command에서 처리한 결과에 따라서 다른 viewPage로 연결
 			if ((int)session.getAttribute("loginChkResult") == 0) {
 				session.invalidate();
@@ -239,6 +242,10 @@ public class BFrontController extends HttpServlet {
 					viewPage = "sellerStore.jsp";
 				}
 			}
+			break;
+		case("/logout.do"):
+			session.invalidate();
+			viewPage = "main.do";
 			break;
 			/*
 			 * 아이디찾기
@@ -322,6 +329,7 @@ public class BFrontController extends HttpServlet {
 			command = new BCustomerSignOutCommand();
 			command.execute(request, response, session);
 			// 이거는 수훈님과 연동할 때 메인페이지로 바꾸기 ****************************
+			session.invalidate();
 			viewPage = "main.do";
 			break;
 		// 탈퇴하기
@@ -332,6 +340,7 @@ public class BFrontController extends HttpServlet {
 			command = new BSellerSignOutCommand();
 			command.execute(request, response, session);
 			// 이거는 예진님과 연동할 때 메인페이지로 바꾸기 ****************************
+			session.invalidate();
 			viewPage = "sellerStore.do";
 		break;
 		// 이 케이스문은 삭제할 것임! 도희님과 연동할 때 상품 상세페이지로 바꾸기 ****************************
@@ -516,12 +525,12 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "OrderCancelList_View.jsp";
 			break;
-		// 메인 페이지 - DH	
+		// 메인 페이지 - DH
 		case("/main.do"):
 			command = new BMainCommand();
 			command.execute(request, response, session);
 			viewPage = "main.jsp";
-			break;
+		break;
 		case("/best.do"):
 			command = new BBestCommand();
 			command.execute(request, response, session);
@@ -768,7 +777,8 @@ public class BFrontController extends HttpServlet {
 			break;
 		}
 		
-		
+//		session.setAttribute("userId", Share.userId);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 		

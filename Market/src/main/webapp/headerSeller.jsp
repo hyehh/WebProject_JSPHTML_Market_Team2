@@ -22,7 +22,7 @@
 		<!-- 최상단 메뉴 -->
 		<div class="top">
 			<ul class="top_list">
-				<li><a href="">로그아웃</a></li>
+				<li><a href="logout.do">로그아웃</a></li>
 				<li><a href="SellerInfoUpdate_View.do">마이페이지</a></li>
 			</ul>
 		</div>

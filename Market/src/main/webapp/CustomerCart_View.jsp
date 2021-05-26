@@ -34,6 +34,9 @@
 		margin: auto;
 		background-color: #fff;
 	} */
+	.container {
+		padding-bottom: 50px;
+	}
 	.container form {
 		min-height: 350px;
 		width: 80%;

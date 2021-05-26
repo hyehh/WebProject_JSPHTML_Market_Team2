@@ -43,30 +43,42 @@
 		text-align: center;
 	}
 	/* 선 */
-	.title th, .review_product td {
+	.title th, .review_delete td {
 		border-bottom: 1px solid #444444;
 	}
 	/* table 넓이 조정 */
-	.title th:nth-child(1), .review_product td:nth-child(1) {
+	.title th:nth-child(1), .review_delete td:nth-child(1) {
 		width: 130px;
 	}
-	.title th:nth-child(2), .review_product td:nth-child(2) {
+	.title th:nth-child(2), .review_delete td:nth-child(2) {
 		width: 100px;
 	}
-	.title th:nth-child(3), .review_product td:nth-child(3) {
+	.title th:nth-child(3), .review_delete td:nth-child(3) {
 		width: 130px;
 	}
-	.title th:nth-child(4), .review_product td:nth-child(4) {
+	.title th:nth-child(4), .review_delete td:nth-child(4) {
 		width: 35px;
 	}
-	.title th:nth-child(5), .review_product td:nth-child(5) {
+	.title th:nth-child(5), .review_delete td:nth-child(5) {
 		width: 420px;
 	}
-	.title th:nth-child(6), .review_product td:nth-child(6) {
+	.title th:nth-child(6), .review_delete td:nth-child(6) {
 		width: 90px;
 	}
-	.review_product td:nth-child(3), .review_product td:nth-child(5) {
+	.review_delete td:nth-child(3), .review_delete td:nth-child(5) {
 		text-align: left;
+	}
+	
+	.bNumber {
+		color:black; 
+		background-color: white; 
+		padding-top:2px;
+		border-width:2px;
+		border-color:gray; 
+		border-top-style:none; 
+		border-right-style:none; 
+		border-left-style:none; 
+		border-bottom-style:none;"
 	}
 	
 	.buttonRev{
@@ -109,10 +121,8 @@
 							<th>&nbsp;</th>
 						</tr>
 						<c:forEach items="${REVIEWDEL }" var="dto">
-						<tr class="review_product">
-							<td><input type="text" name="bNumber" readonly="readonly" value="${dto.bNumber }" 
-							style="color:black; background-color=white; padding-top:2px;
-							border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:none;"></td>
+						<tr class="review_delete">
+							<td><input class="bNumber" type="text" name="bNumber" readonly="readonly" value="${dto.bNumber }"></td>
 						 	<td>${dto.bBuyDate }</td>
 							<td>${dto.pName }</td>
 							<td>${dto.bReviewScore }</td>

@@ -36,7 +36,7 @@ public class BAllBuyCommand implements BCommand { // 2021.05.20 조혜지 - 전�
 		int size = (int)session.getAttribute("asize");
 		System.out.println(size);
 		
-		String bNumber = ymd + "_"  + subNum;
+		String bNumber = ymd + "-"  + subNum;
 		String bRecName = request.getParameter("bRecName");
 		String bRecPostalCode = request.getParameter("bRecPostalCode");
 		String bRecAddress1 = request.getParameter("bRecAddress1");
