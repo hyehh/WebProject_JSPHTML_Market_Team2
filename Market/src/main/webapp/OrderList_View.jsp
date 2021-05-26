@@ -94,7 +94,7 @@
 		<%@include file = "LeftMenuBar.jsp" %>
 		<div class="container">
 			<!-- <h3>주문목록/배송조회</h3> -->
-			<form method="get">
+			<form method="post">
 				<table border="0">
 					<c:choose>			
 						<c:when test="${empty ORDER}">

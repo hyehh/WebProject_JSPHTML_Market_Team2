@@ -26,10 +26,10 @@ public class BAllBuyListCommand implements BCommand {
 		BBuyDao dao = new BBuyDao();
 		ArrayList<BBuyDto> dtos = dao.allBuyList(cId);
 		
-		session.setAttribute("CART", dtos);
+		session.setAttribute("CARTBUY", dtos);
 		
 		int asize = dtos.size();
-		System.out.println(asize);
+		System.out.println("All asize : " + asize);
 		session.setAttribute("asize", asize);
 
 	}

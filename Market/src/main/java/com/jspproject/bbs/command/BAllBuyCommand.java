@@ -50,6 +50,13 @@ public class BAllBuyCommand implements BCommand { // 2021.05.20 조혜지 - 전�
 //		String cId = (String)session.getAttribute("cId");
 		String cId = Share.userId;
 
+		System.out.println(bNumber);
+		System.out.println(bRecName);
+		System.out.println(bRecPostalCode);
+		System.out.println(bRecAddress1);
+		System.out.println(bRecAddress2);
+		System.out.println(bRecTel);
+		System.out.println(bRecContent);
 		
 		BBuyDao dao = new BBuyDao();		
 		dao.allInsert(cId, bNumber, bRecName, bRecPostalCode, bRecAddress1, bRecAddress2, bRecTel, bRecContent, session);

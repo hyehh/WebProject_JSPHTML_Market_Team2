@@ -147,48 +147,6 @@
 	}
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript">
-	function infoUpdate() {
-		
-		var regExpbRecName = /^[가-힣a-zA-z]{1,30}$/;
-		var regExpbRecTel = /^[0-9]{11,12}$/;
-		var regExpcEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-		var form = document.customerInfoUpdateForm;
-		var cName = form.cName.value;
-		var cTel = form.cTel.value;
-		var cEmail = form.cEmail.value;
-		var regExpbPayName = /^[가-힣a-zA-z]{1,30}$/;
-		
-		if (!regExpbRecName.test(bRecName)) {
-			alert("수령인의 이름은 한글,영어 1~30자로 입력해주세요!");
-			form.bRecName.select();
-			return;
-		}
-		if(form.bRecPostalCode.value == ""){
-			alert("우편번호 찾기를 통해 우편번호를 입력해 주세요!");
-			form.bRecPostalCode.focus();
-			return;
-		}
-		if(form.bRecAddress1.value == ""){
-			alert("우편번호 찾기를 통해 도로명주소를 입력해 주세요!");
-			form.bRecAddress1.focus();
-			return;
-		}
-		if(form.bRecAddress2.value == ""){
-			alert("상세 주소를 입력해 주세요!");
-			form.bRecAddress2.focus();
-			return;
-		}
-		if (!regExpbRecTel.test(bRecTel)) {
-			alert("전화번호는 -없이 숫자11~12자리로 입력해주세요!");
-			form.bRecTel.select();
-			return;
-		}
-
-		form.submit();
-		alert("회원정보가 수정되었습니다!");
-	}
-</script>
 <script>
     function PostalCode() {
         new daum.Postcode({
@@ -260,17 +218,17 @@
 		}
 		if (!regExpbPayName.test(bPayName)) {
 			alert("예금주의 이름은 한글,영어 1~10자로 입력해주세요!");
-			form.bRecName.select();
+			form.bPayName.select();
 			return;
 		}
 		if (!regExpbPayNumber.test(bPayNumber)) {
 			alert("계좌번호는 -없이 숫자로 입력해주세요!");
-			form.bRecName.select();
+			form.bPayNumber.select();
 			return;
 		}
 		if (!regExpbPayPassword.test(bPayPassword)) {
 			alert("계좌비밀번호는 숫자 4자리로 입력해주세요!");
-			form.bRecName.select();
+			form.bPayPassword.select();
 			return;
 		}
 		form.submit();

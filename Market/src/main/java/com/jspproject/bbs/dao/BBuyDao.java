@@ -183,7 +183,7 @@ public class BBuyDao { // 2021.05.16 조혜지 - 주문자 정보 불러오기 �
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		String queryA = "insert into BnS (Customer_cId, bQuantity, Product_pCode, bNumber, bBuyDate) values (?,?,?,?,curdate())";
-		ArrayList<BBuyDto> list = (ArrayList)session.getAttribute("CART");
+		ArrayList<BBuyDto> list = (ArrayList)session.getAttribute("CARTBUY");
 		
 		for(int i=0; i<(int)session.getAttribute("asize"); i++) {
 			try {
@@ -193,7 +193,9 @@ public class BBuyDao { // 2021.05.16 조혜지 - 주문자 정보 불러오기 �
 				
 				preparedStatement.setString(1, cId);
 				preparedStatement.setInt(2, list.get(i).getwQuantity());
+				System.out.println(list.get(i).getwQuantity());
 				preparedStatement.setInt(3, list.get(i).getpCode());
+				System.out.println(list.get(i).getpCode());
 				preparedStatement.setString(4, bNumber);
 				
 				preparedStatement.executeUpdate();
@@ -244,7 +246,7 @@ public class BBuyDao { // 2021.05.16 조혜지 - 주문자 정보 불러오기 �
 		
 		String queryC = "insert into Delivery (Customer_cId, Product_pCode, bNumber) values (?,?,?)";
 
-		for(int i=0; i<(int)session.getAttribute("size"); i++) {
+		for(int i=0; i<(int)session.getAttribute("asize"); i++) {
 			try {
 				connection = dataSource.getConnection();
 				

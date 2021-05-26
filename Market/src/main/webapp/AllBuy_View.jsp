@@ -81,17 +81,17 @@
 		}
 		if (!regExpbPayName.test(bPayName)) {
 			alert("예금주의 이름은 한글,영어 1~10자로 입력해주세요!");
-			form.bRecName.select();
+			form.bPayName.select();
 			return;
 		}
 		if (!regExpbPayNumber.test(bPayNumber)) {
 			alert("계좌번호는 -없이 숫자로 입력해주세요!");
-			form.bRecName.select();
+			form.bPayNumber.select();
 			return;
 		}
 		if (!regExpbPayPassword.test(bPayPassword)) {
 			alert("계좌비밀번호는 숫자 4자리로 입력해주세요!");
-			form.bRecName.select();
+			form.bPayPassword.select();
 			return;
 		}
 		form.submit();

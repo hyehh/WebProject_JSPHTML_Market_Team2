@@ -227,7 +227,7 @@ public class BReviewDao { // 2021.05.16 조혜지 - 리뷰 미작성 목록 불�
 			
 			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c, Delivery as d ";
 			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and d.Product_pCode = p.pCode and d.Customer_cId = c.cId and d.Product_pCode = b.Product_pCode and d.Customer_cId = b.Customer_cId and d.bNumber = b.bNumber and ";
-			String queryC =	"b.bReviewScore is null and b.bBuyCancelDate is null and d.dEndDate is not null and c.cId = ? order by b.bSeq desc limit ?, ?";
+			String queryC =	"b.bReviewScore is null and b.bBuyCancelDate is null and d.dEndDate is not null and c.cId = ? order by b.bSeq desc";
 //			String queryA = "select b.bNumber, b.bBuyDate, p.pName, b.bQuantity, p.pPriceDC, p.pCode from BnS as b, Product as p, Customer as c ";
 //			String queryB =	"where b.Customer_cId = c.cId and p.pCode = b.Product_pCode and b.bReviewScore is null and b.bBuyCancelDate is null and c.cId = ? order by b.bSeq desc limit ?, ?";
 			
