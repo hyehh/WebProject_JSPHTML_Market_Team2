@@ -32,6 +32,8 @@ public class BCustomerCartInsertCommand implements BCommand { // 2021.05.16 ì¡°í
 //		System.out.println(dao.cartCheck(cId, Integer.parseInt(pCode)));
 		dao.insert(Integer.parseInt(wQuantity), cId, Integer.parseInt(pCode));
 		
+		Share.pCode = pCode;
+
 	}
 
 }

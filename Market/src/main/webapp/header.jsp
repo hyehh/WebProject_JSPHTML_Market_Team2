@@ -7,18 +7,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert tile here</title>
+	
+	<!-- UIkit CSS -->
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/css/uikit.min.css" /> -->
+	
+	<!-- UIkit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
+	
 	<link rel="stylesheet" href="css1.css">
+	<link rel="stylesheet" href="search.css">
 </head>
-
-<style type="text/css">
-	.search {
-		width: 200px;
-		height: 46px;
-		border: 2px solid red;
-		float: left;
-	}
-</style>
-
 <body>
 	<header>
 		<!-- 최상단 메뉴 -->
@@ -62,27 +61,12 @@
 				</ul>
 			</nav>
 			<div class="search">
-				<form action="search.do">
-					<input type="text" name="pName">
-					<input type="submit" value="검색">
-				</form>
-				<!-- <div>
-		            <a class="uk-navbar-toggle" href="#" uk-search-icon></a>
-		            <div class="uk-navbar-dropdown" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav">
-		
-		                <div class="uk-grid-small uk-flex-middle" uk-grid>
-		                    <div class="uk-width-expand">
-		                        <form action="search.do" class="uk-search uk-search-navbar uk-width-1-1">
-		                            <input class="uk-search-input" type="search" placeholder="Search" autofocus>
-		                        </form>
-		                    </div>
-		                    <div class="uk-width-auto">
-		                        <a class="uk-navbar-dropdown-close" href="#" uk-close></a>
-		                    </div>
-		                </div>
-		
-		            </div>
-		        </div> -->
+				<div class="uk-margin">
+				    <form action="search.do" class="uk-search uk-search-default">
+				        <span uk-search-icon></span>
+				        <input class="uk-search-input" type="search" placeholder="Search" name="pName">
+				    </form>
+				</div>
 			</div>
 		</div>
 		<!-- //카테고리 -->

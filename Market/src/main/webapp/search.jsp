@@ -11,22 +11,20 @@
 <style type="text/css">
 	.search_wrap {
 		background-color: #FAFAFA;
-	}
-	.img {
-		width: 1000px;
-		height: 500px;
-		margin: auto;
-		background-color: gray;
+		padding: 30px 0;
 	}
 	
 	/* 메인 상품 노출 */
 	.search_item {
 		width: 1000px;
-		height: 1000px;
 		margin: auto;
+		background-color: #fff;
 	}
 	.items {
 		margin: 10px;
+	}
+	.items ul {
+		overflow: hidden;
 	}
 	.items ul li {
 		width: 25%;

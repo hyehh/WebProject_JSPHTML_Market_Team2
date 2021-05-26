@@ -359,19 +359,30 @@ public class BFrontController extends HttpServlet {
 				session.setAttribute("checkMessage", checkMessage);
 				command = new BCustomerCartUpdateCommand();
 				command.execute(request, response, session);
-//				command = new BProductQCommand();
-//				command.execute(request, response, session);
+				command = new BProductQCommand();
+				command.execute(request, response, session);
 			}else {
 				checkMessage = "장바구니에 담았습니다.";
 				session.setAttribute("checkMessage", checkMessage);
 				command = new BCustomerCartInsertCommand();
 				command.execute(request, response, session);
-//				command = new BProductQCommand();
-//				command.execute(request, response, session);
+				command = new BProductQCommand();
+				command.execute(request, response, session);
 			}
 			request.setAttribute("check", session.getAttribute("check"));
 			request.setAttribute("checkMessage", session.getAttribute("checkMessage"));
 			viewPage = "cartCheckAlert.jsp";
+		break;
+		case("/productAgain.do"):
+			command = new BBuyConfirmListCommand();
+		command.execute(request, response, session);
+		command = new BDeliveryInfoCommand();
+		command.execute(request, response, session);
+		command = new BPCodeCommand();
+		command.execute(request, response, session);
+		command = new BBuyConfirmCartDeleteCommand();
+		command.execute(request, response, session);
+		viewPage = "BuyConfirm_View.jsp";
 		break;
 		// 장바구니 DB에서 불러오기
 		case("/CustomerCart_View.do"):

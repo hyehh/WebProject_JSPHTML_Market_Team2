@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.uk-margin{margin-bottom:20px}
+*+.uk-margin{margin-top:20px!important}
+
+.uk-search{display:inline-block;position:relative;max-width:100%;margin:0}
+.uk-search .uk-search-icon{position:absolute;top:0;bottom:0;left:0;display:inline-flex;justify-content:center;align-items:center;color:#999}
+.uk-search .uk-search-icon:hover{color:#999}
+.uk-search .uk-search-icon:not(a):not(button):not(input){pointer-events:none}
+.uk-search .uk-search-icon-flip{right:0;left:auto}
+
+.uk-search-default{width:180px}
+.uk-search-default .uk-search-input{height:40px;padding-left:6px;padding-right:6px;background:0 0;border:1px solid #e5e5e5}
+.uk-search-default .uk-search-input:focus{background-color:transparent}
+.uk-search-default .uk-search-icon{width:40px}
+.uk-search-default .uk-search-icon:not(.uk-search-icon-flip)~.uk-search-input{padding-left:40px}
+.uk-search-default .uk-search-icon-flip~.uk-search-input{padding-right:40px}
+.uk-card-primary.uk-card-body .uk-search-default .uk-search-input,.uk-card-primary>:not([class*=uk-card-media]) .uk-search-default .uk-search-input,
+.uk-card-secondary.uk-card-body .uk-search-default .uk-search-input,.uk-card-secondary>:not([class*=uk-card-media]) .uk-search-default .uk-search-input,
+.uk-light .uk-search-default .uk-search-input,.uk-offcanvas-bar .uk-search-default .uk-search-input,.uk-overlay-primary .uk-search-default .uk-search-input,
+.uk-section-primary:not(.uk-preserve-color) .uk-search-default .uk-search-input,.uk-section-secondary:not(.uk-preserve-color) .uk-search-default .uk-search-input,
+.uk-tile-primary:not(.uk-preserve-color) .uk-search-default .uk-search-input,.uk-tile-secondary:not(.uk-preserve-color) .uk-search-default .uk-search-input
+{background-color:transparent;border-color:rgba(255,255,255,.2)}
+.uk-card-primary.uk-card-body .uk-search-default .uk-search-input:focus,.uk-card-primary>:not([class*=uk-card-media]) .uk-search-default .uk-search-input:focus,
+.uk-card-secondary.uk-card-body .uk-search-default .uk-search-input:focus,.uk-card-secondary>:not([class*=uk-card-media]) .uk-search-default .uk-search-input:focus,
+.uk-light .uk-search-default .uk-search-input:focus,.uk-offcanvas-bar .uk-search-default .uk-search-input:focus,.uk-overlay-primary .uk-search-default .uk-search-input:focus,
+.uk-section-primary:not(.uk-preserve-color) .uk-search-default .uk-search-input:focus,.uk-section-secondary:not(.uk-preserve-color) .uk-search-default .uk-search-input:focus,
+.uk-tile-primary:not(.uk-preserve-color) .uk-search-default .uk-search-input:focus,.uk-tile-secondary:not(.uk-preserve-color) .uk-search-default .uk-search-input:focus
+{background-color:transparent}
+
+.uk-search-input::-webkit-search-cancel-button,.uk-search-input::-webkit-search-decoration{-webkit-appearance:none}
+.uk-search-input::-moz-placeholder{opacity:1}
+.uk-search-input{box-sizing:border-box;margin:0;border-radius:0;font:inherit;overflow:visible;-webkit-appearance:none;vertical-align:middle;width:100%;border:none;color:#666}
+.uk-search-input:focus{outline:0}
+.uk-search-input:-ms-input-placeholder{color:#999!important}
+.uk-search-input::placeholder{color:#999}
+
+.uk-search-icon:focus{outline:0}
