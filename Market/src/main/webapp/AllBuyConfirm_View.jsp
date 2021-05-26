@@ -105,8 +105,7 @@
 					<tr>
 						<td align="right"><input class="buttonBuy" type="submit" value="취소하기"></td>
 						</form> 
-						<!-- 여기는 메인 화면으로 이동하는 걸로 바꾸기 -->
-						<form action="Product_View.do" method="post">
+						<form action="main.do" method="post">
 						<td align="right"><input class="buttonBuy" type="submit" value="메인으로 이동"></td>
 						</form>			
 					</tr>

@@ -26,7 +26,6 @@
 				<li><a href="login.do">로그인</a></li>
 				<li><a href="signup.do">회원가입</a></li>
 				<li><a href="OrderList_View.do">마이페이지</a></li>
-				<li><a href="">1:1 문의</a></li>
 			</ul>
 		</div>
 		<!-- //최상단 메뉴 -->
