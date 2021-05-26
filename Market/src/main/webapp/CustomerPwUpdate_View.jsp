@@ -31,29 +31,42 @@
 </script>
 <style>
 	/* .container_wrap {
-		display: block;
-	} */
-	#pwUpdate {
- 		padding: 5px 20px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 450px; height: 250px;
-		margin-left: -220px;
-		margin-top : -250px; 
+		background-color: #FAFAFA;
+		padding: 30px 0;
 	}
-	caption {
-		font-style: 200px; font-weight: bold; margin: 50px;
-		font-size: x-large;
+	.container {
+		width: 1000px;
+		margin: auto;
+		background-color: #fff;
+	} */
+	.container form {
+		margin: auto;
+		/* border: 1px solid;*/
+		width: 400px;
+		padding: 50px 0;
 	}
 	.table {
 		margin: auto;
 		border-collapse: collapse;
 	}
-
+	caption {
+		font-style: 200px; font-weight: bold; margin: 50px;
+		font-size: x-large;
+	}
 	.table, th, td {
 		padding: 10px;
 		text-align: left;
+	}
+	.inputText td:nth-child(2) input {
+		color:black; 
+		background-color: white;
+		padding-top:2px;
+		border-width:2px; 
+		border-color:gray; 
+		border-top-style:none; 
+		border-right-style:none; 
+		border-left-style:none; 
+		border-bottom-style:line
 	}
 	.buttonJSP{
 		width: 70px;
@@ -73,29 +86,27 @@
 </head>
 <body>
 	<%@include file = "header.jsp" %>
+	<div class="container_wrap"> 
 	<%@include file = "LeftMenuBar.jsp" %>
-	<div class="container" id="pwUpdate">
-		<form action="CustomerPwUpdate.do" name="pwUpdateForm" method="post">
-			<table border="0">
-				<caption>비밀번호 변경</caption>
-					<tr>
+		<div class="container" id="pwUpdate">
+			<form action="CustomerPwUpdate.do" name="pwUpdateForm" method="post">
+				<table border="0">
+					<caption>비밀번호 변경</caption>
+					<tr class="inputText">
 						<td>변경할 비밀번호</td>
-						<td><input type="password" name="cPw" size="30" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="문자,숫자,특수문자 포함해 입력하세요"></td>
+						<td><input type="password" name="cPw" size="30" placeholder="문자,숫자,특수문자 포함해 입력하세요"></td>
 					</tr>
-					<tr>
+					<tr class="inputText">
 						<td>변경할 비밀번호 확인</td>
-						<td><input type="password" name="cPwCheck" size="30" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="변경할 비밀번호를 동일하게 입력하세요"></td>
+						<td><input type="password" name="cPwCheck" size="30" placeholder="변경할 비밀번호를 동일하게 입력하세요"></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td><input class="buttonJSP" type="button" style="float:right" value="확인" onclick="pwUpdate()"></td>
 					</tr>
-			</table>
-		</form>
+				</table>
+			</form>
+		</div>
 	</div>
 	<%@include file = "footer.jsp" %>
 </body>

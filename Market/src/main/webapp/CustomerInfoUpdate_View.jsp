@@ -81,29 +81,40 @@
 </script>
 <style>
 	/* .container_wrap {
-		display: block;
+		background-color: #FAFAFA;
+		padding: 30px 0;
+	}
+	.container {
+		width: 1000px;
+		margin: auto;
+		background-color: #fff;
 	} */
-/* 	#pwUpdate {
- 		padding: 5px 20px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 450px; height: 250px;
-		margin-left: -220px;
-		margin-top : -250px; 
-	} */
-	caption {
-		font-style: 200px; font-weight: bold; margin: 50px;
-		font-size: x-large;
+	.container form {
+		width: 400px;
+		margin: auto;
 	}
 	.table {
 		margin: auto;
 		border-collapse: collapse;
 	}
-
+	caption {
+		font-style: 200px; font-weight: bold; margin: 50px;
+		font-size: x-large;
+	}
 	.table, th, td {
 		padding: 10px;
 		text-align: left;
+	}
+	.inputText td:nth-child(2) input:not(.buttonAdd) {
+		color:black; 
+		background-color: white;
+		padding-top:2px;
+		border-width:2px; 
+		border-color:gray; 
+		border-top-style:none; 
+		border-right-style:none; 
+		border-left-style:none; 
+		border-bottom-style:line
 	}
 	.buttonJSP{
 		width: 70px;
@@ -133,35 +144,31 @@
 	    cursor: pointer;
 		border-radius: 10px;
 	}
+	
 </style>
 <body>
 	<%@include file = "header.jsp" %>
-	<%@include file = "LeftMenuBar.jsp" %>
-	<div class="container">
-		<form name="customerInfoUpdateForm" action="CustomerInfoUpdate.do" method="post">
-			<table border="0">
-				<caption>회원정보 변경</caption>
+	<div class="container_wrap">
+		<%@include file = "LeftMenuBar.jsp" %>
+		<div class="container">
+			<form name="customerInfoUpdateForm" action="CustomerInfoUpdate.do" method="post">
+				<table>
+					<caption>회원정보 변경</caption>
 					<tr>
 						<td>ID</td>
 						<td>${CUSTOMERINFO.cId }</td>
 					</tr>
-					<tr>
+					<tr class="inputText">
 						<td>이름</td>
-						<td><input type="text" name="cName" value="${CUSTOMERINFO.cName }" size="25" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="이름을 입력하세요."></td>
+						<td><input type="text" name="cName" value="${CUSTOMERINFO.cName }" size="25" placeholder="이름을 입력하세요."></td>
 					</tr>
-					<tr>
+					<tr class="inputText">
 						<td>전화번호</td>
-						<td><input type="text" name="cTel" value="${CUSTOMERINFO.cTel }" size="25" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="-를 생략하고 입력하세요."></td>
+						<td><input type="text" name="cTel" value="${CUSTOMERINFO.cTel }" size="25" placeholder="-를 생략하고 입력하세요."></td>
 					</tr>
-					<tr>
+					<tr class="inputText">
 						<td>이메일</td>
-						<td><input type="text" name="cEmail" value="${CUSTOMERINFO.cEmail }" size="25" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="이메일을 입력하세요."></td>
+						<td><input type="text" name="cEmail" value="${CUSTOMERINFO.cEmail }" size="25" placeholder="이메일을 입력하세요."></td>
 					</tr>
 					<tr>
 						<td>생년월일</td>
@@ -207,26 +214,22 @@
 							일 
 						</td>
 					</tr>	
-					<tr>
+					<tr class="inputText">
 						<td>주소</td>
-						<td><input type="text" id="sample4_postcode" name="cPostalCode" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="우편번호를 입력하세요." value="${CUSTOMERINFO.cPostalCode }">
+						<td>
+							<input type="text" id="sample4_postcode" name="cPostalCode" placeholder="우편번호를 입력하세요." value="${CUSTOMERINFO.cPostalCode }">
 							<input class="buttonAdd" type="button" onclick="PostalCode()" value="우편번호 찾기"><br>
-							<input type="text" id="sample4_roadAddress" name="cAddress1" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-							placeholder="도로명주소를 입력하세요." value="${CUSTOMERINFO.cAddress1 }">
+							<input type="text" id="sample4_roadAddress" name="cAddress1" placeholder="도로명주소를 입력하세요." value="${CUSTOMERINFO.cAddress1 }">
 							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="sample4_detailAddress" name="cAddress2" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-							placeholder="상세주소를 입력하세요." value="${CUSTOMERINFO.cAddress2 }">
+							<input type="text" id="sample4_detailAddress" name="cAddress2" placeholder="상세주소를 입력하세요." value="${CUSTOMERINFO.cAddress2 }">
 					</tr>
 					<tr>
 						<td></td>
 						<td><input class="buttonJSP" type="button" style="float:right" value="확인" onclick="infoUpdate()"></td>
 					</tr>
-			</table>
-		</form>
+				</table>
+			</form>
+		</div>
 	</div>
 	<%@include file = "footer.jsp" %>
 </body>

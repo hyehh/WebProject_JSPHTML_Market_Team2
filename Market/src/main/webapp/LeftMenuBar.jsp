@@ -8,6 +8,17 @@
 <title>Insert title here</title>
 </head>
 <style>
+
+.container_wrap {
+	background-color: #FAFAFA;
+	padding: 30px 0;
+}
+.container {
+	width: 1000px;
+	margin: auto;
+	background-color: #fff;
+}
+	
 .button{
 	border : 0;
 	outline : 0;
@@ -16,50 +27,58 @@
 	background-color : white;
 }
 .leftbar {
-	display: inline-block;
-	width: 600px;
+	padding: 30px;
+	position: absolute;
+	left: 50%;
+	margin-left: -680px;
 }
-.container {
-	display: inline-block;
+.shopping {
+	margin-bottom: 20px;
 }
-
+.shopping h3, .user h3 {
+	padding-bottom: 5px;
+}
+.shopping form, .user form {
+	padding: 5px;
+}
 </style>
 <body>
 	<div class="leftbar">
-		________
-		<p>쇼핑정보</p>
-		<ul>
+		<div class="shopping">
+			<h3>쇼핑정보</h3>
 			<form action="OrderList_View.do" method="post">
-			<li><input class="button" type="submit" value="주문목록/배송조회"></li>
+				<input class="button" type="submit" value="주문목록/배송조회">
 			</form>
+			
 			<form action="OrderCancelList_View.do" method="post">
-			<li><input class="button" type="submit" value="주문취소목록"></li>
+				<input class="button" type="submit" value="주문취소목록">
 			</form>
+			
 			<form action="CustomerCart_View.do" method="post">
-			<li><input class="button" type="submit" value="장바구니"></li>
+				<input class="button" type="submit" value="장바구니">
 			</form>
+			
 			<form action="ReviewRegistrationList_View.do" method="post">
-			<li><input class="button" type="submit" value="리뷰 등록"></li>
+				<input class="button" type="submit" value="리뷰 등록">
 			</form>
+			
 			<form action="ReviewDelete_View.do" method="post">
-			<li><input class="button" type="submit" value="리뷰 삭제"></li>
+				<input class="button" type="submit" value="리뷰 삭제">
 			</form>
-			<br><br>
-		</ul>
-		________
-		<p>회원정보</p>
-		<ul>
+		</div>
+		
+		<div class="user">
+			<h3>회원정보</h3>
 			<form action="CustomerInfoUpdate_View.do" method="post">
-			<li><input class="button" type="submit" value="회원정보 변경"></li>
+				<input class="button" type="submit" value="회원정보 변경">
 			</form>
 			<form action="CustomerPwUpdate_View.do" method="post">
-			<li><input class="button" type="submit" value="비밀번호 변경"></li>
+				<input class="button" type="submit" value="비밀번호 변경">
 			</form>
 			<form action="CustomerSignOut_View.do" method="post">
-			<li><input class="button" type="submit" value="회원 탈퇴"></li>
+				<input class="button" type="submit" value="회원 탈퇴">
 			</form>
-			<br><br>
-		</ul>
+		</div>
 	</div>
 </body>
 </html>

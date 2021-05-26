@@ -23,29 +23,28 @@
 </script> 
 <style>
 	/* .container_wrap {
-		display: block;
+		background-color: #FAFAFA;
+		padding: 30px 0;
+	}
+	.container {
+		width: 1000px;
+		margin: auto;
+		background-color: #fff;
 	} */
-/* 	#signOut {
- 		padding: 5px 20px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 450px; height: 250px;
-		margin-left: -220px;
-		margin-top : -250px; 
-	}  */
+	.container form {
+		width: 600px;
+		margin: auto;
+	}
 	caption {
 		font-style: 200px; font-weight: bold; margin: 50px;
 		font-size: x-large;
 	}
-	.table {
-		margin: auto;
-		border-collapse: collapse;
-	}
-
-	.table, th, td {
+	th, td {
 		padding: 10px;
 		text-align: left;
+	}
+	table tr:nth-child(2) td input {
+		margin: 10px 15px 10px;
 	}
 	.buttonJSP{
 		width: 70px;
@@ -64,23 +63,27 @@
 </style> 
 <body>
 	<%@include file = "header.jsp" %>
+	<div class="container_wrap">
 	<%@include file = "LeftMenuBar.jsp" %>
-	<div class="container">
-		<form action="CustomerSignOut.do" name="customerSignOut" method="post">
-			<table>
-				<caption>회원 탈퇴</caption>
+		<div class="container">
+			<form action="CustomerSignOut.do" name="customerSignOut" method="post">
+				<table>
+					<caption>회원 탈퇴</caption>
 					<tr>
 						<th align="left"><h3>탈퇴 사유 선택</h3><th>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="cSignOutReason" value="서비스(상담) 불만">서비스(상담) 불만 
-						<input type="checkbox" name="cSignOutReason" value="배송 불만">배송 불만 
-						<input type="checkbox" name="cSignOutReason" value="상품 가격 불만">상품 가격 불만 
-						<input type="checkbox" name="cSignOutReason" value="상품 품질 불만">상품 품질 불만 <br>
-						<input type="checkbox" name="cSignOutReason" value="사이트 신뢰도 불만">사이트 신뢰도 불만 
-						<input type="checkbox" name="cSignOutReason" value="개인정보 유출 우려">개인정보 유출 우려
-						<input type="checkbox" name="cSignOutReason" value="사이트 미이용">사이트 미이용 
-						<input type="checkbox" name="cSignOutReason" value="기타">기타 <br><br></td>
+						<td>
+							<input type="checkbox" name="cSignOutReason" value="서비스(상담) 불만">서비스(상담) 불만 
+							<input type="checkbox" name="cSignOutReason" value="배송 불만">배송 불만 
+							<input type="checkbox" name="cSignOutReason" value="상품 가격 불만">상품 가격 불만 
+							<input type="checkbox" name="cSignOutReason" value="상품 품질 불만">상품 품질 불만
+							<br>
+							<input type="checkbox" name="cSignOutReason" value="사이트 신뢰도 불만">사이트 신뢰도 불만 
+							<input type="checkbox" name="cSignOutReason" value="개인정보 유출 우려">개인정보 유출 우려
+							<input type="checkbox" name="cSignOutReason" value="사이트 미이용">사이트 미이용 
+							<input type="checkbox" name="cSignOutReason" value="기타">기타
+						</td>
 					</tr>
 					<tr>
 						<th align="left"><h3>남기실 말씀</h3></th>
@@ -91,8 +94,9 @@
 					<tr>
 						<td><input class="buttonJSP" type="button" style="float:right" value="탈퇴" onclick="signOut()"></td>
 					</tr>
-			</table>
-		</form>
+				</table>
+			</form>
+		</div>
 	</div>
 	<%@include file = "footer.jsp" %>
 </body>

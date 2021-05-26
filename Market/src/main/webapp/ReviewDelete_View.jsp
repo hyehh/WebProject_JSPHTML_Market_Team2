@@ -18,22 +18,55 @@
 </script> 
 <style>
 	/* .container_wrap {
-		display: block;
+		background-color: #FAFAFA;
+		padding: 30px 0;
+	}
+	.container {
+		width: 1000px;
+		margin: auto;
+		background-color: #fff;
 	} */
+	.container form {
+		min-height: 350px;
+		width: 95%;
+		margin: auto;
+	}
 	caption {
-		font-style: 200px; font-weight: bold; margin: 50px;
+		font-style: 200px; 
+		font-weight: bold; 
+		margin: 50px;
 		font-size: x-large;
 	}
-	.table {
-		margin: auto;
-		border-top: 1px solid #444444;
-		border-collapse: collapse;
-	}
 
-	.table, th, td {
-		border-bottom: 1px solid #444444;
+	th, td {
 		padding: 10px;
 		text-align: center;
+	}
+	/* 선 */
+	.title th, .review_product td {
+		border-bottom: 1px solid #444444;
+	}
+	/* table 넓이 조정 */
+	.title th:nth-child(1), .review_product td:nth-child(1) {
+		width: 130px;
+	}
+	.title th:nth-child(2), .review_product td:nth-child(2) {
+		width: 100px;
+	}
+	.title th:nth-child(3), .review_product td:nth-child(3) {
+		width: 130px;
+	}
+	.title th:nth-child(4), .review_product td:nth-child(4) {
+		width: 35px;
+	}
+	.title th:nth-child(5), .review_product td:nth-child(5) {
+		width: 420px;
+	}
+	.title th:nth-child(6), .review_product td:nth-child(6) {
+		width: 90px;
+	}
+	.review_product td:nth-child(3), .review_product td:nth-child(5) {
+		text-align: left;
 	}
 	
 	.buttonRev{
@@ -46,62 +79,64 @@
 	    text-decoration: none;
 	    display: inline-block;
 	    font-size: 13px;
-	    margin: 10px;
+	    margin: 10px 0;
 	    cursor: pointer;
 		border-radius: 10px;
 	}
 </style>
 <body>
 	<%@include file = "header.jsp" %>
-	<%@include file = "LeftMenuBar.jsp" %>
-	<div class="container">
-		<form method="post">
-			<table border="0">
-				<caption>리뷰 삭제</caption>
+	<div class="container_wrap">
+		<%@include file = "LeftMenuBar.jsp" %>
+		<div class="container">
+			<form method="post">
+				<table>
 					<c:choose>			
 						<c:when test="${empty REVIEWDEL}">
-						<tr>
+						<caption style="width: 950px; text-align: center; margin: 30px 0; padding-top: 80px;">리뷰 삭제</caption>
+						<tr style="width: 950px; text-align: center; margin: 30px 0;">
 							<td>리뷰를 등록하신 제품이 존재하지 않습니다.</td>
 						</tr>
 						</c:when>
 						<c:otherwise>
-							<tr>
-								<td>주문번호</td>
-								<td>주문일</td>
-								<td>상품명</td>
-								<td>상품 만족도</td>
-								<td>리뷰 내용</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-							</tr>
+						<caption>리뷰 삭제</caption>
+						<tr class="title">
+							<th>주문번호</th>
+							<th>주문일</th>
+							<th>상품명</th>
+							<th>평점</th>
+							<th>리뷰 내용</th>
+							<th>&nbsp;</th>
+						</tr>
 						<c:forEach items="${REVIEWDEL }" var="dto">
-							<tr>
-								<td><input type="text" name="bNumber" readonly="readonly" value="${dto.bNumber }" 
-								style="color:black; background-color=white; padding-top:2px;
-								border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:none;"></td>
-							 	<td>${dto.bBuyDate }</td>
-								<td>${dto.pName }</td>
-								<td>${dto.bReviewScore }</td>
-								<td>${dto.bReviewContent }</td>
-								<td><input type="hidden" name="pCode" value="${dto.pCode }"></td>
-								<td><input class="buttonRev" type="submit" value="리뷰 삭제" formaction="ReviewDelete.do?bNumber=${dto.bNumber }&pCode=${dto.pCode }" onclick="reviewCancel()"></td>
-							</tr>
+						<tr class="review_product">
+							<td><input type="text" name="bNumber" readonly="readonly" value="${dto.bNumber }" 
+							style="color:black; background-color=white; padding-top:2px;
+							border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:none;"></td>
+						 	<td>${dto.bBuyDate }</td>
+							<td>${dto.pName }</td>
+							<td>${dto.bReviewScore }</td>
+							<td>${dto.bReviewContent }</td>
+							<td><input class="buttonRev" type="submit" value="리뷰 삭제" formaction="ReviewDelete.do?bNumber=${dto.bNumber }&pCode=${dto.pCode }" onclick="reviewCancel()"></td>
+						</tr>
+						<input type="hidden" name="pCode" value="${dto.pCode }">
 						</c:forEach>
-							<tr>
-					         <td align="center" colspan="10">
-					         	[<a href="ReviewDelete_View.do"> ◀◀ </a>] 
-					         	[<a href="ReviewDelete_View.do?pg=${FROMPAGE -1 }">◀</a>] 
-					         	<c:forEach items = "${pageCount }" var = "page" varStatus="ftp">
-					         	<a href="ReviewDelete_View.do?pg=${ftp.count}">[ ${ftp.count } ]</a>
-				                </c:forEach>
-				                [<a href="ReviewDelete_View.do?pg=${TOPAGE }">▶</a>] 
-				                [<a href="ReviewDelete_View.do?pg=${ALLPAGE }">▶▶</a>]
-					         </td>
-				    		</tr>
+						<tr>
+				         <td align="center" colspan="10">
+				         	[<a href="ReviewDelete_View.do"> ◀◀ </a>] 
+				         	[<a href="ReviewDelete_View.do?pg=${FROMPAGE -1 }">◀</a>] 
+				         	<c:forEach items = "${pageCount }" var = "page" varStatus="ftp">
+				         	<a href="ReviewDelete_View.do?pg=${ftp.count}">[ ${ftp.count } ]</a>
+			                </c:forEach>
+			                [<a href="ReviewDelete_View.do?pg=${TOPAGE }">▶</a>] 
+			                [<a href="ReviewDelete_View.do?pg=${ALLPAGE }">▶▶</a>]
+				         </td>
+			    		</tr>
 						</c:otherwise>
 					</c:choose>
-			</table>
-		</form>
+				</table>
+			</form>
+		</div>
 	</div>
 	<%@include file = "footer.jsp" %>
 </body>
