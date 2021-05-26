@@ -69,7 +69,7 @@ public class BRegister_qCommand implements BCommand {
 			BDao dao = new BDao();
 			qFilePath = "qnasave/" + qnaFile;
 			dao.registerQ(pCode, cId, qTitle, qContent, qFilePath);
-			
+
 			Share.pCode = strCode;
 
 		} catch (Exception e) {

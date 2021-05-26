@@ -7,7 +7,7 @@ public class BDtoBest {
 	String pName;
 	int pPriceDC;
 	int pDiscount;
-	String pMainFilePath;
+	String pFilePath;
 	
 	public BDtoBest(int pCode, int pCount, String pName, int pPriceDC, int pDiscount) {
 		super();
@@ -17,14 +17,14 @@ public class BDtoBest {
 		this.pPriceDC = pPriceDC;
 		this.pDiscount = pDiscount;
 	}
-	public BDtoBest(int pCode, int pCount, String pName, int pPriceDC, int pDiscount, String pMainFilePath) {
+	public BDtoBest(int pCode, int pCount, String pName, int pPriceDC, int pDiscount, String pFilePath) {
 		super();
 		this.pCode = pCode;
 		this.pCount = pCount;
 		this.pName = pName;
 		this.pPriceDC = pPriceDC;
 		this.pDiscount = pDiscount;
-		this.pMainFilePath = pMainFilePath;
+		this.pFilePath = pFilePath;
 	}
 	
 
@@ -67,11 +67,11 @@ public class BDtoBest {
 	public void setpDiscount(int pDiscount) {
 		this.pDiscount = pDiscount;
 	}
-	public String getpMainFilePath() {
-		return pMainFilePath;
+	public String getpFilePath() {
+		return pFilePath;
 	}
-	public void setpMainFilePath(String pMainFilePath) {
-		this.pMainFilePath = pMainFilePath;
+	public void setpFilePath(String pFilePath) {
+		this.pFilePath = pFilePath;
 	}
 	
 }

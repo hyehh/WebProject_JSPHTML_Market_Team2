@@ -117,7 +117,7 @@ public class BCartDao { // 2021.05.16 조혜지 - 장바구니 버튼 클릭시 
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "update WishList set wQuantity = ? where Customer_cId = ? and Product_pCode = ?";
+			String query = "update WishList set wQuantity = wQuantity + ? where Customer_cId = ? and Product_pCode = ?";
 			preparedStatement = connection.prepareStatement(query);
 			
 			// 위에에서 파라미터로 준 bName

@@ -33,7 +33,6 @@ public class BProductCommand implements BCommand {
 		if(review_strPg != null){ //list.jsp?pg=2
 			review_pg = Integer.parseInt(review_strPg); //.저장
 		}
-		
 		int review_total = dao.reivewListCount(pCode); //총 게시물 수
 		// 여기서 total은 dao에서 뽑아낼 리스트의 개수가 몇개인지 count 확인해야해요
 		int review_allPage = (int) Math.ceil(review_total/(double)review_rowSize); //페이지수
