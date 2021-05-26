@@ -7,61 +7,10 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	
-	<!-- UIkit JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit-icons.min.js"></script>
-    
     <script src="js/jquery-2.1.3.min.js"></script>
   	<script src="js/jquery.scrollTo.min.js"></script>
-  	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
   
 </head>
-
-<script>
-	$(function() {
-		/* $('.trigger').click(function() {
-			$('.product_nav').toggleClass('active');
-		}); */
-		
-		/* $('nav, .product_nav li a').click(function() {
-			$('.product_nav li').removeClass('active');
-		}); */
-		
-		/* $(".product_nav a").on('click', function(event) {
-		    if (this.hash !== "") {
-		      	event.preventDefault();
-		      	var hash = this.hash;	
-		      	$('html, body').animate({
-		        	scrollTop: $(hash).offset().top
-		      	}, 800, function(){
-		        	window.location.hash = hash;
-		      	});
-	    	}
-		}); */
-		
-		/* $('a[href*=#]').on('click', function(event){
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-		}); */
-		
-	});
-	
-	$(document).ready(function(){
-		$(".product_nav li a").on('click', function(event) {
-		    if (this.hash !== "") {
-		      	event.preventDefault();
-		      	var hash = this.hash;	
-		      	$('html, body').animate({
-		        	scrollTop: $(hash).offset().top
-		      	}, 800, function(){
-		        	window.location.hash = hash;
-		      	});
-	    	}
-	    
-		});
-	});
-</script>
-
 <style type="text/css">
 	html {
 		scroll-behavior: smooth;
@@ -173,7 +122,9 @@
 	}
 	.review table {
 		width: 100%;
-		margin: 20px 0;
+	}
+	.review table:first-child {
+		margin-top: 20px;
 	}
 	.review table tr {
 	}
@@ -193,7 +144,9 @@
 		height: 55px;
 	}
 	.review table tr td img:hover {
-		/* 마우스 올라가면 이미지 커지게 효과 주기 */
+		position: absolute;
+		width: 500px;
+		height: auto;
 	}
 	
 	/* qna 아코디언 */

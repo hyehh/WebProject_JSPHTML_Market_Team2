@@ -10,7 +10,32 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 </head>
-
+<script type="text/javascript">
+	function addQna(){
+		var form = document.qnaForm;
+		var id = form.cId.value;
+		var title = form.qTitle.value;
+		var content = form.qContent.value;
+		
+		if (id == ""){
+			alert("작성자를 입력하세요.");
+			form.cId.focus();
+			return false;
+		}
+		if (title == ""){
+			alert("문의 제목을 입력하세요.");
+			form.qTitle.focus();
+			return false;
+		}
+		if (content == ""){
+			alert("문의 내용을 입력하세요.");
+			form.qContent.focus();
+			return false;
+		}
+		
+		form.submit();
+	}
+</script>
 <style>
 	.container_wrap {
 		background-color: #FAFAFA;
@@ -55,7 +80,7 @@
 		border: none;
 		border-bottom: 1px solid gray;
 	}
-	input[type=submit] {
+	input[type=submit], input[type=button] {
 		border: none;
 		background-color: gray;
 		padding: 6px 20px;
@@ -76,7 +101,7 @@
 				<h1>상품명</h1>
 				
 				<div class="form">
-					<form action="register_q.do" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+					<form name="qnaForm" action="register_q.do" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 						<input type="hidden" name="pCode" value="<%=pCode %>">
 						<table>
 							<tr>
@@ -96,7 +121,7 @@
 								<td><input type="file" name="qnaFile" ></td>
 							</tr>	
 						</table>
-						<input type="submit" value="등록" style="margin-left: -130px;">
+						<input type="button" value="등록" style="margin-left: -130px;" onclick="addQna()">
 					</form>
 					<form action="product.do" method="post">
 						<input type="hidden" name="pCode" value="<%=pCode %>">
