@@ -240,7 +240,7 @@ public class BFrontController extends HttpServlet {
 				if(session.getAttribute("USERTYPE").equals("customer")) {
 					viewPage = "main.do";
 				}else {
-					viewPage = "sellerStore.jsp";
+					viewPage = "sellerStore.do";
 				}
 			}
 			break;
