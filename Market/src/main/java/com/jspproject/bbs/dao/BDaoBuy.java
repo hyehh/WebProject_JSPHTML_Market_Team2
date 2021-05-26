@@ -38,7 +38,8 @@ public class BDaoBuy {
 			connection = dataSource.getConnection();
 
 			String query = "select bSeq, B.bNumber, pCategory, pName, bBuyDate, bBuyCancelDate from BnS as B "
-					+ "join Product as P on B.Product_pCode = P.pCode limit ?, ?";
+					+ "join Product as P on B.Product_pCode = P.pCode "
+					+ "where bBuyDate is not null limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
