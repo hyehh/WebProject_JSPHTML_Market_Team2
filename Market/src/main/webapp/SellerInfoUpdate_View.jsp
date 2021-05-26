@@ -148,7 +148,7 @@
 	}
 </style>
 <body>
-	<%@include file = "headerSeller.jsp" %>
+	<%-- <%@include file = "headerSeller.jsp" %> --%>
 	<%@include file = "SellerInfo.jsp" %>
 	<div class="container">
 		<form name="sellerInfoUpdateForm" action="SellerInfoUpdate.do" method="post">
@@ -253,6 +253,6 @@
 			</table>
 		</form>
 	</div>
-	<%@include file = "footer.jsp" %>
+	<%@include file = "footerSeller.jsp" %>
 </body>
 </html>

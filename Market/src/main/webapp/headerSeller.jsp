@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert tile here</title>
-	<link rel="stylesheet" href="css1.css">
+	<link rel="stylesheet" href="sellerStore.css">
 </head>
 
 <style type="text/css">
@@ -45,29 +45,6 @@
 					<li><a href="QnAList.do">문의관리</a></li>
 				</ul>
 			</nav>
-			<!-- <div class="search">
-				<form action="search.do">
-					<input type="text" name="pName">
-					<input type="submit" value="검색">
-				</form>
-				<div>
-		            <a class="uk-navbar-toggle" href="#" uk-search-icon></a>
-		            <div class="uk-navbar-dropdown" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav">
-		
-		                <div class="uk-grid-small uk-flex-middle" uk-grid>
-		                    <div class="uk-width-expand">
-		                        <form action="search.do" class="uk-search uk-search-navbar uk-width-1-1">
-		                            <input class="uk-search-input" type="search" placeholder="Search" autofocus>
-		                        </form>
-		                    </div>
-		                    <div class="uk-width-auto">
-		                        <a class="uk-navbar-dropdown-close" href="#" uk-close></a>
-		                    </div>
-		                </div>
-		
-		            </div>
-		        </div>
-			</div> -->
 		</div>
 		<!-- //카테고리 -->
 	</header>

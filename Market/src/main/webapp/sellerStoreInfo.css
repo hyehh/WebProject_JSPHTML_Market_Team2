@@ -1,0 +1,290 @@
+@charset "UTF-8";
+
+/* 전체 */
+* {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+/* header */
+header {
+	height: 230px;
+}
+
+/* 상단 메뉴 */
+.top {
+	height: 30px;
+	width: 100%;
+    float: center;
+    margin-right: 20px;
+    top: 0;
+    left: 0;
+}
+.top_list {
+	float: right;
+	margin: auto;
+	list-style: none;
+}
+.top_list li {
+    float: left;
+    width: 80px;
+}
+.top_list li a {
+    display: block;
+    text-align: center;
+    padding: 5px;
+}
+
+/* 로고 */
+.logo {
+	height: 150px;
+}
+.logo h1{
+	font-size: 50px;
+	text-align: center;
+	line-height: 150px;
+}
+
+/* 카테고리 */
+.category {
+	height: 50px;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+nav {
+	height: 50px;
+	width: 500px;
+	margin: auto;
+	border: 1px solid;
+}
+.category_list {
+	margin: auto;
+    list-style: none;
+}
+.category_list li {
+    float: left;
+    width: 100px;
+    height: 50px;
+}
+.category_list li a {
+    display: block;
+    text-align: center;
+    color: #111;
+    line-height: 50px;
+}
+.category_list li a:hover {
+    background: #555;
+    color: #fff;
+}
+
+/* 이미지 슬라이드 */
+.img_slide {
+	width: 100%;
+	height: 500px;
+	background-color: gray;
+}
+
+/* 메인 상품 노출 */
+.content_title {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	line-height: 50px;
+}
+.content_item {
+	background-color: gray;
+	width: 1000px;
+	height: 1000px;
+	margin: auto;
+}
+.items {
+	margin: 10px;
+}
+.items ul {
+	list-style: none;
+}
+.items ul li {
+	background-color: lightgray;
+	width: 25%;
+	height: 300px;
+	float: left;
+}
+.item_img {
+	margin: 10px;
+	height: 200px;
+	background-color: #fff;
+}
+.item_info {
+	margin: 10px;
+	height: 70px;
+	background-color: #fff;
+}
+
+/* footer */
+.content {
+	width: 1000px;
+	height: 100px;
+	margin: auto;
+	padding-top: 30px;
+}
+
+      
+
+/* 버튼 */
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.buttonNum {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 13px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+.buttonNum {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.buttonNum:hover {
+  background-color: #555555;
+  color: white;
+}
+
+
+.buttonModify {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.buttonModify {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.buttonModify:hover {
+  background-color: #555555;
+  color: white;
+}
+
+
+
+input[type="submit"] {
+   zoom: 0.8;
+  
+}
+
+/* 텍스트필드 */
+input[type=text]{
+            height:20px;
+            width:200px;
+            border-radius: 4px;
+            font-size: 15px;
+}
+
+
+
+/* .mainTable table{
+.~~~클래스이름 
+# ~~~~~ 아이디이름 가져오기
+ㄱ아무것동 ㅓㅂㅅ이 하는건 태그이름가져오
+	border-collapse: collapse; 
+	border: 1px solid #ddd; 
+	width: 400px;
+}
+.mainTable table tr:nth-child(2), .mainTable table tr:nth-child(4) {
+.~~클래스이름
+아무것도없는건 태그
+상위태그부터 천천히 하나하나 다 적어주고,
+nth-child(?) 몇번째있는 태그 또는 클래스인지 적어줘서 적용시키기
+	background-color: #f2f2f2;
+}
+
+.mainTable table tr td:nth-child(1) {
+	border: 1px solid #ddd; 
+	width: 250px; 
+	text-align: center;
+}
+
+.mainTable table tr td:nth-child(2) {
+	border: 1px solid #ddd; 
+	padding: 8px; 
+	text-align: right;
+}
+
+.mainTable table tr th {
+	background-color: #444444; 
+	border: 1px solid #ddd; 
+	color: white; 
+	padding-bottom: 12px; 
+	padding-top: 12px; 
+	text-align: center;
+}
+
+.mainTable table tr td:hover:nth-child(2) {
+		background-color: gray;
+		color: #fff;
+	}
+.mainTable table tr td:hover:nth-child(2) a {
+	color: #fff;
+}
+
+
+
+
+
+ */
+
+
+
+
+
+
