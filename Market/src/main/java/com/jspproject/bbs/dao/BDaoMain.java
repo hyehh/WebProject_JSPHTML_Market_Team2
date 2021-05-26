@@ -36,7 +36,7 @@ public class BDaoMain {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, p.pPriceDC/p.pPrice*100, p.pMainFilePath "
+			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, p.pFilePath "
 							+ "from BnS as b, Product as p "
 							+ "where b.Product_pCode=p.pCode and p.pDeleteDate is null and b.bBuyCancelDate is null "
 							+ "group by b.Product_pCode order by sum(b.bQuantity) desc limit 4";
@@ -50,9 +50,9 @@ public class BDaoMain {
 				String pName = resultSet.getString("pName");
 				int pPriceDC = resultSet.getInt("pPriceDC");
 				int pDiscount = resultSet.getInt(5);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pMainFilePath);
+				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pFilePath);
 				
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
@@ -81,8 +81,8 @@ public class BDaoMain {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, p.pName, p.pExpirationDate, p.pPriceDC, p.pPriceDC/p.pPrice*100, "
-							+ "sum(b.bReviewScore)/count(b.bReviewScore), count(b.bReviewWriteDate), p.pMainFilePath "
+			String query = "select p.pCode, p.pName, p.pExpirationDate, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, "
+							+ "sum(b.bReviewScore)/count(b.bReviewScore), count(b.bReviewWriteDate), p.pFilePath "
 							+ "from Product as p, BnS as b "
 							+ "where p.pCode=b.Product_pCode and p.pDeleteDate is null and b.bReviewDeleteDate is null "
 							+ "group by p.pCode order by p.pAddDate desc limit 4";
@@ -97,9 +97,9 @@ public class BDaoMain {
 				int pDiscount = resultSet.getInt(5);
 				String star = String.format("%.1f", resultSet.getDouble(6));
 				int pCount = resultSet.getInt(7);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoProductList dto = new BDtoProductList(pCode, pName, pExpirationDate, pPriceDC, pDiscount, star, pCount, pMainFilePath);
+				BDtoProductList dto = new BDtoProductList(pCode, pName, pExpirationDate, pPriceDC, pDiscount, star, pCount, pFilePath);
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
 			
@@ -127,8 +127,8 @@ public class BDaoMain {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, p.pName, p.pExpirationDate, p.pPriceDC, p.pPriceDC/p.pPrice*100, "
-							+ "sum(b.bReviewScore)/count(b.bReviewScore), count(b.bReviewWriteDate), p.pMainFilePath "
+			String query = "select p.pCode, p.pName, p.pExpirationDate, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, "
+							+ "sum(b.bReviewScore)/count(b.bReviewScore), count(b.bReviewWriteDate), p.pFilePath "
 							+ "from Product as p, BnS as b "
 							+ "where p.pCode=b.Product_pCode and p.pDeleteDate is null and b.bReviewDeleteDate is null "
 							+ "group by p.pCode order by rand() limit 20";
@@ -143,9 +143,9 @@ public class BDaoMain {
 				int pDiscount = resultSet.getInt(5);
 				String star = String.format("%.1f", resultSet.getDouble(6));
 				int pCount = resultSet.getInt(7);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoProductList dto = new BDtoProductList(pCode, pName, pExpirationDate, pPriceDC, pDiscount, star, pCount, pMainFilePath);
+				BDtoProductList dto = new BDtoProductList(pCode, pName, pExpirationDate, pPriceDC, pDiscount, star, pCount, pFilePath);
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
 			

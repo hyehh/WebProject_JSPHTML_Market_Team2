@@ -9,7 +9,7 @@ public class BDtoProductList {
 	int pDiscount;
 	String star;
 	int pCount;
-	String pMainFilePath;
+	String pFilePath;
 	
 	
 	
@@ -29,7 +29,7 @@ public class BDtoProductList {
 		this.pCount = pCount;
 	}
 	public BDtoProductList(int pCode, String pName, String pExpirationDate, int pPriceDC, int pDiscount, String star,
-			int pCount, String pMainFilePath) {
+			int pCount, String pFilePath) {
 		super();
 		this.pCode = pCode;
 		this.pName = pName;
@@ -38,7 +38,7 @@ public class BDtoProductList {
 		this.pDiscount = pDiscount;
 		this.star = star;
 		this.pCount = pCount;
-		this.pMainFilePath = pMainFilePath;
+		this.pFilePath = pFilePath;
 	}
 
 	
@@ -99,12 +99,12 @@ public class BDtoProductList {
 		this.pCount = pCount;
 	}
 
-	public String getpMainFilePath() {
-		return pMainFilePath;
+	public String getpFilePath() {
+		return pFilePath;
 	}
 
-	public void setpMainFilePath(String pMainFilePath) {
-		this.pMainFilePath = pMainFilePath;
+	public void setpFilePath(String pFilePath) {
+		this.pFilePath = pFilePath;
 	}
 
 }

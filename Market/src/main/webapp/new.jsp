@@ -76,7 +76,7 @@
 					<li>
 						<a href="product.do?pCode=${dtoNew.pCode }">
 							<div class="item_img">
-								<img alt="${dtoNew.pName } 메인 이미지" src="${dtoNew.pMainFilePath }">
+								<img alt="${dtoNew.pName } 메인 이미지" src="${dtoNew.pFilePath }">
 							</div>
 							<div class="item_info">
 								<p>${dtoNew.pName }</p>

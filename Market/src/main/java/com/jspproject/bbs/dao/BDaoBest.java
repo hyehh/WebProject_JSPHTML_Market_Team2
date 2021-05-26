@@ -34,7 +34,7 @@ public class BDaoBest {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, p.pPriceDC/p.pPrice*100, p.pMainFilePath "
+			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, p.pFilePath "
 							+ "from BnS as b, Product as p "
 							+ "where b.Product_pCode=p.pCode and p.pCategory=? and p.pDeleteDate is null and b.bBuyCancelDate is null "
 							+ "group by b.Product_pCode order by sum(b.bQuantity) desc limit 4";
@@ -49,9 +49,9 @@ public class BDaoBest {
 				String pName = resultSet.getString("pName");
 				int pPriceDC = resultSet.getInt("pPriceDC");
 				int pDiscount = resultSet.getInt(5);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pMainFilePath);
+				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pFilePath);
 				
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
@@ -79,7 +79,7 @@ public class BDaoBest {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, p.pPriceDC/p.pPrice*100, p.pMainFilePath "
+			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, p.pFilePath "
 							+ "from BnS as b, Product as p "
 							+ "where b.Product_pCode=p.pCode and p.pCategory=? and p.pDeleteDate is null and b.bBuyCancelDate is null "
 							+ "group by b.Product_pCode order by sum(b.bQuantity) desc limit 4";
@@ -94,9 +94,9 @@ public class BDaoBest {
 				String pName = resultSet.getString("pName");
 				int pPriceDC = resultSet.getInt("pPriceDC");
 				int pDiscount = resultSet.getInt(5);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pMainFilePath);
+				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pFilePath);
 				
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
@@ -124,7 +124,7 @@ public class BDaoBest {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, p.pPriceDC/p.pPrice*100, p.pMainFilePath "
+			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, p.pFilePath "
 							+ "from BnS as b, Product as p "
 							+ "where b.Product_pCode=p.pCode and p.pCategory=? and p.pDeleteDate is null and b.bBuyCancelDate is null "
 							+ "group by b.Product_pCode order by sum(b.bQuantity) desc limit 4";
@@ -139,9 +139,9 @@ public class BDaoBest {
 				String pName = resultSet.getString("pName");
 				int pPriceDC = resultSet.getInt("pPriceDC");
 				int pDiscount = resultSet.getInt(5);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pMainFilePath);
+				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pFilePath);
 				
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
@@ -169,7 +169,7 @@ public class BDaoBest {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, p.pPriceDC/p.pPrice*100, p.pMainFilePath "
+			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, p.pFilePath "
 							+ "from BnS as b, Product as p "
 							+ "where b.Product_pCode=p.pCode and p.pCategory=? and p.pDeleteDate is null and b.bBuyCancelDate is null "
 							+ "group by b.Product_pCode order by sum(b.bQuantity) desc limit 4";
@@ -184,9 +184,9 @@ public class BDaoBest {
 				String pName = resultSet.getString("pName");
 				int pPriceDC = resultSet.getInt("pPriceDC");
 				int pDiscount = resultSet.getInt(5);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pMainFilePath);
+				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pFilePath);
 				
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
@@ -214,7 +214,7 @@ public class BDaoBest {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, p.pPriceDC/p.pPrice*100, p.pMainFilePath "
+			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, p.pFilePath "
 							+ "from BnS as b, Product as p "
 							+ "where b.Product_pCode=p.pCode and p.pCategory=? and p.pDeleteDate is null and b.bBuyCancelDate is null "
 							+ "group by b.Product_pCode order by sum(b.bQuantity) desc limit 4";
@@ -229,9 +229,9 @@ public class BDaoBest {
 				String pName = resultSet.getString("pName");
 				int pPriceDC = resultSet.getInt("pPriceDC");
 				int pDiscount = resultSet.getInt(5);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pMainFilePath);
+				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pFilePath);
 				
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
@@ -259,7 +259,7 @@ public class BDaoBest {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, p.pPriceDC/p.pPrice*100, p.pMainFilePath "
+			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, p.pFilePath "
 							+ "from BnS as b, Product as p "
 							+ "where b.Product_pCode=p.pCode and p.pCategory=? and p.pDeleteDate is null and b.bBuyCancelDate is null "
 							+ "group by b.Product_pCode order by sum(b.bQuantity) desc limit 4";
@@ -274,9 +274,9 @@ public class BDaoBest {
 				String pName = resultSet.getString("pName");
 				int pPriceDC = resultSet.getInt("pPriceDC");
 				int pDiscount = resultSet.getInt(5);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pMainFilePath);
+				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pFilePath);
 				
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
@@ -304,7 +304,7 @@ public class BDaoBest {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, p.pPriceDC/p.pPrice*100, p.pMainFilePath "
+			String query = "select p.pCode, sum(b.bQuantity), p.pName, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, p.pFilePath "
 							+ "from BnS as b, Product as p "
 							+ "where b.Product_pCode=p.pCode and p.pCategory=? and p.pDeleteDate is null and b.bBuyCancelDate is null "
 							+ "group by b.Product_pCode order by sum(b.bQuantity) desc limit 4";
@@ -319,9 +319,9 @@ public class BDaoBest {
 				String pName = resultSet.getString("pName");
 				int pPriceDC = resultSet.getInt("pPriceDC");
 				int pDiscount = resultSet.getInt(5);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pMainFilePath);
+				BDtoBest dto = new BDtoBest(pCode, pCount, pName, pPriceDC, pDiscount, pFilePath);
 				
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}

@@ -78,7 +78,7 @@
 					<a href="product.do?pCode=${dtoCategory.pCode }">
 						<li>
 							<div class="item_img">
-								<img alt="${dtoCategory.pName } 메인 이미지" src="${dtoCategory.pMainFilePath }">
+								<img alt="${dtoCategory.pName } 메인 이미지" src="${dtoCategory.pFilePath }">
 							</div>
 							<div class="item_info">
 								<p>${dtoCategory.pName }</p>

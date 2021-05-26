@@ -195,7 +195,7 @@
 		<!-- 상품 정보 및 구매 -->
 		<div class="product_top">
 			<div class="product_img">
-				<img alt="${product_view.pName } 메인 이미지" src="${product_view.pMainFilePath }">
+				<img alt="${product_view.pName } 메인 이미지" src="${product_view.pFilePath }">
 			</div>
 			<div class="product_info">
 				<form action="CustomerCartInsert.do">
@@ -243,7 +243,7 @@
 			</nav>
 			
 			<div class="img">
-				<img alt="${product_view.pName } 상세 이미지" src="${product_view.pDetailFilePath }" width="1000px">
+				<img alt="${product_view.pName } 상세 이미지" src="${product_view.pFilePath }" width="1000px">
 			</div>
 		</div>
 		<!-- // 상세 이미지 -->

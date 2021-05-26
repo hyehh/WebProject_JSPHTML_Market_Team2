@@ -10,8 +10,7 @@ public class BDtoProduct {
 	int pDiscount;
 	String pExpirationDate;
 	int pProductEA;
-	String pMainFilePath;
-	String pDetailFilePath;
+	String pFilePath;
 	String pStatus;
 	String pDelete;
 	String pAddDate;
@@ -34,7 +33,7 @@ public class BDtoProduct {
 	}
 
 	public BDtoProduct(int pCode, String pName, String pCategory, int pPrice, int pPriceDC, int pDiscount,
-			String pExpirationDate, int pProductEA, String pMainFilePath, String pDetailFilePath) {
+			String pExpirationDate, int pProductEA, String pFilePath) {
 		super();
 		this.pCode = pCode;
 		this.pName = pName;
@@ -44,59 +43,9 @@ public class BDtoProduct {
 		this.pDiscount = pDiscount;
 		this.pExpirationDate = pExpirationDate;
 		this.pProductEA = pProductEA;
-		this.pMainFilePath = pMainFilePath;
-		this.pDetailFilePath = pDetailFilePath;
+		this.pFilePath = pFilePath;
 	}
 	
-	public BDtoProduct(int pCode, String pCategory, String pName, int pPrice, String pExpirationDate, int pProductEA) {
-		super();
-		this.pCode = pCode;
-		this.pCategory = pCategory;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pExpirationDate = pExpirationDate;
-		this.pProductEA = pProductEA;
-	}
-	
-	public BDtoProduct(int pCode, String pCategory, String pName, int pPrice, String pExpirationDate, int pProductEA,
-			String pStatus) {
-		super();
-		this.pCode = pCode;
-		this.pCategory = pCategory;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pExpirationDate = pExpirationDate;
-		this.pProductEA = pProductEA;
-		this.pStatus = pStatus;
-	}
-	
-	public BDtoProduct(int pCode, String pName, int pPrice, int pPriceDC, String pExpirationDate, String pStatus,
-			String pAddDate, String pCategory) {
-		super();
-		this.pCode = pCode;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pPriceDC = pPriceDC;
-		this.pExpirationDate = pExpirationDate;
-		this.pStatus = pStatus;
-		this.pAddDate = pAddDate;
-		this.pCategory = pCategory;
-	}
-
-	public BDtoProduct(int pCode, String pCategory, String pName, int pPrice, int pPriceDC, String pExpirationDate,
-			int pProductEA, String pStatus, String pAddDate, String pMainFilePath) {
-		super();
-		this.pCode = pCode;
-		this.pCategory = pCategory;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pPriceDC = pPriceDC;
-		this.pExpirationDate = pExpirationDate;
-		this.pProductEA = pProductEA;
-		this.pStatus = pStatus;
-		this.pAddDate = pAddDate;
-		this.pMainFilePath = pMainFilePath;
-	}
 
 	public int getpCode() {
 		return pCode;
@@ -162,20 +111,12 @@ public class BDtoProduct {
 		this.pProductEA = pProductEA;
 	}
 
-	public String getpMainFilePath() {
-		return pMainFilePath;
+	public String getpFilePath() {
+		return pFilePath;
 	}
 
-	public void setpMainFilePath(String pMainFilePath) {
-		this.pMainFilePath = pMainFilePath;
-	}
-
-	public String getpDetailFilePath() {
-		return pDetailFilePath;
-	}
-
-	public void setpDetailFilePath(String pDetailFilePath) {
-		this.pDetailFilePath = pDetailFilePath;
+	public void setpFilePath(String pFilePath) {
+		this.pFilePath = pFilePath;
 	}
 
 	public String getpStatus() {

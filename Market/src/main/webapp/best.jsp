@@ -96,7 +96,7 @@
 						<a href="product.do?pCode=${dtoKitchen.pCode }">
 							<li>
 								<div class="item_img">
-									<img alt="${dtoKitchen.pName } 메인 이미지" src="${dtoKitchen.pMainFilePath }">
+									<img alt="${dtoKitchen.pName } 메인 이미지" src="${dtoKitchen.pFilePath }">
 								</div>
 								<div class="item_info">
 									<p class="pName">${dtoKitchen.pName }</p>
@@ -127,7 +127,7 @@
 						<a href="product.do?pCode=${dtoWashing.pCode }">
 							<li>
 								<div class="item_img">
-									<img alt="${dtoWashing.pName } 메인 이미지" src="${dtoWashing.pMainFilePath }">
+									<img alt="${dtoWashing.pName } 메인 이미지" src="${dtoWashing.pFilePath }">
 								</div>
 								<div class="item_info">
 									<p class="pName">${dtoWashing.pName }</p>
@@ -158,7 +158,7 @@
 						<a href="product.do?pCode=${dtoCleaning.pCode }">
 							<li>
 								<div class="item_img">
-									<img alt="${dtoCleaning.pName } 메인 이미지" src="${dtoCleaning.pMainFilePath }g">
+									<img alt="${dtoCleaning.pName } 메인 이미지" src="${dtoCleaning.pFilePath }g">
 								</div>
 								<div class="item_info">
 									<p class="pName">${dtoCleaning.pName }</p>
@@ -189,7 +189,7 @@
 						<a href="product.do?pCode=${dtoInterior.pCode }">
 							<li>
 								<div class="item_img">
-									<img alt="${dtoInterior.pName } 메인 이미지" src="${dtoInterior.pMainFilePath }">
+									<img alt="${dtoInterior.pName } 메인 이미지" src="${dtoInterior.pFilePath }">
 								</div>
 								<div class="item_info">
 									<p class="pName">${dtoInterior.pName }</p>
@@ -220,7 +220,7 @@
 						<a href="product.do?pCode=${dtoCan.pCode }">
 							<li>
 								<div class="item_img">
-									<img alt="${dtoCan.pName } 메인 이미지" src="${dtoCan.pMainFilePath }">
+									<img alt="${dtoCan.pName } 메인 이미지" src="${dtoCan.pFilePath }">
 								</div>
 								<div class="item_info">
 									<p class="pName">${dtoCan.pName }</p>
@@ -251,7 +251,7 @@
 						<a href="product.do?pCode=${dtoFrozen.pCode }">
 							<li>
 								<div class="item_img">
-									<img alt="${dtoFrozen.pName } 메인 이미지" src="${dtoFrozen.pMainFilePath }">
+									<img alt="${dtoFrozen.pName } 메인 이미지" src="${dtoFrozen.pFilePath }">
 								</div>
 								<div class="item_info">
 									<p class="pName">${dtoFrozen.pName }</p>
@@ -282,7 +282,7 @@
 						<a href="product.do?pCode=${dtoBeverage.pCode }">
 							<li>
 								<div class="item_img">
-									<img alt="${dtoBeverage.pName } 메인 이미지" src="${dtoBeverage.pMainFilePath }">
+									<img alt="${dtoBeverage.pName } 메인 이미지" src="${dtoBeverage.pFilePath }">
 								</div>
 								<div class="item_info">
 									<p class="pName">${dtoBeverage.pName }</p>

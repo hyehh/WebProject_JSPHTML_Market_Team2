@@ -34,8 +34,8 @@ public class BDaoCategory {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select p.pCode, p.pName, p.pExpirationDate, p.pPriceDC, p.pPriceDC/p.pPrice*100, "
-					+ "sum(b.bReviewScore)/count(b.bReviewScore), count(b.bReviewWriteDate), p.pMainFilePath "
+			String query = "select p.pCode, p.pName, p.pExpirationDate, p.pPriceDC, 100-p.pPriceDC/p.pPrice*100, "
+					+ "sum(b.bReviewScore)/count(b.bReviewScore), count(b.bReviewWriteDate), p.pFilePath "
 					+ "from Product as p, BnS as b "
 					+ "where p.pCode=b.Product_pCode and p.pCategory=? and p.pDeleteDate is null and b.bReviewDeleteDate is null "
 					+ "group by p.pCode";
@@ -52,9 +52,9 @@ public class BDaoCategory {
 				int pDiscount = resultSet.getInt(5);
 				String star = String.format("%.1f", resultSet.getDouble(6));
 				int pCount = resultSet.getInt(7);
-				String pMainFilePath = resultSet.getString("pMainFilePath");
+				String pFilePath = resultSet.getString("pFilePath");
 				
-				BDtoProductList dto = new BDtoProductList(pCode, pName, pExpirationDate, pPriceDC, pDiscount, star, pCount, pMainFilePath);
+				BDtoProductList dto = new BDtoProductList(pCode, pName, pExpirationDate, pPriceDC, pDiscount, star, pCount, pFilePath);
 				dtos.add(dto);	// ArrayList dtos에 dto 한줄씩 넣기
 			}
 			
