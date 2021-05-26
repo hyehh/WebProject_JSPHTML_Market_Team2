@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	var check = '${check}';
 	var checkMessage = '${checkMessage}';
-	var returnUrl = 'main.do';
+	var returnUrl = 'product.do';
 	
 	alert(checkMessage);
 	document.location.href =  returnUrl;

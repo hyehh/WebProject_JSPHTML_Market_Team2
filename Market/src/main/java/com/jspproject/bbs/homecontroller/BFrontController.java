@@ -234,7 +234,7 @@ public class BFrontController extends HttpServlet {
 				// 두개는 다 똑같은데 체크박스 체크값만 다르다. userType if문으로 나눠서 보낼 것.
 			}else {
 				if(session.getAttribute("USERTYPE").equals("customer")) {
-					viewPage = "main.jsp";
+					viewPage = "main.do";
 				}else {
 					viewPage = "sellerStore.jsp";
 				}
@@ -349,11 +349,15 @@ public class BFrontController extends HttpServlet {
 				session.setAttribute("checkMessage", checkMessage);
 				command = new BCustomerCartUpdateCommand();
 				command.execute(request, response, session);
+//				command = new BProductQCommand();
+//				command.execute(request, response, session);
 			}else {
 				checkMessage = "장바구니에 담았습니다.";
 				session.setAttribute("checkMessage", checkMessage);
 				command = new BCustomerCartInsertCommand();
 				command.execute(request, response, session);
+//				command = new BProductQCommand();
+//				command.execute(request, response, session);
 			}
 			request.setAttribute("check", session.getAttribute("check"));
 			request.setAttribute("checkMessage", session.getAttribute("checkMessage"));

@@ -26,18 +26,18 @@ function checkOnlyOne(element) {
 <!-- 버튼 액션1 :비밀번호찾기로 이동 -->
 <script>
 	function chkValue() {
-		var fomr = document.findIdForm;
-		if(form.findName == ""){
+		var form = document.findIdForm;
+		if(form.findName.value == ""){
 			alert('이름을 입력해주세요');
 			return false;
-		}else if (form.findemail == ""){
+		}else if (form.findemail.value == ""){
 			alert('이메일을 입력해주세요')
 			return false;
 		}
-		
-		
+		form.submit();
 		return true;
 	}
+	
 	function findPw(frm) {
 		frm.action='FindPw.jsp';
 		frm.submit();
@@ -68,7 +68,7 @@ function checkOnlyOne(element) {
 					<p style="line-height: 10pt"><input type="text" name="findEmail" id="findEmail"
 						placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt;"></p>
 					<br>
-					<input type="submit" value="아이디 찾기" onclick="chkValue" width: 290pt; height: 18pt;">
+					<input type="button" value="아이디 찾기" onclick="chkValue();" width: 290pt; height: 18pt;">
 					<br>
 					<br>
 						<div style="font-size: 9pt">
