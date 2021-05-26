@@ -155,9 +155,9 @@
 </script>
 <body>
 	<%@include file = "header.jsp" %>
-	<div class="container" id="allBuy">
+	<div class="container">
 		<h2>주문서 작성/결제</h2>
-		<form action="AllBuy.do" method="post" name="buyForm">
+		<form action="Buy.do" method="post" name="buyForm">
 			<table border="0">
 				<caption>주문 상세 내역</caption>
 					<tr>
@@ -167,7 +167,7 @@
 						<th>가격</th>
 					</tr>
 					<c:set var="SUM" value="0" />
-					<c:forEach items="${CART }" var="dto">
+					<c:forEach items="${BUY }" var="dto">
 					<tr>	
 						<td>${dto.pName }</td>
 						<td><input type="text" name="bQuantity" size="3" readonly="readonly" value="${dto.wQuantity }" 
@@ -266,14 +266,14 @@
 						placeholder="숫자 4자리를 입력해주세요."></td>
 					</tr>
 					<tr>
-						<td align="right"><input class="buttonJSP" type="button" value="주문하기" onclick="buyInfo()"></td>
-						</form>
+			 			<td align="right"><input class="buttonJSP" type="button" value="주문하기" onclick="buyInfo()"></td>
+			 			</form>
 						<form action="CustomerCart_View.do" method="post">
 						<td align="right"><input class="buttonJSP" type="submit" value="취소하기"></td>
 						</form>
 					</tr>
 			</table>
-	</div>
-	<%@include file = "footer.jsp" %>
+		</div>
+		<%@include file = "footer.jsp" %>
 </body>
 </html>
