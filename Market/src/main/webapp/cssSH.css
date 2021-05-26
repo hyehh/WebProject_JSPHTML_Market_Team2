@@ -1,0 +1,128 @@
+@charset "UTF-8";
+.hr-sect {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.35);
+	font-size: 12px;
+	margin: 8px 0px;
+}
+.hr-sect::before,
+.hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+  }
+
+.wrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+}
+.login {
+  width: 500px;
+  height: 600px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.login form {
+	width: 450px;
+}
+.signup {
+	width: 300px;
+	margin : auto;
+
+}
+
+.loginId {
+  margin-top: 20px;
+}
+
+.loginId input {
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+
+.loginPw input {
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+
+.login_etc {
+  padding: 10px;
+  margin: 20px 0;
+  font-size: 12px;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  dispaly: block;
+  text-align: center;
+}
+.login_etc input:nth-child(2) {
+  margin-left: 20px;
+  margin-right: 5px;
+}
+.submit {
+  margin: auto;
+  margin-top: 30px;
+  width: 70%;
+}
+.submit input {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  outline: none;
+  border-radius: 40px;
+  background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+}
+.findAction{
+text-align: center;
+}
+.gosignup{
+  margin: auto;
+  margin-top: 30px;
+  width: 70%;
+}
+.gosignup input{
+  width: 100%;
+  height: 40px;
+  border: 0;
+  outline: none;
+  border-radius: 40px;
+  background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+}
