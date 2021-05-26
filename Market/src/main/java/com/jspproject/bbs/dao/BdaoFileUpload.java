@@ -16,7 +16,7 @@ public class BdaoFileUpload {
 		System.out.println("Connectiong database...");
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/market");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Market");
 			System.out.println("Database connection success");
 		} catch (NamingException e) {
 			System.out.println("Database connection failed");

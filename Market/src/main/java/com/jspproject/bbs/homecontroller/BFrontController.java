@@ -322,7 +322,7 @@ public class BFrontController extends HttpServlet {
 			command = new BCustomerSignOutCommand();
 			command.execute(request, response, session);
 			// 이거는 수훈님과 연동할 때 메인페이지로 바꾸기 ****************************
-			viewPage = "CustomerSignOut_View.do";
+			viewPage = "main.do";
 			break;
 		// 탈퇴하기
 		case("/SellerSignOut_View.do"):
@@ -332,7 +332,7 @@ public class BFrontController extends HttpServlet {
 			command = new BSellerSignOutCommand();
 			command.execute(request, response, session);
 			// 이거는 예진님과 연동할 때 메인페이지로 바꾸기 ****************************
-			viewPage = "SellerSignOut_View.do";
+			viewPage = "sellerStore.do";
 		break;
 		// 이 케이스문은 삭제할 것임! 도희님과 연동할 때 상품 상세페이지로 바꾸기 ****************************
 		case("/Product_View.do"):

@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	var check = '${check}';
 	var checkMessage = '${checkMessage}';
-	var returnUrl = 'Product_View.jsp';
+	var returnUrl = 'main.do';
 	
 	alert(checkMessage);
 	document.location.href =  returnUrl;

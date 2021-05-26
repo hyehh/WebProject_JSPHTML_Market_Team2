@@ -63,8 +63,8 @@
 </style> 
 <body>
 <!-- 2021.05.19 조혜지 판매자 회원 탈퇴 view -->
-	<%@include file = "header.jsp" %>
-	<%@include file = "LeftMenuBar.jsp" %>
+	<%@include file = "headerSeller.jsp" %>
+	<%@include file = "SellerInfo.jsp" %>
 	<div class="container" id="signOut">
 		<form action="SellerSignOut.do" name="sellerSignOut" method="post">
 			<table>

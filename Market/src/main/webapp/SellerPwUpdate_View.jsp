@@ -63,7 +63,8 @@
 	}
 </style>
 <body>
-	<%@include file = "header.jsp" %>
+	<%@include file = "headerSeller.jsp" %>
+	<%@include file = "SellerInfo.jsp" %>
 	<div class="container">
 		<form action="SellerPwUpdate.do" name="pwUpdateForm" method="post">
 			<table border="0">

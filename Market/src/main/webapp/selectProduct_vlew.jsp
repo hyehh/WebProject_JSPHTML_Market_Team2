@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="selectPage.css">
 </head>
 <body>
-	<%@ include file="header.jsp" %>
+	<%@include file = "headerSeller.jsp" %>
 	<br>
 	<br>
 	<br>

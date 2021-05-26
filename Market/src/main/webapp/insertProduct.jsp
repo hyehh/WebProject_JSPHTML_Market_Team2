@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="selectPage.css">
 </head><!-- //	pPrice, pCategory, PExpirationDate, pName, pQuantity)pcontent -->
 <body>
-		<%@ include file="header.jsp" %>
+	<%@include file = "headerSeller.jsp" %>
 	<br>
 	<br>
 	<br>
