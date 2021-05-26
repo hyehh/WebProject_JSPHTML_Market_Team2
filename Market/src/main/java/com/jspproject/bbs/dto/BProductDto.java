@@ -12,7 +12,7 @@ public class BProductDto {
 	String pStatus;
 	String pDelete;
 	String pAddDate;
-	String pMainFilePath;
+	String pFilePath;
 	
 	// ------------------------------------------------------------------------------
 	public BProductDto() {
@@ -59,7 +59,7 @@ public class BProductDto {
 
 
 	public BProductDto(String pCode, String pCategory, String pName, String pPrice, String pPriceDC,
-			String pExpirationDate, String pProductEA, String pStatus, String pAddDate, String pMainFilePath) {
+			String pExpirationDate, String pProductEA, String pStatus, String pAddDate, String pFilePath) {
 		super();
 		this.pCode = pCode;
 		this.pCategory = pCategory;
@@ -70,7 +70,7 @@ public class BProductDto {
 		this.pProductEA = pProductEA;
 		this.pStatus = pStatus;
 		this.pAddDate = pAddDate;
-		this.pMainFilePath = pMainFilePath;
+		this.pFilePath = pFilePath;
 	}
 
 
@@ -165,12 +165,13 @@ public class BProductDto {
 	}
 
 
-	public String getpMainFilePath() {
-		return pMainFilePath;
+	public String getpFilePath() {
+		return pFilePath;
 	}
 
 
-	public void setpMainFilePath(String pMainFilePath) {
-		this.pMainFilePath = pMainFilePath;
+	public void setpFilePath(String pFilePath) {
+		this.pFilePath = pFilePath;
 	}
+
 }

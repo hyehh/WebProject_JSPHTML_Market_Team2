@@ -83,6 +83,7 @@ import com.jspproject.bbs.command.BSellerPwUpdateCommand;
 import com.jspproject.bbs.command.BSellerSignOutCommand;
 import com.jspproject.bbs.command.BSsearchQnAListCommand;
 import com.jspproject.bbs.command.BStoreCommand;
+import com.jspproject.bbs.command.BproductlistnBnsCommand;
 import com.jspproject.bbs.command.CIdCheckCommand;
 import com.jspproject.bbs.command.SIdCheckCommand;
 import com.jspproject.bbs.command.SignUpCustomerCommand;
@@ -573,206 +574,206 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "product.jsp";
 			break;
-		// 첫화면
-		case ("/sellerStore.do"):
-			command = new BStoreCommand();
-			command.execute(request, response, session);
-			viewPage = "sellerStore.jsp";
-			break;
-		// 상품리스트 --------------------------------
-			// 리스트 전체보기
-		case ("/productlist.do"):
-			command = new BProductListCommand();
-		command.execute(request, response, session);
-			viewPage = "product_list_management.jsp";
-			break;
-		case ("/productlist.do?*"):
-			System.out.println("컨트롤러문제이니?");
-			command = new BProductListCommand();
-			command.execute(request, response, session);
-			viewPage = "product_list_management.jsp";
-			break;
-			// ---- 끝
-			// 검색 리스트
-		case ("/searchList.do"):
-			command = new BSearchListCommand();
-			command.execute(request, response, session);
-			viewPage = "ProductSearchList.jsp";
-			break;
-			// ---- 
-			// 판매중인 리스트
-		case ("/searchTure.do"):
-			command = new BSalesTureCommand();
-			command.execute(request, response, session);
-			viewPage = "ProductTureList.jsp";
-			break;
-			// ---- 끝
-			// 품절인 리스트
-		case ("/searchFalse.do"):
-			command = new BSalesFalseCommand();
-			command.execute(request, response, session);
-			viewPage = "ProductFalseList.jsp";
-			break;
-			// ---- 끝
-		case ("/selectProduct.do"):
-			System.out.println(request.getParameter("pStatus"));
-			command = new BSelectProductCommand();
-			command.execute(request, response, session);
-			viewPage = "selectProduct_vlew.jsp";
-			break;
-		case ("/productModify.do"):
-			command = new BProductModifyCommand(); 
-			command.execute(request, response, session);
-			viewPage = "productlist.do";
-			break;
-		case ("/productDelete.do"):
-			command = new BProductDeleteCommand(); 
-			command.execute(request, response, session);
-			viewPage = "productlist.do";
-			break;
-		// 상품리스트 -------------------------------- 끝
-		// 상품등록 --------------------------------
-		// ############### Register 테이블에도 업로드될 수 있도록@@@@@@@@@@@@@@@@@@@@@@@
-		case ("/showFirst.do"):
-			viewPage = "firstView.jsp";
-			break;
-		case ("/insert.do"):
-			System.out.println("난다요?");
-			command = new BAddProductCommand(); // insert register 안됨...ㅅㅂ........
-			System.out.println("난다요?");
-			command.execute(request, response, session);
-			viewPage = "productlist.do";
-			break;
-		case ("/imgUpload_view.do"):
-			viewPage = "imgUpload_view.jsp";
-			break;
-		case ("/imgUpload.do"):
-			command = new BFileUpladCommad();
-			command.execute(request, response, session);
+			// 첫화면
+			case ("/sellerStore.do"):
+				command = new BStoreCommand();
+				command.execute(request, response, session);
+				viewPage = "sellerStore.jsp";
+				break;
+			// 상품리스트 --------------------------------
+				// 리스트 전체보기
+			case ("/productlist.do"):
+				command = new BProductListCommand();
+				command.execute(request, response, session);
+				viewPage = "product_list_management.jsp";
+				break;
+			case ("/productlist.do?*"):
+				System.out.println("컨트롤러문제이니?");
+				command = new BProductListCommand();
+				command.execute(request, response, session);
+				viewPage = "product_list_management.jsp";
+				break;
+				// ---- 끝
+				// 검색 리스트
+			case ("/searchList.do"):
+				command = new BSearchListCommand();
+				command.execute(request, response, session);
+				viewPage = "ProductSearchList.jsp";
+				break;
+				// ---- 
+				// 판매중인 리스트
+			case ("/searchTure.do"):
+				command = new BSalesTureCommand();
+				command.execute(request, response, session);
+				viewPage = "ProductTureList.jsp";
+				break;
+				// ---- 끝
+				// 품절인 리스트
+			case ("/searchFalse.do"):
+				command = new BSalesFalseCommand();
+				command.execute(request, response, session);
+				viewPage = "ProductFalseList.jsp";
+				break;
+				// ---- 끝
+			case ("/selectProduct.do"):
+				System.out.println(request.getParameter("pStatus"));
+				command = new BSelectProductCommand();
+				command.execute(request, response, session);
+				viewPage = "selectProduct_vlew.jsp";
+				break;
+			case ("/productModify.do"):
+				command = new BProductModifyCommand(); 
+				command.execute(request, response, session);
+				viewPage = "productlist.do";
+				break;
+			case ("/productDelete.do"):
+				command = new BProductDeleteCommand(); 
+				command.execute(request, response, session);
+				viewPage = "productlist.do";
+				break;
+			// 상품리스트 -------------------------------- 끝
+			// 상품등록 --------------------------------
+			// ############### Register 테이블에도 업로드될 수 있도록@@@@@@@@@@@@@@@@@@@@@@@
+			case ("/showFirst.do"):
+				viewPage = "firstView.jsp";
+				break;
+			case ("/insert.do"):
+				command = new BAddProductCommand(); // insert register 안됨...ㅅㅂ........
+				command.execute(request, response, session);
+				viewPage = "productlistnBns.do";
+				break;
+			case ("/productlistnBns.do"):
+				command = new BproductlistnBnsCommand(); 
+				command.execute(request, response, session);
+				viewPage = "productlist.do";
+				break;
+			case ("/imgUpload.do"):
+				command = new BFileUpladCommad();
+				command.execute(request, response, session);
 //				fileUpload(request, response);
-			viewPage = "productlist.do";
-			break;
-		// 상품등록 -------------------------------- 끝
-		// 배송현황 --------------------------------
-		case ("/DeliveryList.do"):
-			command = new BDeliveryListCommand();
-			command.execute(request, response, session);
-			viewPage = "DeliveryList.jsp";
-			break;
-		case ("/deliverySearchList.do"):
-			command = new BDeliverySearchListCommand();
-			command.execute(request, response, session);
-			viewPage = "DeliveryList.jsp";
-			break;
-		case ("/DeliveryEnd.do"):
-			command = new BDeliveryEndCommand();
-			command.execute(request, response, session);
-			viewPage = "DeliveryList.jsp";
-			break;
-		case ("/DeliveryING.do"):
-			command = new BDeliveryINGCommand();
-			command.execute(request, response, session);
-			viewPage = "DeliveryList.jsp";
-			break;
-		case ("/selectOrderPage.do"):
-			command = new BSelectOrderPageCommand();
+				viewPage = "productlist.do";
+				break;
+			// 상품등록 -------------------------------- 끝
+			// 배송현황 --------------------------------
+			case ("/DeliveryList.do"):
+				command = new BDeliveryListCommand();
+				command.execute(request, response, session);
+				viewPage = "DeliveryList.jsp";
+				break;
+			case ("/deliverySearchList.do"):
+				command = new BDeliverySearchListCommand();
+				command.execute(request, response, session);
+				viewPage = "DeliveryList.jsp";
+				break;
+			case ("/DeliveryEnd.do"):
+				command = new BDeliveryEndCommand();
+				command.execute(request, response, session);
+				viewPage = "DeliveryList.jsp";
+				break;
+			case ("/DeliveryING.do"):
+				command = new BDeliveryINGCommand();
+				command.execute(request, response, session);
+				viewPage = "DeliveryList.jsp";
+				break;
+			case ("/selectOrderPage.do"):
+				command = new BSelectOrderPageCommand();
 //				command = new BSelectOrderPgListCommand();
-			command.execute(request, response, session);
-			viewPage = "selectOrderPage_view.jsp";
-			break;
-			// 배송중으로 변경
-		case ("/deliveryFor.do"):
-			command = new BDeliveryForCommand();
-			command.execute(request, response, session);
-			viewPage = "selectOrderPage.do";
-			break;
-		case ("/deliveryFinish.do"):
-			command = new BDeliveryFinishCommand();
-			command.execute(request, response, session);
-			viewPage = "selectOrderPage.do";
-			break;
-			// 배송현황 -------------------------------- 끝
-			// 주문관리 --------------------------------
-		case ("/buyList.do"):
-			command = new BBuyListCommand();
-			command.execute(request, response, session);
-			viewPage = "buyList.jsp";
-			break;
-		case ("/buySearchList.do"):
-			command = new BBuySearchListCommand();
-			command.execute(request, response, session);
-			viewPage = "buySearchList.jsp";
-			break;
-		case ("/buyTure.do"):
-			command = new BBuyTureCommand();
-			command.execute(request, response, session);
-			viewPage = "buyTureList.jsp";
-			break;
-		case ("/buyCancel.do"):
-			command = new BBuyCancelCommand();
-			command.execute(request, response, session);
-			viewPage = "buyCancelList.jsp";
-			break;
-		case ("/selectBuy.do"):
-			command = new BSelectBuyCommand();
-			command.execute(request, response, session);
-			viewPage = "selectBuy_vlew.jsp";
-			break;
-		case ("/buyToDeliver.do"):
-			System.out.println(request.getParameter("bNumber"));
-			command = new BBuyToDeliverCommand();
-			command.execute(request, response, session);
-			System.out.println(request.getAttribute("selectOrderPage"));
-			viewPage = "selectOrderPage_view.jsp";
-			break;
-		// 주문관리 -------------------------------- 끈
-		// 문의관리 --------------------------------
-		case ("/QnAList.do"):
-			command = new BQnAListCommand();
-			command.execute(request, response, session);
-			viewPage = "QnAList.jsp";
-			break;
-			// 문의 검색
-		case ("/searchQnAList.do"):
-			command = new BSsearchQnAListCommand();
-			command.execute(request, response, session);
-			viewPage = "searchQnAList.jsp";
-			break;
-			// ----- 끝
-			// 답변완료
-		case ("/QnATure.do"):
-			command = new BQnATureCommand();
-			command.execute(request, response, session);
-			viewPage = "QnATureList.jsp";
-			break;
-			// ---- 끝
-			// 미답변
-		case ("/QnAFalse.do"):
-			command = new BQnAFalseCommand();
-			command.execute(request, response, session);
-			viewPage = "QnAFalseList.jsp";
-			break;
-			// ---- 끝
-		case ("/selectQnA.do"):
-			command = new BSelectQnACommand();
-			command.execute(request, response, session);
-			viewPage = "selectQnAPage_view.jsp";
-			break;
-		case ("/QnAAdd.do"):
-			command = new BQnAAddCommand();
-			command.execute(request, response, session);
-			viewPage = "QnAList.jsp";
-			break;
-		case ("/QnAEdit.do"):
-			command = new BQnAEditCommand();
-			command.execute(request, response, session);
-			viewPage = "QnAList.jsp";
-			break;
-		case ("/QnADelete.do"):
-			command = new BQnADeleteCommand();
-			command.execute(request, response, session);
-			viewPage = "QnAList.jsp";
-			// 문의관리 -------------------------------- 끝			
+				command.execute(request, response, session);
+				viewPage = "selectOrderPage_view.jsp";
+				break;
+				// 배송중으로 변경
+			case ("/deliveryFor.do"):
+				command = new BDeliveryForCommand();
+				command.execute(request, response, session);
+				viewPage = "selectOrderPage.do";
+				break;
+			case ("/deliveryFinish.do"):
+				command = new BDeliveryFinishCommand();
+				command.execute(request, response, session);
+				viewPage = "selectOrderPage.do";
+				break;
+				// 배송현황 -------------------------------- 끝
+				// 주문관리 --------------------------------
+			case ("/buyList.do"):
+				command = new BBuyListCommand();
+				command.execute(request, response, session);
+				viewPage = "buyList.jsp";
+				break;
+			case ("/buySearchList.do"):
+				command = new BBuySearchListCommand();
+				command.execute(request, response, session);
+				viewPage = "buySearchList.jsp";
+				break;
+			case ("/buyTure.do"):
+				command = new BBuyTureCommand();
+				command.execute(request, response, session);
+				viewPage = "buyTureList.jsp";
+				break;
+			case ("/buyCancel.do"):
+				command = new BBuyCancelCommand();
+				command.execute(request, response, session);
+				viewPage = "buyCancelList.jsp";
+				break;
+			case ("/selectBuy.do"):
+				command = new BSelectBuyCommand();
+				command.execute(request, response, session);
+				viewPage = "selectBuy_vlew.jsp";
+				break;
+			case ("/buyToDeliver.do"):
+				System.out.println(request.getParameter("bNumber"));
+				command = new BBuyToDeliverCommand();
+				command.execute(request, response, session);
+				System.out.println(request.getAttribute("selectOrderPage"));
+				viewPage = "selectOrderPage_view.jsp";
+				break;
+			// 주문관리 -------------------------------- 끈
+			// 문의관리 --------------------------------
+			case ("/QnAList.do"):
+				command = new BQnAListCommand();
+				command.execute(request, response, session);
+				viewPage = "QnAList.jsp";
+				break;
+				// 문의 검색
+			case ("/searchQnAList.do"):
+				command = new BSsearchQnAListCommand();
+				command.execute(request, response, session);
+				viewPage = "searchQnAList.jsp";
+				break;
+				// ----- 끝
+				// 답변완료
+			case ("/QnATure.do"):
+				command = new BQnATureCommand();
+				command.execute(request, response, session);
+				viewPage = "QnATureList.jsp";
+				break;
+				// ---- 끝
+				// 미답변
+			case ("/QnAFalse.do"):
+				command = new BQnAFalseCommand();
+				command.execute(request, response, session);
+				viewPage = "QnAFalseList.jsp";
+				break;
+				// ---- 끝
+			case ("/selectQnA.do"):
+				command = new BSelectQnACommand();
+				command.execute(request, response, session);
+				viewPage = "selectQnAPage_view.jsp";
+				break;
+			case ("/QnAAdd.do"):
+				command = new BQnAAddCommand();
+				command.execute(request, response, session);
+				viewPage = "QnAList.jsp";
+				break;
+			case ("/QnAEdit.do"):
+				command = new BQnAEditCommand();
+				command.execute(request, response, session);
+				viewPage = "QnAList.jsp";
+				break;
+			case ("/QnADelete.do"):
+				command = new BQnADeleteCommand();
+				command.execute(request, response, session);
+				viewPage = "QnAList.jsp";
+				// 문의관리 -------------------------------- 끝		
 		default:
 			break;
 		}

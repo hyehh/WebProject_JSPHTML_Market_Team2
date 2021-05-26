@@ -17,7 +17,7 @@ public class BDaoAddProduct {
 	public BDaoAddProduct() {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Market");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/market");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -26,7 +26,8 @@ public class BDaoAddProduct {
 	
 	
 //	String pCategory, String pName, String pPrice, String pExpirationDate, String pQuantity, String pStatus
-	public void insert(String pCategory, String pName, String pPrice, String pExpirationDate, String pProductEA, String pStatus, String pPriceDC, String filePath) {
+	public void insert(String pCategory, String pName, String pPrice, String pExpirationDate, 
+			String pProductEA, String pStatus, String pPriceDC, String pFilePath) {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -34,7 +35,8 @@ public class BDaoAddProduct {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "insert into Product  (pCategory, pName, pPrice, pPriceDC, pExpirationDate, pProductEA, pStatus, pAddDate, pMainFilePath, pDelete) "
+			String query = "insert into Product  (pCategory, pName, pPrice, pPriceDC, pExpirationDate, pProductEA, pStatus, "
+					+ "pAddDate, pFilePath, pDelete) "
 					+ "value (?, ?, ?, ?, ?, ?, ?, now(), ?, 0)";
 			preparedStatement = connection.prepareStatement(query);
 			
@@ -45,7 +47,7 @@ public class BDaoAddProduct {
 			preparedStatement.setString(5, pExpirationDate);
 			preparedStatement.setString(6, pProductEA);
 			preparedStatement.setString(7, pStatus);
-			preparedStatement.setString(8, filePath);
+			preparedStatement.setString(8, pFilePath);
 			
 			preparedStatement.executeUpdate();
 			
@@ -66,7 +68,7 @@ public class BDaoAddProduct {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
-
+		System.out.println("겟코드 실행여부입니다");
 		try {
 			connection = dataSource.getConnection();
 
@@ -97,7 +99,7 @@ public class BDaoAddProduct {
 		return pCode;
 	}
 
-	public void addRegister(int pCode, String sId) {
+	public void insertBnS(int pCode, String sId) {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -105,7 +107,7 @@ public class BDaoAddProduct {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "insert into Register  (Product_pCode, Seller_sId) "
+			String query = "insert into BnS (product_pCode, customer_cId) "
 					+ "value (?, ?)";
 			preparedStatement = connection.prepareStatement(query);
 

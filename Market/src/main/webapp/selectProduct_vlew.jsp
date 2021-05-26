@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="selectPage.css">
 </head>
 <body>
-	<%@include file = "headerSeller.jsp" %>
+	<%@ include file="headerSeller.jsp" %>
 	<br>
 	<br>
 	<br>
@@ -79,7 +79,28 @@
 					<td><input type="text" name="pQuantity"
 						value="${selectProduct.pAddDate }"></td>
 				</tr>
-				<tr>
+				<%-- <tr>
+				<td>첨부파일</td>
+				<td>
+					<c:set var="requestFilePath" value="${selectProduct.pFilePath }" />
+					<c:choose>
+					    <c:when test="${!empty requestFilePath}">
+					        <a href="${selectProduct.pFilePath }" download>${fileName }</a>
+					    </c:when>
+					    <c:otherwise>
+					        <a>첨부파일 없음</a>
+					    </c:otherwise>
+					</c:choose>
+					<!-- 이미지 수정을 위해서 기존 파일 경로도 전송해야하므로 히든아이템으로 유지한다. -->
+					<input type="hidden" name="oldFilePath" value="${selectProduct.pFilePath }">
+					<input type="file" name="uploadFile" >
+				</td>
+			</tr> --%>
+			<tr>
+				<td>상품이미지 미리보기</td>
+				<td><img width="200" src="${selectProduct.pFilePath }" alt=""/></td>
+			</tr>
+			<tr>
 					<td colspan="3">
 					<input type = "submit" formaction="productlist.do" class="button buttonModify" 
 					value = "목록으로가기">
@@ -89,27 +110,6 @@
 					value = "삭제"></td>
 
 				</tr>
-				<tr>
-				<td>첨부파일</td>
-				<td>
-					<c:set var="requestFilePath" value="${selectProduct.pMainFilePath }" />
-					<c:choose>
-					    <c:when test="${!empty requestFilePath}">
-					        <a href="${selectProduct.pMainFilePath }" download>${fileName }</a>
-					    </c:when>
-					    <c:otherwise>
-					        <a>첨부파일 없음</a>
-					    </c:otherwise>
-					</c:choose>
-					<!-- 이미지 수정을 위해서 기존 파일 경로도 전송해야하므로 히든아이템으로 유지한다. -->
-					<input type="hidden" name="oldFilePath" value="${selectProduct.pMainFilePath }">
-					<input type="file" name="uploadFile" >
-				</td>
-			</tr>
-			<tr>
-				<td>첨부파일 미리보기</td>
-				<td><img width="100" src="${selectProduct.pMainFilePath }" alt=""/></td>
-			</tr>
 			</table>
 		</form>
 	</div>

@@ -20,7 +20,7 @@ public class BDaoProduct {
 	public BDaoProduct() {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Market");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/market");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -442,7 +442,7 @@ public class BDaoProduct {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select pCode, pCategory, pName, pPrice, pPriceDC, pExpirationDate, pProductEA, pStatus, pAddDate, pMainFilePath "
+			String query = "select pCode, pCategory, pName, pPrice, pPriceDC, pExpirationDate, pProductEA, pStatus, pAddDate, pFilePath "
 					+ "from Product where pDelete = 0 and pCode = ?";
 			System.out.println("다오실험1");
 			preparedStatement = connection.prepareStatement(query);
@@ -462,7 +462,7 @@ public class BDaoProduct {
 				String Status = resultset.getString("pStatus");
 				Timestamp AddDate = resultset.getTimestamp("pAddDate");
 				String pAddDate = new SimpleDateFormat("yyyy-MM-dd").format(AddDate);
-				String pMainFilePath = resultset.getString("pMainFilePath");
+				String pFilePath = resultset.getString("pFilePath");
 				
 				int eaInt = Integer.parseInt(ProductEA);
 				pProductEA = Integer.toString(eaInt - selectProductBuyCount);
@@ -473,7 +473,7 @@ public class BDaoProduct {
 				} else {
 					pStatus = "품절";
 				}
-				dto = new BProductDto(pCode, pCategory, pName, pPrice, pPriceDC, pExpirationDate, pProductEA, pStatus, pAddDate, pMainFilePath);
+				dto = new BProductDto(pCode, pCategory, pName, pPrice, pPriceDC, pExpirationDate, pProductEA, pStatus, pAddDate, pFilePath);
 				
 			}
 		} catch(Exception e) {
@@ -645,3 +645,4 @@ public class BDaoProduct {
 	
 	
 } //------끝
+

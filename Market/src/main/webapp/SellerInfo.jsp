@@ -7,65 +7,55 @@
 <title>마이페이지</title>
 </head>
 <style>
-.button{
-	border : 0;
-	outline : 0;
-	font-size : 0.90em;
-	font-weight : 400;
-	background-color : white;
-}
-.sellerbar {
-	display: inline-block;
-	width: 300px;
+.container_wrap {
+	background-color: #FAFAFA;
+	padding: 30px 0;
 }
 .container {
-	display: inline-block;
+	width: 1000px;
+	margin: auto;
+	background-color: #fff;
+}
+.user form .button{
+	border : 0;
+	outline : 0;
+	font-size : 1.1em;
+	font-weight : 400;
+	background-color : #FAFAFA;
+	color: #000;
+	padding: 0;
+}
+.leftbar {
+	padding: 30px;
+	position: absolute;
+	left: 50%;
+	margin-left: -650px;
+}
+.shopping {
+	margin-bottom: 20px;
+}
+.shopping h3, .user h3 {
+	padding-bottom: 5px;
+}
+.shopping form, .user form {
+	padding: 5px;
 }
 </style>
 <body>
-	<header>
-		<!-- 최상단 메뉴 -->
-		<div class="top">
-			<ul class="top_list">
-				<li><a href="">로그아웃</a></li>
-				<li><a href="SellerInfoUpdate_View.do">마이페이지</a></li>
-			</ul>
+	<div class="leftbar">
+		<div class="user">
+			<h3>회원정보</h3>
+			<form action="SellerInfoUpdate_View.do" method="post">
+				<input class="button" type="submit" value="회원정보 변경">
+			</form>
+			<form action="SellerPwUpdate_View.do" method="post">
+				<input class="button" type="submit" value="비밀번호 변경">
+			</form>
+			<form action="SellerSignOut_View.do" method="post">
+				<input class="button" type="submit" value="회원 탈퇴">
+			</form>
 		</div>
-		<!-- //최상단 메뉴 -->
-		
-		<!-- 로고 -->
-		<div class="logo">
-			<a href="sellerStore.do"><h1>마감임박!!</h1></a>
-		</div>
-		<!-- //로고 -->
-		
-		<!-- 카테고리 -->
-		<div class="category">
-			<nav>
-				<ul class="category_list">
-					<li><a href="SellerInfoUpdate_View.do">정보 수정</a></li>
-					<li><a href="SellerPwUpdate_View.do">비밀번호 변경</a></li>
-					<li><a href="SellerSignOut_View.do">회원 탈퇴</a></li>
-				<!-- 	<li><a href="DeliveryList.do">배송관리</a></li>
-					<li><a href="QnAList.do">문의관리</a></li> -->
-				</ul>
-			</nav>
-		</div>
-		<!-- //카테고리 -->
-	</header>
+	</div>
 
-<!-- 
-	<div class="sellerbar">
-
-		<form action="SellerInfoUpdate_View.do" method="post">
-			<input class="button" type="submit" value="판매자 정보 수정">
-		</form>
-		<form action="SellerPwUpdate_View.do" method="post">
-			<input class="button" type="submit" value="비밀번호 변경">
-		</form>
-		<form action="SellerSignOut_View.do" method="post">
-			<input class="button" type="submit" value="회원 탈퇴">
-		</form>
-	</div> -->
 </body>
 </html>

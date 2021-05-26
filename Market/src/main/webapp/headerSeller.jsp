@@ -5,17 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert tile here</title>
-	<link rel="stylesheet" href="sellerStore.css">
+	<link rel="stylesheet" href="css2.css">
 </head>
-
-<style type="text/css">
-	.search {
-		width: 200px;
-		height: 46px;
-		border: 2px solid red;
-		float: left;
-	}
-</style>
 
 <body>
 	<header>

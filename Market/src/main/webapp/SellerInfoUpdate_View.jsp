@@ -94,29 +94,38 @@
 </script>
 <style>
 	/* .container_wrap {
-		display: block;
+		background-color: #FAFAFA;
+		padding: 30px 0;
+	}
+	.container {
+		width: 1000px;
+		margin: auto;
+		background-color: #fff;
 	} */
-/* 	#pwUpdate {
- 		padding: 5px 20px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 450px; height: 250px;
-		margin-left: -220px;
-		margin-top : -250px; 
-	} */
+	.container form {
+		width: 570px;
+		margin: auto;
+	}
 	caption {
-		font-style: 200px; font-weight: bold; margin: 50px;
+		font-style: 200px; 
+		font-weight: bold; 
+		margin: 50px;
 		font-size: x-large;
 	}
-	.table {
-		margin: auto;
-		border-collapse: collapse;
-	}
-
-	.table, th, td {
+	th, td {
 		padding: 10px;
 		text-align: left;
+	}
+	.inputText td:nth-child(2) input:not(.buttonAdd) {
+		color:black; 
+		background-color: white;
+		padding-top:2px;
+		border-width:2px; 
+		border-color:gray; 
+		border-top-style:none; 
+		border-right-style:none; 
+		border-left-style:none; 
+		border-bottom-style:line
 	}
 	.buttonJSP{
 		width: 70px;
@@ -148,110 +157,98 @@
 	}
 </style>
 <body>
-	<%-- <%@include file = "headerSeller.jsp" %> --%>
-	<%@include file = "SellerInfo.jsp" %>
-	<div class="container">
-		<form name="sellerInfoUpdateForm" action="SellerInfoUpdate.do" method="post">
-			<table border="0">
-				<caption>판매자정보 변경</caption>
-					<tr>
-						<td>ID</td>
-						<td>${SELLERINFO.sId }</td>
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td><input type="text" name="sName" value="${SELLERINFO.sName }" size="25" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="이름을 입력하세요."></td>
-					</tr>
-					<tr>
-						<td>전화번호</td>
-						<td><input type="text" name="sTel" value="${SELLERINFO.sTel }" size="25" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="-를 생략하고 입력하세요."></td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-						<td><input type="text" name="sEmail" value="${SELLERINFO.sEmail }" size="25" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="이메일을 입력하세요."></td>
-					</tr>
-					<tr>
-						<td>생년월일</td>
-		 				<td> 
-		 					<select name="sBirthY">
-								<c:forEach var="i" begin="1900" end="2021" step="1" >
-									<c:choose>
-									<c:when test ="${fn:substring(SELLERINFO.sBirth,0,4) == i }">
-										<option value="${i }" selected="selected">${i }</option>
-									</c:when>
-		  							<c:otherwise>
-										<option value="${i }">${i }</option>
-									</c:otherwise>  
-									</c:choose>
-								</c:forEach>
-							</select>
-							년 
-		  				  	<select name="sBirthM">
-								<c:forEach var="i" begin="1" end="12" step="1" >
-									<c:choose>
-									<c:when test ="${fn:substring(SELLERINFO.sBirth,5,7) == i }">
-										<option value="${i }" selected="selected">${i }</option>
-									</c:when>
-		  							<c:otherwise>
-										<option value="${i }">${i }</option>
-									</c:otherwise>  
-									</c:choose>
-								</c:forEach>
-							</select>
-							월 
-		 				  	<select name="sBirthD">
-								<c:forEach var="i" begin="1" end="31" step="1" >
-									<c:choose>
-									<c:when test ="${fn:substring(SELLERINFO.sBirth,8,10) == i }">
-										<option value="${i }" selected="selected">${i }</option>
-									</c:when>
-		  							<c:otherwise>
-										<option value="${i }">${i }</option>
-									</c:otherwise>  
-									</c:choose>
-								</c:forEach>
-							</select>
-							일 
-						</td>
-					</tr>	
-					<tr>
-						<td>주소</td>
-						<td><input type="text" id="sample4_postcode" name="sPostalCode" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="우편번호를 입력하세요." value="${SELLERINFO.sPostalCode }">
-							<input class="buttonAdd" type="button" onclick="PostalCode()" value="우편번호 찾기"><br>
-							<input type="text" id="sample4_roadAddress" name="sAddress1" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-							placeholder="도로명주소를 입력하세요." value="${SELLERINFO.sAddress1 }">
-							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="sample4_detailAddress" name="sAddress2" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-							placeholder="상세주소를 입력하세요." value="${SELLERINFO.sAddress2 }">
-					</tr>
-					<tr>
-						<td>상점이름</td>
-						<td><input type="text" name="sShopName" value="${SELLERINFO.sShopName }" size="25" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="상점이름을 입력하세요."></td>
-					</tr>
-					<tr>
-						<td>사업자 등록 번호</td>
-						<td><input type="text" name="sNumber" value="${SELLERINFO.sNumber }" size="25" style="color:black; background-color=white; padding-top:2px;
-						border-width:2px; border-color:gray; border-top-style:none; border-right-style:none; border-left-style:none; border-bottom-style:line;" 
-						placeholder="-를 생략하고 입력하세요."></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input class="buttonJSP" type="button" style="float:right" value="확인" onclick="infoUpdate()"></td>
-					</tr>
-			</table>
-		</form>
+	<%@include file = "headerSeller.jsp" %>
+	<div class="container_wrap">
+		<%@include file = "SellerInfo.jsp" %>
+		<div class="container">
+			<form name="sellerInfoUpdateForm" action="SellerInfoUpdate.do" method="post">
+				<table border="0">
+					<caption>판매자정보 변경</caption>
+						<tr>
+							<td>ID</td>
+							<td>${SELLERINFO.sId }</td>
+						</tr>
+						<tr class="inputText">
+							<td>이름</td>
+							<td><input type="text" name="sName" value="${SELLERINFO.sName }" size="25" placeholder="이름을 입력하세요."></td>
+						</tr>
+						<tr class="inputText">
+							<td>전화번호</td>
+							<td><input type="text" name="sTel" value="${SELLERINFO.sTel }" size="25" placeholder="-를 생략하고 입력하세요."></td>
+						</tr>
+						<tr class="inputText">
+							<td>이메일</td>
+							<td><input type="text" name="sEmail" value="${SELLERINFO.sEmail }" size="25" placeholder="이메일을 입력하세요."></td>
+						</tr>
+						<tr>
+							<td>생년월일</td>
+			 				<td> 
+			 					<select name="sBirthY">
+									<c:forEach var="i" begin="1900" end="2021" step="1" >
+										<c:choose>
+										<c:when test ="${fn:substring(SELLERINFO.sBirth,0,4) == i }">
+											<option value="${i }" selected="selected">${i }</option>
+										</c:when>
+			  							<c:otherwise>
+											<option value="${i }">${i }</option>
+										</c:otherwise>  
+										</c:choose>
+									</c:forEach>
+								</select>
+								년 
+			  				  	<select name="sBirthM">
+									<c:forEach var="i" begin="1" end="12" step="1" >
+										<c:choose>
+										<c:when test ="${fn:substring(SELLERINFO.sBirth,5,7) == i }">
+											<option value="${i }" selected="selected">${i }</option>
+										</c:when>
+			  							<c:otherwise>
+											<option value="${i }">${i }</option>
+										</c:otherwise>  
+										</c:choose>
+									</c:forEach>
+								</select>
+								월 
+			 				  	<select name="sBirthD">
+									<c:forEach var="i" begin="1" end="31" step="1" >
+										<c:choose>
+										<c:when test ="${fn:substring(SELLERINFO.sBirth,8,10) == i }">
+											<option value="${i }" selected="selected">${i }</option>
+										</c:when>
+			  							<c:otherwise>
+											<option value="${i }">${i }</option>
+										</c:otherwise>  
+										</c:choose>
+									</c:forEach>
+								</select>
+								일 
+							</td>
+						</tr>	
+						<tr class="inputText">
+							<td>주소</td>
+							<td>
+								<input type="text" id="sample4_postcode" name="sPostalCode" placeholder="우편번호를 입력하세요." value="${SELLERINFO.sPostalCode }">
+								<input class="buttonAdd" type="button" onclick="PostalCode()" value="우편번호 찾기"><br>
+								<input type="text" id="sample4_roadAddress" name="sAddress1" placeholder="도로명주소를 입력하세요." value="${SELLERINFO.sAddress1 }">
+								<span id="guide" style="color:#999;display:none"></span>
+								<input type="text" id="sample4_detailAddress" name="sAddress2" placeholder="상세주소를 입력하세요." value="${SELLERINFO.sAddress2 }">
+							</td>
+						</tr>
+						<tr class="inputText">
+							<td>상점이름</td>
+							<td><input type="text" name="sShopName" value="${SELLERINFO.sShopName }" size="25" placeholder="상점이름을 입력하세요."></td>
+						</tr>
+						<tr class="inputText">
+							<td>사업자 등록 번호</td>
+							<td><input type="text" name="sNumber" value="${SELLERINFO.sNumber }" size="25" placeholder="-를 생략하고 입력하세요."></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input class="buttonJSP" type="button" style="float:right" value="확인" onclick="infoUpdate()"></td>
+						</tr>
+				</table>
+			</form>
+		</div>
 	</div>
 	<%@include file = "footerSeller.jsp" %>
 </body>

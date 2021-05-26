@@ -3,7 +3,9 @@ package com.jspproject.bbs.command;
 import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +21,9 @@ public class BAddProductCommand implements BCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		
-		MultipartRequest multi = null;
+		MultipartRequest multiMain = null;
+
+
 		String filePath = null;
 
 		String pCategory = null;
@@ -34,15 +37,13 @@ public class BAddProductCommand implements BCommand {
 		String year = null;
 		String month = null;
 		String day = null;
-		
-		
 
 		// ---------------------
 		// 3mb로 파일 크기를 제한
 		int fileSize = 1024 * 1024 * 3;
 		// 현재 서비스되는 서버가 사용하는 저장공간의 경로를 불러옵니다.
 		ServletContext context = request.getServletContext();
-		String uploadPath = context.getRealPath("/save");
+		String uploadPath = context.getRealPath("/product_save");
 
 		// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
 		File folder = new File(uploadPath);
@@ -57,20 +58,29 @@ public class BAddProductCommand implements BCommand {
 			System.out.println("이미 폴더가 생성되어 있습니다.");
 		}
 		
+		
+
+
 		try {
-			//일반 request와는 구분됩니다. request.getParameter로는 값을 가져올 수 없습니다.
-			multi = new MultipartRequest(request, uploadPath, fileSize, "UTF-8", new DefaultFileRenamePolicy());
-			pCategory = multi.getParameter("pCategory");
-			pName = multi.getParameter("pName");
-			pPrice = multi.getParameter("pPrice");
-			pPriceDC = multi.getParameter("pPriceDC");
-			pProductEA = multi.getParameter("pProductEA");
+			multiMain = new MultipartRequest(request, uploadPath, fileSize, "UTF-8", new DefaultFileRenamePolicy());
+			pCategory = multiMain.getParameter("pCategory");
+			pName = multiMain.getParameter("pName");
+			pPrice = multiMain.getParameter("pPrice");
+			pPriceDC = multiMain.getParameter("pPriceDC");
+			pProductEA = multiMain.getParameter("pProductEA");
 			pStatus = "판매중";
+
+			String uploadFile = multiMain.getFilesystemName("uploadFile");
+			System.out.println("파일은요 - - - - - -" + uploadFile);
 			
-			year = multi.getParameter("date1");
-			month = multi.getParameter("date2");
-			day = multi.getParameter("date3");
+			filePath = "product_save/" + uploadFile;
 			
+			System.out.println("파일경로는요 - - - - - -" + filePath);
+			
+			year = multiMain.getParameter("date1");
+			month = multiMain.getParameter("date2");
+			day = multiMain.getParameter("date3");
+
 			if (month.length() < 2) {
 				month = "0" + month;
 			}
@@ -78,28 +88,20 @@ public class BAddProductCommand implements BCommand {
 			if (day.length() < 2) {
 				day = "0" + day;
 			}
-			
-			System.out.println(year + month + day);
 
 			ExpirationDate = year + month + day;
-			
 
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat(ExpirationDate);
 			String pExpirationDate = sdf.format(cal.getTime());
-			String uploadFile = multi.getFilesystemName("uploadFile");
 
 			BDaoAddProduct dao = new BDaoAddProduct();
-			filePath = "product_save/" + uploadFile;
 			dao.insert(pCategory, pName, pPrice, pExpirationDate, pProductEA, pStatus, pPriceDC, filePath);
-//			dao.write(writer, title, content, filePath);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-
 	}
 
 }
-

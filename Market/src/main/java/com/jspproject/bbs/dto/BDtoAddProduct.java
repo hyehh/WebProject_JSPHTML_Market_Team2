@@ -14,7 +14,9 @@ public class BDtoAddProduct {
 	String pProductEA;
 	String pStatus;
 	Timestamp pAddDate;
-	String filePath;
+	String pFilePath;
+	String filePathMain;
+	String filePathDetail;
 	
 	// Rns table
 	String sId;
@@ -180,13 +182,33 @@ public class BDtoAddProduct {
 	}
 
 
-	public String getFilePath() {
-		return filePath;
+	public String getpFilePath() {
+		return pFilePath;
 	}
 
 
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	public void setpFilePath(String pFilePath) {
+		this.pFilePath = pFilePath;
+	}
+
+
+	public String getFilePathMain() {
+		return filePathMain;
+	}
+
+
+	public void setFilePathMain(String filePathMain) {
+		this.filePathMain = filePathMain;
+	}
+
+
+	public String getFilePathDetail() {
+		return filePathDetail;
+	}
+
+
+	public void setFilePathDetail(String filePathDetail) {
+		this.filePathDetail = filePathDetail;
 	}
 	
 	
