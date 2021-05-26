@@ -38,10 +38,8 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select bNumber, pCategory, pName, dCondition "
-					+ "from Receiver as R join Delivery as D "
-					+ "on R.Customer_cId = D.Customer_cId "
-					+ "join Product as P on D.Product_pCode = P.pCode limit ?, ?";
+			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+					+ "join Product as P on P.pCode = D.Product_pCode limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
@@ -86,10 +84,8 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select bNumber, pCategory, pName, dCondition "
-					+ "from Receiver as R join Delivery as D "
-					+ "on R.Customer_cId = D.Customer_cId "
-					+ "join Product as P on D.Product_pCode = P.pCode";
+			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+					+ "join Product as P on P.pCode = D.Product_pCode";
 			
 			
 			preparedStatement = connection.prepareStatement(query);
@@ -126,10 +122,8 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select bNumber, pCategory, pName, dCondition "
-					+ "from Receiver as R join Delivery as D "
-					+ "on R.Customer_cId = D.Customer_cId "
-					+ "join Product as P on D.Product_pCode = P.pCode where D.dEndDate is not null";
+			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+					+ "join Product as P on P.pCode = D.Product_pCode where D.dEndDate is not null";
 			
 			preparedStatement = connection.prepareStatement(query);
 			resultset = preparedStatement.executeQuery();
@@ -165,10 +159,8 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select bNumber, pCategory, pName, dCondition "
-					+ "from Receiver as R join Delivery as D "
-					+ "on R.Customer_cId = D.Customer_cId "
-					+ "join Product as P on D.Product_pCode = P.pCode where D.dEndDate is null";
+			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+					+ "join Product as P on P.pCode = D.Product_pCode where D.dEndDate is null";
 			
 			preparedStatement = connection.prepareStatement(query);
 			resultset = preparedStatement.executeQuery();
@@ -194,7 +186,7 @@ public class BDaoDelivery {
 		
 	}
 	
-	// 검색 리스트
+	// 검색 리스트  /// #####@%@#&$%@@#$---------------------------------------------------------------------- jsp도없음
 	public ArrayList<BDtoDelivery> search(String search, String searchtxt, int start, int end) {
 		String searchCheck = null;
 		String searchtxtCheck = null;
@@ -209,10 +201,8 @@ public class BDaoDelivery {
 				
 			}
 		
-		String whereStatement = "select bNumber, pCategory, pName, dCondition "
-				+ "from Receiver as R join Delivery as D "
-				+ "on R.Customer_cId = D.Customer_cId "
-				+ "join Product as P on D.Product_pCode = P.pCode" + searchCheck + searchtxtCheck + " limit ?, ?";
+		String whereStatement = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+				+ "join Product as P on P.pCode = D.Product_pCode" + searchCheck + searchtxtCheck + " limit ?, ?";
 		
 		System.out.println(whereStatement);
 		
@@ -269,10 +259,8 @@ public class BDaoDelivery {
 				
 			}
 		
-		String whereStatement = "select bNumber, pCategory, pName, dCondition "
-				+ "from Receiver as R join Delivery as D "
-				+ "on R.Customer_cId = D.Customer_cId "
-				+ "join Product as P on D.Product_pCode = P.pCode" + searchCheck + searchtxtCheck + " limit ?, ?";
+		String whereStatement = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+				+ "join Product as P on P.pCode = D.Product_pCode" + searchCheck + searchtxtCheck;
 		
 		System.out.println(whereStatement);
 		
@@ -319,10 +307,8 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select bNumber, pCategory, pName, dCondition "
-					+ "from Receiver as R join Delivery as D "
-					+ "on R.Customer_cId = D.Customer_cId "
-					+ "join Product as P on D.Product_pCode = P.pCode where D.dCondition = '배송완료' limit ?, ?";
+			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+					+ "join Product as P on P.pCode = D.Product_pCode where D.dCondition = '배송완료' limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
@@ -365,10 +351,8 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select bNumber, pCategory, pName, dCondition "
-					+ "from Receiver as R join Delivery as D "
-					+ "on R.Customer_cId = D.Customer_cId "
-					+ "join Product as P on D.Product_pCode = P.pCode where D.dCondition = '배송중' limit ?, ?";
+			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+					+ "join Product as P on P.pCode = D.Product_pCode where D.dCondition = '배송중' limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
@@ -410,13 +394,24 @@ public class BDaoDelivery {
 		String dStartDate = null;
 		String dEndDate = null;
 		
+		try {
+			connection = dataSource.getConnection();
+			String groupSet = "SET sql_mode = ''";
+			preparedStatement = connection.prepareStatement(groupSet);
+			resultset = preparedStatement.executeQuery();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select R.bNumber, bBuyDate, bRecName, bRecTel, bRecPostalCode, bRecAddress1, bRecAddress2, dStartDate, dEndDate from Receiver as R "
-					+ "join BnS as B on R.Customer_cId = B.Customer_cId "
-					+ "join Delivery as D on D.Customer_cId = R.Customer_cId where R.bNumber = ?";
+			String query = "select R.bNumber, bBuyDate, bRecName, bRecTel, bRecPostalCode, bRecAddress1, bRecAddress2, dStartDate, dEndDate from Receiver as R\n"
+					+ "join BnS as B on R.Customer_cId = B.Customer_cId\n"
+					+ "join Delivery as D on R.bNumber = D.bNumber and B.Product_pCode = D.Product_pCode where R.bNumber =  ? "
+					+ "group by R.bNumber, B.bBuyDate, bBuyDate, bRecName, bRecTel, bRecPostalCode, bRecAddress1, bRecAddress2, dStartDate, dEndDate";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, selecCode);
 			
@@ -431,6 +426,7 @@ public class BDaoDelivery {
 				String bRecAddress2 = resultset.getString("bRecAddress2");
 				Timestamp StartDate = resultset.getTimestamp("dStartDate");
 				Timestamp EndDate = resultset.getTimestamp("dEndDate");
+				
 				
 				if (BuyDate == null) {
 					bBuyDate = "";
@@ -563,8 +559,7 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "update Delivery as D join BnS as B on D.Customer_cId = B.Customer_cId "
-					+ "set dCondition = '배송중', dStartDate = now() "
+			String query = "update Delivery set dCondition = '배송중', dStartDate = now() \n"
 					+ "where bNumber = ?";
 			System.out.println(query);
 			preparedStatement = connection.prepareStatement(query);
@@ -594,8 +589,7 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "update Delivery as D join BnS as B on D.Customer_cId = B.Customer_cId "
-					+ "set dCondition = '배송완료', dEndDate = now() "
+			String query = "update Delivery set dCondition = '배송완료', dStartDate = now() \n"
 					+ "where bNumber = ?";
 			System.out.println(query);
 			preparedStatement = connection.prepareStatement(query);

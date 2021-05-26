@@ -38,7 +38,7 @@ public class BDaoQnA {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select QnACode, bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B "
+			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B "
 					+ "join QnA as Q on B.Customer_cId = Q.Customer_cId order by QnACode desc limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
@@ -89,7 +89,7 @@ public class BDaoQnA {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select bNumber, qTitle, qAddDate, qAnswerStatus "
+			String query = "select B.bNumber, qTitle, qAddDate, qAnswerStatus "
 					+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId";
 
 //			insert into Product (pPrice, pCategory, PExpirationDate, pName, pQuantity)
@@ -205,7 +205,7 @@ public class BDaoQnA {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select QnACode, bNumber, qTitle, qAddDate, qAnswerStatus "
+			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus "
 					+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId "
 					+ "where qAnswerStatus is not null order by QnACode desc limit ?, ?";
 
@@ -258,7 +258,7 @@ public class BDaoQnA {
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "select QnACode, bNumber, qTitle, qAddDate, qAnswerStatus "
+			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus "
 					+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId "
 					+ "where qAnswerStatus is null order by QnACode desc limit ?, ?";
 
@@ -315,7 +315,7 @@ public class BDaoQnA {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select QnACode, bNumber, qTitle, cName, qAddDate, qContent, aDeleteDate, qAnswerStatus, "
+			String query = "select QnACode, B.bNumber, qTitle, cName, qAddDate, qContent, aDeleteDate, qAnswerStatus, "
 					+ "aContent, aAddDate from QnA as Q "
 					+ "join BnS as B on Q.Customer_cId = B.Customer_cId and Q.Product_pCode = B.Product_pCode "
 					+ "join Customer as C on Q.Customer_cId = C.cId where B.bNumber = ?";
@@ -483,7 +483,7 @@ public class BDaoQnA {
 				
 			}
 		
-		String whereStatement = "select QnACode, bNumber, qTitle, qAddDate, qAnswerStatus "
+		String whereStatement = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus "
 				+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId "
 				+ searchtxtCheck + "order by QnACode desc limit ?, ?";
 		
@@ -546,7 +546,7 @@ public class BDaoQnA {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select bNumber, qTitle, qAddDate, qAnswerStatus "
+			String query = "select B.bNumber, qTitle, qAddDate, qAnswerStatus "
 					+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId "
 					+ "where bNumber" + searchtxtCheck;
 

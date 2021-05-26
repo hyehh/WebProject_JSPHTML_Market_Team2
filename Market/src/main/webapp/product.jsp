@@ -10,15 +10,65 @@
 	<!-- UIkit JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit-icons.min.js"></script>
+    
+    <script src="js/jquery-2.1.3.min.js"></script>
+  	<script src="js/jquery.scrollTo.min.js"></script>
+  	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  
 </head>
 
+<script>
+	$(function() {
+		/* $('.trigger').click(function() {
+			$('.product_nav').toggleClass('active');
+		}); */
+		
+		/* $('nav, .product_nav li a').click(function() {
+			$('.product_nav li').removeClass('active');
+		}); */
+		
+		/* $(".product_nav a").on('click', function(event) {
+		    if (this.hash !== "") {
+		      	event.preventDefault();
+		      	var hash = this.hash;	
+		      	$('html, body').animate({
+		        	scrollTop: $(hash).offset().top
+		      	}, 800, function(){
+		        	window.location.hash = hash;
+		      	});
+	    	}
+		}); */
+		
+		/* $('a[href*=#]').on('click', function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+		}); */
+		
+	});
+	
+	$(document).ready(function(){
+		$(".product_nav li a").on('click', function(event) {
+		    if (this.hash !== "") {
+		      	event.preventDefault();
+		      	var hash = this.hash;	
+		      	$('html, body').animate({
+		        	scrollTop: $(hash).offset().top
+		      	}, 800, function(){
+		        	window.location.hash = hash;
+		      	});
+	    	}
+	    
+		});
+	});
+</script>
+
 <style type="text/css">
-	li {
-		list-style: none;
+	html {
+		scroll-behavior: smooth;
 	}
 	.product_wrap {
 		background-color: #FAFAFA;
-		padding-bottom: 30px;
+		padding: 30px 0;
 	}
 	.product_top, .img_wrap, .review_wrap, .deliver_wrap, .cancel_wrap, .qa_wrap {
 		width: 1000px;
@@ -28,7 +78,7 @@
 		display: block;
 	}
 	.product_top {
-		height: 500px;
+		height: 435px;
 		padding-top: 30px;
 	}
 	.product_top div {
@@ -45,6 +95,45 @@
 		width: 100%;
 		height: 100%;
 	}
+	.product_info form {
+		width: 500px;
+	}
+	.product_info form h2 {
+		padding: 20px;
+		border-bottom: 1px solid lightgray;
+	}
+	.product_info form table {
+		margin-top: 20px;
+	}
+	.product_info form table tr td {
+		padding: 10px 20px;
+		font-size: 120%;
+	}
+	.product_info form table tr td:first-child {
+		text-align: right;
+	}
+	
+	input[type=number] {
+		width: 100px;
+		height: 30px;
+		padding-left: 10px;
+	}
+	
+	.product_info form input[type=submit] {
+		margin-top: 20px;
+		width: 500px;
+		height: 50px;
+		background-color: lightgray;
+		border: none;
+		border-radius: 10px;
+		font-size: 130%;
+	}
+	.product_info form input[type=submit]:hover {
+		background-color: red;
+		color: #fff;
+	}
+	
+	
 	.discount {
 		color: red;
 	}
@@ -173,10 +262,11 @@
 	}
 	.qnaBtn {
 		background-color: lightgray;
-		width: 60px;
+		width: 80px;
 		height: 40px;
 		margin-right: 10px;
 		border: none;
+		border-radius: 10px;
 	}
 	.qnaBtn:hover {
 		background-color: gray;
@@ -313,7 +403,7 @@
 		<!-- //후기 -->
 		
 		<!-- 배송정보 -->
-		<!-- <div id="feature3" class="deliver_wrap">
+		<div id="feature3" class="deliver_wrap">
 			<nav>
 				<ul class="product_nav">
 					<li><a href="#feature1">상품상세정보</a></li>
@@ -328,9 +418,9 @@
 			
 			</div>
 		</div>
-		//배송정보
+		<!-- //배송정보 -->
 		
-		교환 및 반품안내
+		<!-- 교환 및 반품안내 -->
 		<div id="feature4" class="cancel_wrap">
 			<nav>
 				<ul class="product_nav">
@@ -345,7 +435,7 @@
 			<div class="cancel" style=" height: 800px; ">
 			
 			</div>
-		</div> -->
+		</div>
 		<!-- //교환 및 반품안내 -->
 		
 		<!-- 상품문의 -->
@@ -407,6 +497,7 @@
 				
 				<form action="register_q_view.do">
 					<input type="hidden" name="pCode" value="${product_view.pCode }">
+					<input type="hidden" name="img" value="${product_view.pFilePath }">
 					<input type="submit" value="문의 등록" class="qnaBtn">
 				</form>
 			</div>

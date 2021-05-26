@@ -29,20 +29,26 @@
             height: 500px;
             overflow: hidden;
         }
-        .my-slider ul li img {
+        .my-slider ul li div {
         	width: 100%;
-        	height: 100%;
+        }
+        .my-slider ul li div img {
+        	width: 1065px;
+        	position: relative;
+        	left: 50%;
+        	transform: translateX(-50%);
         }
         .my-slider a {
         	width: 14px;
         	height: 24px;
-        	padding: 5px 10px;
+        	padding: 5px 190px;
         	margin: 15px;
         }
    
 		/* 메인 상품 노출 */
 		.main_wrap {
 			background-color: #FAFAFA;
+			padding-bottom: 50px;
 		}
 		.best_items, .new_items, .rand_items{
 			width: 1000px;
@@ -53,7 +59,8 @@
 		.title {
 			width: 100%;
 			height: 50px;
-			margin: auto;
+			padding-top: 10px;
+			padding-left: 30px;
 			line-height: 50px;
 		}
 		.items {
@@ -104,22 +111,22 @@
 				<div class="my-slider uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="autoplay:true; autoplay-interval=1000;">
 				    <ul class="uk-slideshow-items">
 				        <li>
-				            <img src="resources/img/photo4.jpg" alt="">
+				            <div style="background-color: #CFE5FC;"><img src="resources/img/photo4.jpg" alt=""></div>
 				        </li>
 				        <li>
-				            <img src="resources/img/photo5.jpg" alt="">
+				            <div style="background-color: #CFE5FC;"><img src="resources/img/photo5.jpg" alt=""></div>
 				        </li>
 				        <li>
-				            <img src="resources/img/photo6.jpg" alt="">
+				           <div style="background-color: #CFE5FC;"><img src="resources/img/photo6.jpg" alt=""></div>
 				        </li>
 				        <li>
-				            <img src="resources/img/photo7.jpg" alt="">
+				            <div style="background-color: #D3EED7;"><img src="resources/img/photo7.jpg" alt=""></div>
 				        </li>
 				        <li>
-				            <img src="resources/img/photo8.jpg" alt="">
+				            <div style="background-color: #CFE5FC;"><img src="resources/img/photo8.jpg" alt=""></div>
 				        </li>
 				        <li>
-				            <img src="resources/img/photo9.jpg" alt="">
+				            <div style="background-color: #D3EED7;"><img src="resources/img/photo9.jpg" alt=""></div>
 				        </li>
 				    </ul>
 				

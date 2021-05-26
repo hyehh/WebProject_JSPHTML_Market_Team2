@@ -46,7 +46,7 @@
 						<td rowspan="2">검색 필터</td>
 						<td colspan="2" style="margin: auto;">
 							<input type = "radio" name = "search" value = "allshow" checked="checked"> 전체검색
-							<input type = "radio" name = "search" value = " where B.bNumber"> 주문번호
+							<input type = "radio" name = "search" value = " where D.bNumber"> 주문번호
 							<input type = "radio" name = "search" value = " where D.dCondition"> 배송현황
 						</td>
 					</tr>

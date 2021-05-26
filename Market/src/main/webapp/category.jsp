@@ -27,7 +27,8 @@
 	.title {
 		width: 100%;
 		height: 50px;
-		margin: auto;
+		padding-top: 10px;
+		padding-left: 30px;
 		line-height: 50px;
 	}
 	.items ul {

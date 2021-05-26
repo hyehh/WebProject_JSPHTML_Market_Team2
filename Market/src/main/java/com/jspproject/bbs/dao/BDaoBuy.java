@@ -37,7 +37,7 @@ public class BDaoBuy {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select bSeq, bNumber, pCategory, pName, bBuyDate, bBuyCancelDate from BnS as B\n"
+			String query = "select bSeq, B.bNumber, pCategory, pName, bBuyDate, bBuyCancelDate from BnS as B "
 					+ "join Product as P on B.Product_pCode = P.pCode limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
@@ -330,7 +330,7 @@ public class BDaoBuy {
 			String whereStatement = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate "
 					+ "from BnS as B left join Product as P on B.Product_pCode = P.pCode "
 					+ "where B.bBuyDate is not null" + searchCheck + searchtxtCheck + " limit ?, ?";
-			System.out.println(whereStatement);
+			System.out.println("도대체 어디서 출력되는거야 ?" + whereStatement);
 
 			preparedStatement = connection.prepareStatement(whereStatement);
 			preparedStatement.setInt(1, start);

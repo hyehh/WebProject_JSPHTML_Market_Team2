@@ -17,7 +17,7 @@ public class BDaoAddProduct {
 	public BDaoAddProduct() {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/market");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Market");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

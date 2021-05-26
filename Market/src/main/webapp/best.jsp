@@ -30,7 +30,8 @@
 	.best_title {
 		width: 1000px;
 		height: 50px;
-		margin: auto;
+		padding-top: 10px;
+		padding-left: 30px;
 		line-height: 50px;
 	}
 	.items {
