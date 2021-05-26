@@ -25,19 +25,8 @@
 	
 	.register_q {
 		text-align: center;
-		width: 435px;
+		width: 580px;
 		margin: auto;
-	}
-	.product_img {
-		text-align: left;
-		padding-left: 20px;
-	}
-	.product_img h1 {
-		margin-left: 20px;
-	}
-	.product_img img, .product_img h1 {
-		display: inline;
-		
 	}
 	.form {
 		margin-top: 30px;
@@ -46,6 +35,7 @@
 	table {
 		margin-bottom: 30px;
 		text-align: left;
+		width: 100%;
 	}
 	tr {
 		min-height: 50px;
@@ -54,7 +44,7 @@
 		padding: 10px;
 	}
 	tr td:nth-child(1) {
-		padding: 0 30px;
+		width: 100px;
 		text-align: center;
 	}
 	tr td:nth-child(2) {
@@ -83,10 +73,7 @@
 		
 			<div class="register_q">
 			
-				<div class="product_img">
-					<img alt="문의 이미지" src="<%=img %>"  style="width: 200px; height: 200px;">
-					<h1>상품명</h1>
-				</div>
+				<h1>상품명</h1>
 				
 				<div class="form">
 					<form action="register_q.do" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -97,15 +84,15 @@
 								<td><input type="text" name="cId" placeholder="아이디를 입력해주세요"></td>
 							</tr>		
 							<tr>
-								<td>제목</td>
+								<td>문의 제목</td>
 								<td><input type="text" name="qTitle" placeholder="문의제목을 입력해주세요"></td>
 							</tr>		
 							<tr>
-								<td>내용</td>
-								<td><textarea rows="10" cols="30" name="qContent" placeholder="문의내용을 입력해주세요"></textarea></td>
+								<td>문의 내용</td>
+								<td><textarea rows="10" cols="50" name="qContent" placeholder="문의내용을 입력해주세요"></textarea></td>
 							</tr>		
 							<tr>
-								<td>파일</td>
+								<td>이미지 등록</td>
 								<td><input type="file" name="qnaFile" ></td>
 							</tr>	
 						</table>
