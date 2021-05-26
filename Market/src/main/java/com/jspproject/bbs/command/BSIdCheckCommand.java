@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.Dao_IdCheck;
 
-public class SIdCheckCommand implements BCommand {
+public class BSIdCheckCommand implements BCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {

@@ -44,15 +44,15 @@
 <body>
 	<div class="leftbar">
 		<div class="user">
-			<h3>회원정보</h3>
+			<h3>판매자정보</h3>
 			<form action="SellerInfoUpdate_View.do" method="post">
-				<input class="button" type="submit" value="회원정보 변경">
+				<input class="button" type="submit" value="판매자정보 변경">
 			</form>
 			<form action="SellerPwUpdate_View.do" method="post">
 				<input class="button" type="submit" value="비밀번호 변경">
 			</form>
 			<form action="SellerSignOut_View.do" method="post">
-				<input class="button" type="submit" value="회원 탈퇴">
+				<input class="button" type="submit" value="판매자 탈퇴">
 			</form>
 		</div>
 	</div>

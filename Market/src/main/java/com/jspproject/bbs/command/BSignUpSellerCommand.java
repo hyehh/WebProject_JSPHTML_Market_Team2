@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.Dao_signUpSeller;
 
-public class SignUpSellerCommand implements BCommand {
+public class BSignUpSellerCommand implements BCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {

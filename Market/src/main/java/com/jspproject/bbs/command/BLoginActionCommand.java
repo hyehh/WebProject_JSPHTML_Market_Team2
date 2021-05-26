@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.jspproject.bbs.dao.Dao_loginAction;
 import com.jspproject.bbs.util.Share;
 
-public class loginActionCommand implements BCommand {
+public class BLoginActionCommand implements BCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {

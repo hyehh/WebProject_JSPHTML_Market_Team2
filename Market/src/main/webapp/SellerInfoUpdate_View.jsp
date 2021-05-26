@@ -89,7 +89,7 @@
 		}
 
 		form.submit();
-		alert("회원정보가 수정되었습니다!");
+		alert("판매자정보가 수정되었습니다!");
 	}
 </script>
 <style>

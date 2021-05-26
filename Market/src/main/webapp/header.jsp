@@ -26,7 +26,7 @@
 			<c:choose>
 				<c:when test="${empty userId}">
 					<li><a href="login.do">로그인</a></li>
-					<li><a href="signup.do">회원가입</a></li>
+					<li><a href="AgreementTerms.jsp">회원가입</a></li>
 				</c:when>
 				<c:otherwise>
 					<li><a href="CustomerCart_View.do">장바구니</a></li>

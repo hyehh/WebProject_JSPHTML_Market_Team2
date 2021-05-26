@@ -84,13 +84,13 @@ import com.jspproject.bbs.command.BSellerSignOutCommand;
 import com.jspproject.bbs.command.BSsearchQnAListCommand;
 import com.jspproject.bbs.command.BStoreCommand;
 import com.jspproject.bbs.command.BproductlistnBnsCommand;
-import com.jspproject.bbs.command.CIdCheckCommand;
-import com.jspproject.bbs.command.SIdCheckCommand;
-import com.jspproject.bbs.command.SignUpCustomerCommand;
-import com.jspproject.bbs.command.SignUpSellerCommand;
-import com.jspproject.bbs.command.findIdActionCommand;
-import com.jspproject.bbs.command.findPwActionCommand;
-import com.jspproject.bbs.command.loginActionCommand;
+import com.jspproject.bbs.command.BCIdCheckCommand;
+import com.jspproject.bbs.command.BSIdCheckCommand;
+import com.jspproject.bbs.command.BSignUpCustomerCommand;
+import com.jspproject.bbs.command.BSignUpSellerCommand;
+import com.jspproject.bbs.command.BFindIdActionCommand;
+import com.jspproject.bbs.command.BFindPwActionCommand;
+import com.jspproject.bbs.command.BLoginActionCommand;
 import com.jspproject.bbs.util.Share;
 
 /**
@@ -152,18 +152,18 @@ public class BFrontController extends HttpServlet {
 			break;
 		
 		case("/signup.do"):
-			command = new SignUpCustomerCommand();
+			command = new BSignUpCustomerCommand();
 			command.execute(request, response, session);
 			viewPage = "signupComplete";
 			break;
 		case("/signupCustomer.do"):
-			command = new SignUpCustomerCommand();
+			command = new BSignUpCustomerCommand();
 			command.execute(request, response, session);
 			viewPage = "signupComplete.jsp";
 			break;
 		//판매자 회원가입	
 		case("/signupSeller.do"):
-			command = new SignUpSellerCommand();
+			command = new BSignUpSellerCommand();
 			command.execute(request, response, session);
 			viewPage = "signupComplete.jsp";
 			break;
@@ -171,7 +171,7 @@ public class BFrontController extends HttpServlet {
 		 * 판매자 아이디 중복체크
 		 */
 		case("/signupsIdCheck.do"):
-			command = new SIdCheckCommand();
+			command = new BSIdCheckCommand();
 			command.execute(request, response, session);
 			System.out.println("컨트롤러" + session.getAttribute("sIdchk"));
 			System.out.println(session.getAttribute("sHIDDEN"));
@@ -198,7 +198,7 @@ public class BFrontController extends HttpServlet {
 		 * 구매자 아이디 중복체크
 		 */
 		case("/signupcIdCheck.do"):
-			command = new CIdCheckCommand();
+			command = new BCIdCheckCommand();
 			command.execute(request, response, session);
 			System.out.println(session.getAttribute("cIdchk"));
 			
@@ -224,7 +224,7 @@ public class BFrontController extends HttpServlet {
 		 * 로그인 액션 처리
 		 */
 		case("/loginaction.do"):
-			command = new loginActionCommand();
+			command = new BLoginActionCommand();
 			command.execute(request, response, session);
 			session.setAttribute("userId", Share.userId);
 
@@ -252,7 +252,7 @@ public class BFrontController extends HttpServlet {
 			 * 아이디찾기
 			 */
 		case("/findId.do"):
-			command = new findIdActionCommand();
+			command = new BFindIdActionCommand();
 			command.execute(request, response, session);
 			
 			request.setAttribute("findmsg", (String)session.getAttribute("findmsg"));
@@ -268,7 +268,7 @@ public class BFrontController extends HttpServlet {
 			 * 비밀번호찾기
 			 */
 		case("/findPw.do"):
-			command = new findPwActionCommand();
+			command = new BFindPwActionCommand();
 			command.execute(request, response, session);
 			
 			request.setAttribute("findmsg", (String)session.getAttribute("findmsg"));
@@ -342,7 +342,7 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			// 이거는 예진님과 연동할 때 메인페이지로 바꾸기 ****************************
 			session.invalidate();
-			viewPage = "sellerStore.do";
+			viewPage = "main.do";
 		break;
 		// 이 케이스문은 삭제할 것임! 도희님과 연동할 때 상품 상세페이지로 바꾸기 ****************************
 		case("/Product_View.do"):
@@ -359,30 +359,21 @@ public class BFrontController extends HttpServlet {
 				session.setAttribute("checkMessage", checkMessage);
 				command = new BCustomerCartUpdateCommand();
 				command.execute(request, response, session);
-				command = new BProductQCommand();
-				command.execute(request, response, session);
 			}else {
 				checkMessage = "장바구니에 담았습니다.";
 				session.setAttribute("checkMessage", checkMessage);
 				command = new BCustomerCartInsertCommand();
-				command.execute(request, response, session);
-				command = new BProductQCommand();
 				command.execute(request, response, session);
 			}
 			request.setAttribute("check", session.getAttribute("check"));
 			request.setAttribute("checkMessage", session.getAttribute("checkMessage"));
 			viewPage = "cartCheckAlert.jsp";
 		break;
+		// 장바구니 alert 이후 다시 pCode 불러오기
 		case("/productAgain.do"):
-			command = new BBuyConfirmListCommand();
-		command.execute(request, response, session);
-		command = new BDeliveryInfoCommand();
-		command.execute(request, response, session);
-		command = new BPCodeCommand();
-		command.execute(request, response, session);
-		command = new BBuyConfirmCartDeleteCommand();
-		command.execute(request, response, session);
-		viewPage = "BuyConfirm_View.jsp";
+			command = new BProductQCommand();
+			command.execute(request, response, session);
+			viewPage = "product.jsp";
 		break;
 		// 장바구니 DB에서 불러오기
 		case("/CustomerCart_View.do"):

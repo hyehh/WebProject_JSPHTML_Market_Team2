@@ -70,7 +70,7 @@
 		<div class="container" id="signOut">
 			<form action="SellerSignOut.do" name="sellerSignOut" method="post">
 				<table>
-					<caption>회원 탈퇴</caption>
+					<caption>판매자 탈퇴</caption>
 						<tr>
 							<th align="left"><h4>탈퇴 사유 선택<br>
 							(기타를 선택하신 경우 '남기실 말씀' 항목에 사유를 남겨주시면 귀담아 듣겠습니다.)</h4><th>
