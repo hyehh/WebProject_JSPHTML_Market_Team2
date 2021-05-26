@@ -50,42 +50,75 @@ function checkOnlyOne(element) {
 		return true;
 	}
 </script>
-
+<style>
+	.container_wrap {
+		background-color: #FAFAFA;
+		padding: 30px 0;
+	}
+	.container {
+		width: 1000px;
+		margin: auto;
+		background-color: #fff;
+		padding: 30px 0; 
+		text-align: center;
+	}
+	h4 {
+		margin: 20px 0 30px 0;
+	}
+	hr {
+		width: 80%;
+		margin: auto;
+	}
+	form {
+		margin: auto;
+		margin-top: 30px;
+		width: 380px;
+	}
+	input[type=button] {
+		padding: 6px 10px;
+		background-color: gray;
+		color: #fff;
+		border: none;
+		border-radius: 10px;
+	}
+</style>
 
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<br>
-	<h4>아이디 찾기</h4>
-	<hr>
-	<center>
-		<form name="findIdForm" id="findIdForm" action="findId.do" method="post">
-					<h5 style="text-align: center;">회원아이디 찾기</h5>
-					<br>
-					<p style="line-height: 10pt"><input type="text" name="findName" id="findName" 
-						placeholder="이름을 입력하세요"  size="50" style="text-align: left; height: 15pt"></p>
-					<br>
-					<p style="line-height: 10pt"><input type="text" name="findEmail" id="findEmail"
-						placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt;"></p>
-					<br>
-					<input type="button" value="아이디 찾기" onclick="chkValue()" width: 290pt; height: 18pt;">
-					<br>
-					<br>
-						<div style="font-size: 9pt">
+	<jsp:include page="header.jsp"></jsp:include>
+	<div class="container_wrap">
+		<div class="container">
+		<h4>아이디 찾기</h4>
+		<hr>
+			<form name="findIdForm" id="findIdForm" action="findId.do" method="post">
+				<h5 style="text-align: center;">회원아이디 찾기</h5>
+				<br>
+				<p style="line-height: 10pt">
+					<input type="text" name="findName" id="findName" placeholder="이름을 입력하세요"  size="50" style="text-align: left; height: 15pt">
+				</p>
+				<br>
+				<p style="line-height: 10pt">
+					<input type="text" name="findEmail" id="findEmail"placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt;">
+				</p>
+				<br>
+				<input type="button" value="아이디 찾기" onclick="chkValue()" width: 290pt; height: 18pt;">
+				<br>
+				<br>
+				<div style="font-size: 9pt">
 					<p style="line-height: 10pt">	
 						 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)' "> 구매회원
 						 &nbsp;&nbsp;&nbsp;
 						 <input type="checkbox" name="findUserType" value="판매회원" onclick='checkOnlyOne(this)' style="font-size: 9pt;"> 판매회원
-				 	</p>
-						 </div>
-					<br>
-						 
+			 		</p>
+			 	
+				</div>
+				<br>
 				<input type="button" name="Idcheck" value="비밀번호찾기" onclick=" return findPw(this.form);" style="width: 90pt">
 				&nbsp;&nbsp;
 				<input type="button" name="Idcheck" value="로그인하기" onclick='return backLogin(this.form);' style="width: 90pt">
-			
-		</form>
-	</center>
-	<br>
+			</form>
+			<br>
+		</div>
+	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 
 </body>

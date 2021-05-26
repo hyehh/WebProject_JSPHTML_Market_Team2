@@ -49,43 +49,77 @@ function checkOnlyOne(element) {
 	}
 </script>
 
+<style>
+	.container_wrap {
+		background-color: #FAFAFA;
+		padding: 30px 0;
+	}
+	.container {
+		width: 1000px;
+		margin: auto;
+		background-color: #fff;
+		padding: 30px 0; 
+		text-align: center;
+	}
+	h4 {
+		margin: 20px 0 30px 0;
+	}
+	hr {
+		width: 80%;
+		margin: auto;
+	}
+	form {
+		margin: auto;
+		margin-top: 30px;
+		width: 380px;
+	}
+	input[type=button] {
+		padding: 6px 10px;
+		background-color: gray;
+		color: #fff;
+		border: none;
+		border-radius: 10px;
+	}
+</style>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<br>
-<h4>비밀번호 찾기</h4>
-<hr>
-<center>
-	<form name="findPwForm" id="findPwForm" action="findPw.do" method="post">
-			<h5 style="text-align: center;"> 비밀번호 찾기 </h5>
-			<br>
-				<p style="line-height: 10pt">
-				<input type="text" name="inputId" id="inputId" placeholder="아이디를 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
+	<jsp:include page="header.jsp"></jsp:include>
+	<div class="container_wrap">
+			<div class="container">
 				<br>
-				<p style="line-height: 10pt">
-				<input type="text" name="inputName" id="inputName" placeholder="이름을 입력하세요" size="50" style="text-align: left; height: 15pt"></P>
+				<h4>비밀번호 찾기</h4>
+				<hr>
+					<form name="findPwForm" id="findPwForm" action="findPw.do" method="post">
+							<h5 style="text-align: center;"> 비밀번호 찾기 </h5>
+							<br>
+								<p style="line-height: 10pt">
+								<input type="text" name="inputId" id="inputId" placeholder="아이디를 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
+								<br>
+								<p style="line-height: 10pt">
+								<input type="text" name="inputName" id="inputName" placeholder="이름을 입력하세요" size="50" style="text-align: left; height: 15pt"></P>
+								<br>
+								<p style="line-height: 10pt">
+								<input type="text" name="inputEmail" id="inputEmail" placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
+								<br>
+								<input type="button" onclick="chkValue()" value="비밀번호찾기">
+								<br>
+								<br>
+								<div style="font-size: 9pt">
+									<p style="line-height: 10pt">	
+										 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)' "> 구매회원
+										 &nbsp;&nbsp;&nbsp;
+										 <input type="checkbox" name="findUserType" value="판매회원" onclick='checkOnlyOne(this)' style="font-size: 9pt;"> 판매회원
+								 	</p>
+								 	<br>
+								</div>
+				
+							아이디가 기억나지 않으세요?
+							<input type="button" name="Idcheck" value="아이디 찾기" onclick='return findId(this.form);'>
+						
+					</form>
 				<br>
-				<p style="line-height: 10pt">
-				<input type="text" name="inputEmail" id="inputEmail" placeholder="이메일을 입력하세요" size="50" style="text-align: left; height: 15pt"></p>
-				<br>
-				<input type="button" onclick="chkValue()" value="비밀번호찾기" style="width: 290pt; height: 18pt;">
-				<br>
-				<br>
-				<div style="font-size: 9pt">
-					<p style="line-height: 10pt">	
-						 <input type="checkbox" name="findUserType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)' "> 구매회원
-						 &nbsp;&nbsp;&nbsp;
-						 <input type="checkbox" name="findUserType" value="판매회원" onclick='checkOnlyOne(this)' style="font-size: 9pt;"> 판매회원
-				 	</p>
-				 	<br>
-				</div>
-
-			아이디가 기억나지 않으세요?
-			<input type="button" name="Idcheck" value="아이디 찾기" onclick='return findId(this.form);'>
-		
-	</form>
-</center>
-<br>
-<jsp:include page="footer.jsp"></jsp:include>
+		</div>
+	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>
