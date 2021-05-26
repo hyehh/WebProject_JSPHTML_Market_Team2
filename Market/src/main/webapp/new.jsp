@@ -15,9 +15,8 @@
 	}
 	.img {
 		width: 1000px;
-		height: 500px;
+		height: 450px;
 		margin: auto;
-		background-color: gray;
 	}
 	
 	/* 메인 상품 노출 */
@@ -64,7 +63,7 @@
 	<div class="new_wrap">
 		<!-- 이미지 배너 -->
 		<div class="img">
-			new 상품 이미지 배너
+			<img alt="" src="resources/img/banner_new.png">
 		</div>
 		<!-- //이미지 배너 -->
 		

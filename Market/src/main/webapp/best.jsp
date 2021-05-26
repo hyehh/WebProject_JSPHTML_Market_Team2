@@ -14,8 +14,7 @@
 	}
 	.img {
 		width: 1000px;
-		height: 500px;
-		background-color: gray;
+		height: 450px;
 		margin: auto;
 	}
 	.best_wrap {
@@ -77,7 +76,7 @@
 		
 		<!-- 베스트 이미지 베너 -->
 		<div class="img">
-			베스트 상품 이미지 배너
+			<img alt="" src="resources/img/banner_best.png">
 		</div>
 		
 		<!-- 베스트 아이템 전체 -->

@@ -15,9 +15,8 @@
 	}
 	.img {
 		width: 1000px;
-		height: 500px;
+		height: 450px;
 		margin: auto;
-		background-color: gray;
 	}
 	
 	/* 메인 상품 노출 */
@@ -64,7 +63,7 @@
 	<div class="deadline_wrap">
 		<!-- 이미지 배너 -->
 		<div class="img">
-			마감임박 상품 이미지 배너
+			<img alt="" src="resources/img/banner_deadline.png">
 		</div>
 		<!-- //이미지 배너 -->
 		
