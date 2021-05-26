@@ -16,9 +16,9 @@ public class BQnADeleteCommand implements BCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 		BDaoQnA dao = new BDaoQnA();
-		String qnACode = request.getParameter("qnACode");
+		String bNumber = request.getParameter("bNumber");
 
-		dao.deleteQnA(qnACode);
+		dao.deleteQnA(bNumber);
 
 		ArrayList<BDtoQnA> dtos = null;
 		String strPg = request.getParameter("pg"); // list.jsp?pg=?

@@ -118,7 +118,7 @@ public class BSellerDao { // 2021.05.18 조혜지 - 회원 탈퇴하는 method
 		
 		String queryA = "select sId, sName, sEmail, sBirth, sTel, sPostalCode, sAddress1, sAddress2, sShopName, sNumber ";
 		String queryB = "from seller where sId = ?";
-		
+		System.out.println("아니면 다오인겨?" + queryA + queryB);
 		try {
 			connection = dataSource.getConnection();
 			preparedStatement = connection.prepareStatement(queryA + queryB);

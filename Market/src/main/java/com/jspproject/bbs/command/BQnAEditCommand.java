@@ -17,10 +17,10 @@ public class BQnAEditCommand implements BCommand {
 		// TODO Auto-generated method stub
 		BDaoQnA dao = new BDaoQnA();
 		ArrayList<BDtoQnA> dtos = null;
-		String qnACode = request.getParameter("qnACode");
+		String bNumber = request.getParameter("bNumber");
 		String aContent = request.getParameter("aContent");
 
-		dao.QnAEdit(qnACode, aContent);
+		dao.QnAEdit(bNumber, aContent);
 		
 		String strPg = request.getParameter("pg"); //list.jsp?pg=?
 

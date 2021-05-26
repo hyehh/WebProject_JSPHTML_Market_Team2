@@ -34,15 +34,14 @@
 		float: left;
 	}
 	.product_img {
-		border: 1px solid;
 		width: 400px;
 		height: 400px;
 		margin-left: 30px;
 		margin-right: 30px; 
+		overflow: hidden;
 	}
 	.product_img img {
 		width: 100%;
-		height: 100%;
 	}
 	.product_info form {
 		width: 500px;
@@ -101,6 +100,10 @@
 	.product_nav li.on a {
 		color: red;
 		font-weight: bold;
+	}
+	.img {
+		/* overflow: hidden; */
+		top: -1000px;
 	}
 	
 	/* 리뷰 이미지 기본 사이즈 */

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BDaoAddProduct;
+import com.jspproject.bbs.util.Share;
 
 public class BproductlistnBnsCommand implements BCommand {
 
@@ -14,11 +15,11 @@ public class BproductlistnBnsCommand implements BCommand {
 		BDaoAddProduct dao = new BDaoAddProduct();
 		
 		int maxCode = dao.getCode();
-		String id = "admin";
+		String sId = Share.userId;
 		
-		System.out.println("맥스코드와 함께라면" + maxCode + id);
+		System.out.println("맥스코드와 함께라면" + maxCode + sId);
 		
-		dao.insertBnS(maxCode, id);
+		dao.insertBnS(maxCode, sId);
 	}
 
 }

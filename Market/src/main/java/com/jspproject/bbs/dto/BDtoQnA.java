@@ -96,6 +96,15 @@ public class BDtoQnA {
 		this.aAddDate = aAddDate;
 	}
 
+	
+	public BDtoQnA(String bNumber, String qTitle, String qAddDate, String qAnswerStatus) {
+		super();
+		this.qTitle = qTitle;
+		this.qAddDate = qAddDate;
+		this.bNumber = bNumber;
+		this.qAnswerStatus = qAnswerStatus;
+	}
+
 	public int getQnaCode() {
 		return qnaCode;
 	}

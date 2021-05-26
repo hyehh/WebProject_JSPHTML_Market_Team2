@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.BDaoAddProduct;
+import com.jspproject.bbs.util.Share;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -20,7 +21,12 @@ public class BAddProductCommand implements BCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		// TODO Auto-generated method stub
+////		이건 수훈님과 연동할 때 삭제하기 ************************************************************
+//		session.setAttribute("sId", "seller");
+
+//		String sId = (String)session.getAttribute("sId");
+//		이건 수훈님과 연동할 때 사용하기 ************************************************************	
+		String sId = Share.userId;
 		MultipartRequest multiMain = null;
 
 
@@ -40,7 +46,7 @@ public class BAddProductCommand implements BCommand {
 
 		// ---------------------
 		// 3mb로 파일 크기를 제한
-		int fileSize = 1024 * 1024 * 3;
+		int fileSize = 1024 * 1024 * 10;
 		// 현재 서비스되는 서버가 사용하는 저장공간의 경로를 불러옵니다.
 		ServletContext context = request.getServletContext();
 		String uploadPath = context.getRealPath("/product_save");

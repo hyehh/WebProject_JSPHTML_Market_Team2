@@ -62,6 +62,7 @@ public class BQnAListCommand implements BCommand {
 		
 		
 		dtos = dao.list(BFrontController.from, BFrontController.to);
+		System.out.println(dtos.get(0));
 		
 		
 		// 계속가져갈것

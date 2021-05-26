@@ -32,21 +32,46 @@ public class BDaoQnA {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
-
 		String qAnswerStatus = null;
-
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B "
-					+ "join QnA as Q on B.Customer_cId = Q.Customer_cId order by QnACode desc limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
+		String queryList = "select B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B "
+				+ "join QnA as Q on B.Customer_cId = Q.Customer_cId group by QnACode order by QnACode desc limit ?, ?";
+		
+		System.out.println(queryList);
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(queryList);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
 			resultset = preparedStatement.executeQuery();
+			System.out.println("두번째" + queryList);
 
 			while (resultset.next()) {
-				int qnACode = resultset.getInt("QnACode");
 				String bNumber = resultset.getString("bNumber");
 				String qTitle = resultset.getString("qTitle");
 				Timestamp AddDate = resultset.getTimestamp("qAddDate");
@@ -59,7 +84,7 @@ public class BDaoQnA {
 					qAnswerStatus = AnswerStatus;
 				}
 
-				BDtoQnA dto = new BDtoQnA(qnACode, qAddDate, bNumber, qTitle, qAnswerStatus);
+				BDtoQnA dto = new BDtoQnA(bNumber, qTitle, qAddDate, qAnswerStatus);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
@@ -85,16 +110,41 @@ public class BDaoQnA {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		int allQnACount = 0;
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select B.bNumber, qTitle, qAddDate, qAnswerStatus "
-					+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId";
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
+		
+		String queryCount = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B "
+				+ "join QnA as Q on B.Customer_cId = Q.Customer_cId group by QnACode order by QnACode desc";
+		try {
+			connection = dataSource.getConnection();
 
 //			insert into Product (pPrice, pCategory, PExpirationDate, pName, pQuantity)
 //			value ('2000', 'food', '2021-05-13', '콜라', '1');
-			preparedStatement = connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(queryCount);
 			resultset = preparedStatement.executeQuery();
 
 			while (resultset.next()) {
@@ -205,9 +255,8 @@ public class BDaoQnA {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus "
-					+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId "
-					+ "where qAnswerStatus is not null order by QnACode desc limit ?, ?";
+			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B \n"
+					+ "join QnA as Q on B.Customer_cId = Q.Customer_cId where qAnswerStatus is not null group by QnACode order by QnACode desc limit ?, ?";
 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
@@ -258,9 +307,9 @@ public class BDaoQnA {
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus "
-					+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId "
-					+ "where qAnswerStatus is null order by QnACode desc limit ?, ?";
+			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B \n"
+					+ "join QnA as Q on B.Customer_cId = Q.Customer_cId where qAnswerStatus is null group by QnACode order by QnACode desc;\n"
+					+ " limit ?, ?";
 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
@@ -311,15 +360,40 @@ public class BDaoQnA {
 		String aContent = null;
 		String qAddDate = null;
 		String aAddDate = null;
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select QnACode, B.bNumber, qTitle, cName, qAddDate, qContent, aDeleteDate, qAnswerStatus, "
-					+ "aContent, aAddDate from QnA as Q "
-					+ "join BnS as B on Q.Customer_cId = B.Customer_cId and Q.Product_pCode = B.Product_pCode "
-					+ "join Customer as C on Q.Customer_cId = C.cId where B.bNumber = ?";
 			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+
+		String querySelect = "select QnACode, B.bNumber, qTitle, cName, qAddDate, qContent, aDeleteDate, qAnswerStatus, aContent, aAddDate from QnA as Q\n"
+				+ "join BnS as B on Q.Customer_cId = B.Customer_cId\n"
+				+ "join Customer as C on Q.Customer_cId = C.cId where bNumber = ? group by QnACode order by QnACode desc";
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(querySelect);
 			preparedStatement.setString(1, selectCode);
 
 			resultset = preparedStatement.executeQuery();
@@ -387,7 +461,7 @@ public class BDaoQnA {
 			connection = dataSource.getConnection();
 
 			String query = "update QnA as Q join BnS as B on Q.Customer_cId = B.Customer_cId\n"
-					+ "set aContent = ?, aEditeDate = now() where QnACode = ?";
+					+ "set aContent = ?, aEditeDate = now() where B.bNumber = ?";
 			preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setString(1, aContent);
@@ -418,7 +492,7 @@ public class BDaoQnA {
 			connection = dataSource.getConnection();
 
 			String query = "update QnA as Q join BnS as B on Q.Customer_cId = B.Customer_cId "
-					+ "set qAnswerStatus = '답변완료', aAddDate = now(), aContent = ? where QnACode = ?";
+					+ "set qAnswerStatus = '답변완료', aAddDate = now(), aContent = ? where bNumber = ?";
 			preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setString(1, aContent);
@@ -449,7 +523,7 @@ public class BDaoQnA {
 			connection = dataSource.getConnection();
 			
 			String query = "update QnA as Q join BnS as B on Q.Customer_cId = B.Customer_cId "
-					+ "set qAnswerStatus = null, aDeleteDate = now(), aContent = null where qnACode = ?";
+					+ "set qAnswerStatus = null, aDeleteDate = now(), aContent = null where B.bNumber = ?";
 			preparedStatement = connection.prepareStatement(query);
 			
 			preparedStatement.setString(1, qnACode);

@@ -53,7 +53,6 @@
 			<h2  align="center">문의 목록</h2>
 			<table class="table">
 				<tr>
-					<th>문의번호</th>		
 					<th>주문번호</th>		
 					<th>문의 제목</th>		
 					<th>등록일</th>		
@@ -61,7 +60,6 @@
 				</tr>
 				<c:forEach items="${list}" var="dto">
 				<tr class="value" onclick="location.href='selectQnA.do?bNumber=${dto.bNumber }'">
-					<td>${dto.qnACode }</td>
 					<td>${dto.bNumber }</td>
 					<td>${dto.qTitle }</td>
 					<td>${dto.qAddDate }</td>

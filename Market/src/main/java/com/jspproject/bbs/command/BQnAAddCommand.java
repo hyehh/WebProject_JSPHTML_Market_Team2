@@ -15,12 +15,12 @@ public class BQnAAddCommand implements BCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		String qnACode = request.getParameter("qnACode");
+		String bNumber = request.getParameter("bNumber");
 		String aContent = request.getParameter("aContent");
 
 		BDaoQnA dao = new BDaoQnA();
 		ArrayList<BDtoQnA> dtos = null;
-		dao.insertQnA(aContent, qnACode);
+		dao.insertQnA(aContent, bNumber);
 		
 		String strPg = request.getParameter("pg"); //list.jsp?pg=?
 
@@ -61,7 +61,6 @@ public class BQnAAddCommand implements BCommand {
 		
 		
 		dtos = dao.list(BFrontController.from, BFrontController.to); // 리스트를 구하기 위한메소드
-
 
 		// 계속가져갈것
 		int allQnACount = dao.allQnA();

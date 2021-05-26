@@ -43,14 +43,12 @@
 		margin: 10px;
 		height: 225px;
 		background-color: #fff;
+		overflow: hidden;
 	}
 	.item_img img {
-		border: solid 1px;
 		width: 100%;
-		height: 100%;
 	}
 	.item_info {
-		border: solid 1px;
 		margin: 10px;
 		height: 70px;
 		background-color: #fff;

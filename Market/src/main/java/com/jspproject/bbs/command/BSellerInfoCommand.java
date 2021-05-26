@@ -19,9 +19,10 @@ public class BSellerInfoCommand implements BCommand { // 2021.05.25 조혜지 - 
 //		String sId = (String)session.getAttribute("sId");
 //		이건 수훈님과 연동할 때 사용하기 ************************************************************	
 		String sId = Share.userId;
-		
+		System.out.println("커멘드에서 문제인겨?");
 		BSellerDao dao = new BSellerDao();
 		BSellerDto dto = dao.sellerinfo(sId);
+		System.out.println(sId);
 		
 		request.setAttribute("SELLERINFO", dto);
 	}

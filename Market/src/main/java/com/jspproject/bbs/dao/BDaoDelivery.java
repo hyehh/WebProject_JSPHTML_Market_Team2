@@ -34,13 +34,41 @@ public class BDaoDelivery {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
-					+ "join Product as P on P.pCode = D.Product_pCode limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+
+		String queryList = "select D.bNumber, pCategory, pName, dCondition from Delivery as D\n"
+				+ "join Product as P on P.pCode = D.Product_pCode\n"
+				+ "join BnS as B on D.bNumber = B.bNumber where bBuyCancelDate is null\n"
+				+ "group by B.bNumber limit ?, ?";
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(queryList);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
 			resultset = preparedStatement.executeQuery();
@@ -81,14 +109,41 @@ public class BDaoDelivery {
 		ResultSet resultset = null;
 		int deliveryAll = 0;
 		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String queryCount = "select D.bNumber, pCategory, pName, dCondition from Delivery as D\n"
+				+ "join Product as P on P.pCode = D.Product_pCode\n"
+				+ "join BnS as B on D.bNumber = B.bNumber where bBuyCancelDate is null\n"
+				+ "group by B.bNumber";
+		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
-					+ "join Product as P on P.pCode = D.Product_pCode";
 			
 			
-			preparedStatement = connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(queryCount);
 			resultset = preparedStatement.executeQuery();
 			
 			while (resultset.next()) {
@@ -119,13 +174,39 @@ public class BDaoDelivery {
 		ResultSet resultset = null;
 		int deliveryEnd = 0;
 		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		String queryCount = "select D.bNumber, pCategory, pName, dCondition from Delivery as D "
+				+ "join Product as P on P.pCode = D.Product_pCode where D.dEndDate is not null "
+				+ "group by D.bNumber";
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
-					+ "join Product as P on P.pCode = D.Product_pCode where D.dEndDate is not null";
 			
-			preparedStatement = connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(queryCount);
 			resultset = preparedStatement.executeQuery();
 			
 			while (resultset.next()) {
@@ -156,13 +237,40 @@ public class BDaoDelivery {
 		ResultSet resultset = null;
 		int deliveryING = 0;
 		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		String queryCount = "select D.bNumber, pCategory, pName, dCondition from Delivery as D "
+				+ "join Product as P on P.pCode = D.Product_pCode where D.dEndDate is null "
+				+ "group by D.bNumber";
+		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
-					+ "join Product as P on P.pCode = D.Product_pCode where D.dEndDate is null";
 			
-			preparedStatement = connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(queryCount);
 			resultset = preparedStatement.executeQuery();
 			
 			while (resultset.next()) {
@@ -188,6 +296,11 @@ public class BDaoDelivery {
 	
 	// 검색 리스트  /// #####@%@#&$%@@#$---------------------------------------------------------------------- jsp도없음
 	public ArrayList<BDtoDelivery> search(String search, String searchtxt, int start, int end) {
+		
+		ArrayList<BDtoDelivery> dtos = new ArrayList<BDtoDelivery>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultset = null;
 		String searchCheck = null;
 		String searchtxtCheck = null;
 		System.out.println(search);
@@ -200,17 +313,36 @@ public class BDaoDelivery {
 				searchtxtCheck = " like '%" + searchtxt + "%'";
 				
 			}
+			
+			String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+			System.out.println(query);
+			
+			try {
+				connection = dataSource.getConnection();
+
+				preparedStatement = connection.prepareStatement(query);
+				resultset = preparedStatement.executeQuery();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (resultset != null)
+						resultset.close();
+					if (preparedStatement != null)
+						preparedStatement.close();
+					if (connection != null)
+						connection.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		
-		String whereStatement = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
-				+ "join Product as P on P.pCode = D.Product_pCode" + searchCheck + searchtxtCheck + " limit ?, ?";
+		
+		String whereStatement = "select D.bNumber, pCategory, pName, dCondition from Delivery as D\n"
+				+ "join Product as P on P.pCode = D.Product_pCode" + searchCheck + searchtxtCheck + " group by D.bNumber limit ?, ?";
 		
 		System.out.println(whereStatement);
-		
-		ArrayList<BDtoDelivery> dtos = new ArrayList<BDtoDelivery>();
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultset = null;
-		
 		try {
 			connection = dataSource.getConnection();
 			
@@ -246,6 +378,9 @@ public class BDaoDelivery {
 	
 	// 검색 갯수
 	public int searchDeliveryCount(String search, String searchtxt, int start, int end) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultset = null;
 		String searchCheck = null;
 		String searchtxtCheck = null;
 		int searchDeliveryCount = 0;
@@ -258,15 +393,37 @@ public class BDaoDelivery {
 				searchtxtCheck = " like '%" + searchtxt + "%'";
 				
 			}
+			
+			String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+			System.out.println(query);
+			
+			try {
+				connection = dataSource.getConnection();
+
+				preparedStatement = connection.prepareStatement(query);
+				resultset = preparedStatement.executeQuery();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (resultset != null)
+						resultset.close();
+					if (preparedStatement != null)
+						preparedStatement.close();
+					if (connection != null)
+						connection.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
 		
 		String whereStatement = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
 				+ "join Product as P on P.pCode = D.Product_pCode" + searchCheck + searchtxtCheck;
 		
 		System.out.println(whereStatement);
 		
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultset = null;
 		
 		try {
 			connection = dataSource.getConnection();
@@ -303,13 +460,37 @@ public class BDaoDelivery {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
 		
 		try {
 			connection = dataSource.getConnection();
-			
-			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
-					+ "join Product as P on P.pCode = D.Product_pCode where D.dCondition = '배송완료' limit ?, ?";
+
 			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		String queryList = "select D.bNumber, pCategory, pName, dCondition from Delivery as D "
+				+ "join Product as P on P.pCode = D.Product_pCode where D.dCondition = '배송완료' group by D.bNumber limit ?, ?";
+		try {
+			connection = dataSource.getConnection();
+			
+			preparedStatement = connection.prepareStatement(queryList);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
 			resultset = preparedStatement.executeQuery();
@@ -347,13 +528,37 @@ public class BDaoDelivery {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String queryList = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
+				+ "join Product as P on P.pCode = D.Product_pCode where D.dCondition = '배송중' group by D.bNumber limit ?, ?";
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select D.bNumber, pCategory, pName, dCondition from Delivery as D \n"
-					+ "join Product as P on P.pCode = D.Product_pCode where D.dCondition = '배송중' limit ?, ?";
-			preparedStatement = connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(queryList);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
 			resultset = preparedStatement.executeQuery();
@@ -394,25 +599,39 @@ public class BDaoDelivery {
 		String dStartDate = null;
 		String dEndDate = null;
 		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
-			String groupSet = "SET sql_mode = ''";
-			preparedStatement = connection.prepareStatement(groupSet);
+
+			preparedStatement = connection.prepareStatement(query);
 			resultset = preparedStatement.executeQuery();
-			
-		} catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
+		String querySelect = "select R.bNumber, bBuyDate, bRecName, bRecTel, bRecPostalCode, bRecAddress1, bRecAddress2, dStartDate, dEndDate from Receiver as R \n"
+				+ "join BnS as B on R.Customer_cId = B.Customer_cId \n"
+				+ "join Delivery as D on R.bNumber = D.bNumber and B.Product_pCode = D.Product_pCode where R.bNumber = ?"
+				+ "group by R.bNumber";
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select R.bNumber, bBuyDate, bRecName, bRecTel, bRecPostalCode, bRecAddress1, bRecAddress2, dStartDate, dEndDate from Receiver as R\n"
-					+ "join BnS as B on R.Customer_cId = B.Customer_cId\n"
-					+ "join Delivery as D on R.bNumber = D.bNumber and B.Product_pCode = D.Product_pCode where R.bNumber =  ? "
-					+ "group by R.bNumber, B.bBuyDate, bBuyDate, bRecName, bRecTel, bRecPostalCode, bRecAddress1, bRecAddress2, dStartDate, dEndDate";
-			preparedStatement = connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(querySelect);
 			preparedStatement.setString(1, selecCode);
 			
 			resultset = preparedStatement.executeQuery();

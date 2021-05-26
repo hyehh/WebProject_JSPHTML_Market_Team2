@@ -79,14 +79,12 @@
 			margin: 10px;
 			height: 225px;
 			background-color: #fff;
+			overflow: hidden;
 		}
 		.item_img img {
-			border: solid 1px;
 			width: 100%;
-			height: 100%;
 		}
 		.item_info {
-			border: solid 1px;
 			margin: 10px;
 			height: 70px;
 			background-color: #fff;
@@ -154,7 +152,7 @@
 							<a href="product.do?pCode=${dtoBest.pCode }">
 								<li>
 									<div class="item_img">
-										<img alt="${dtoBest.pName } 메인 이미지" src="resources/img/main_pCode${dtoBest.pCode }.jpg">
+										<img alt="${dtoBest.pName } 메인 이미지" src="${dtoBest.pFilePath }">
 									</div>
 									<div class="item_info">
 										<p class="pName">${dtoBest.pName }</p>
@@ -184,7 +182,7 @@
 							<a href="product.do?pCode=${dtoNew.pCode }">
 								<li>
 									<div class="item_img">
-										<img alt="${dtoNew.pName } 메인 이미지" src="resource/img/main_pCode${dtoNew.pCode }.jpg">
+										<img alt="${dtoNew.pName } 메인 이미지" src="${dtoNew.pFilePath }">
 									</div>
 									<div class="item_info">
 										<p>${dtoNew.pName }</p>
@@ -214,7 +212,7 @@
 							<a href="product.do?pCode=${dtoRand.pCode }">
 								<li>
 									<div class="item_img">
-										<img alt="${dtoRand.pName } 메인 이미지" src="resource/img/main_pCode${dtoRand.pCode }.jpg">
+										<img alt="${dtoRand.pName } 메인 이미지" src="${dtoRand.pFilePath }">
 									</div>
 									<div class="item_info">
 										<p>${dtoRand.pName }</p>

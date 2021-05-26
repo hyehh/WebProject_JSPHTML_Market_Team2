@@ -652,7 +652,7 @@ public class BFrontController extends HttpServlet {
 		case ("/imgUpload.do"):
 			command = new BFileUpladCommad();
 			command.execute(request, response, session);
-//				fileUpload(request, response);
+//					fileUpload(request, response);
 			viewPage = "productlist.do";
 			break;
 		// 상품등록 -------------------------------- 끝
@@ -679,7 +679,7 @@ public class BFrontController extends HttpServlet {
 			break;
 		case ("/selectOrderPage.do"):
 			command = new BSelectOrderPageCommand();
-//				command = new BSelectOrderPgListCommand();
+//					command = new BSelectOrderPgListCommand();
 			command.execute(request, response, session);
 			viewPage = "selectOrderPage_view.jsp";
 			break;
