@@ -15,7 +15,7 @@ public class BCancelCommand implements BCommand { // 2021.05.20 조혜지 - 구�
 //		이건 수훈님과 연동할 때 사용하기 ************************************************************
 		System.out.println(bNumber);
 		BBuyDao dao = new BBuyDao();
-		dao.cancel(bNumber);
+		dao.cancelDay(bNumber);
 	}
 
 }

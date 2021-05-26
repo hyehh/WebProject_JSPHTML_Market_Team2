@@ -5,30 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="cssSH.css">
 <title>Log in</title>
+<style type="text/css">
+.failmsg {
+	margin: auto;
+	margin-top: 15px;
+	text-align: center;
+	font-style:italic;
+	font-size: 12px;
+	color: red;
+}
+</style>
 </head>
 <!-- 선긋고 그 중간에 텍스트 입력하기 폼 2021.05.13 최수훈 -->
-<style type="text/CSS">
-.hr-sect {
-	display: flex;
-	flex-basis: 100%;
-	align-items: center;
-	color: rgba(0, 0, 0, 0.35);
-	font-size: 12px;
-	margin: 8px 0px;
-}
-.hr-sect::before,
-.hr-sect::after {
-	content: "";
-	flex-grow: 1;
-	background: rgba(0, 0, 0, 0.35);
-	height: 1px;
-	font-size: 0px;
-	line-height: 0px;
-	margin: 0px 16px;
-}
-
-</style>
 <!-- 체크박스 하나만 체크하기 -->
 <script type="text/javascript">
 
@@ -44,48 +34,67 @@ function checkOnlyOne(element) {
 	  element.checked = true;
 	}
 	
-function name() {
-	
+function chkValue() {
+	f= document.loginActionForm;
+	if(f.loginId.value == ""){
+		alert('아이디를 입력해주세요');
+		return false;
+	}
+	else if(f.loginPw.value ==""){
+		alert('패스워드를 입력해주세요');
+		return false;
+	}
+	f.submit();
+	return true;
 }
 	</script>
-	
-<body>
 
-	<h3>로그인</h3>
-	<form action="loginaction.do" method="post">
-		<table>
-			<tr>
-				<td style="text-align: center;"> <input type="text" name="loginId" id="loginId" size="20" > </td>
-				<td colspan="2" rowspan="2">
-				<input type="submit" value="login" style="width: 70pt; height: 45pt;"></td>
-			</tr>
-			
-			<tr>
-				<td style="text-align: center;"> <input type="password" name="loginPw" size="20" > </td>
-			</tr>
-			<tr>
-				<td colspan="2" >
-				<font color="red" size="2pt">
-					<i>가입되지 않은 아이디이거나, 잘못된 비밀번호입니다.</i>
-				</font>
-				</td>
-			</tr>
-			<tr>
-				<td> <input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 
-					 <input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'> 판매회원 </td>
-				<td>
-				<a href = "FindId.jsp">아이디</a> / 
-				<a href = "FindPw.jsp">비밀번호</a> 찾기
-			</tr>
-		</table>
-			<br>
-			<br>
-			<div class="hr-sect">아직 회원이 아니신가요?</div>
-			<br>
-	</form>
-		
-	<form action="AgreementTerms.jsp" method="post">
-		<input type="submit" value="회원가입">
-	</form>
+<body>
+ <jsp:include page="header.jsp"></jsp:include>
+ <br>
+	<div class="wrap">
+		<div class="login">
+			<h3>Log-In</h3>
+				<form action="loginaction.do" method="post" name="loginActionForm">
+						<div class="signup">
+							<div class="loginId">
+								<h4><i>ID</i></h4>
+								<input type="text" name="loginId" placeholder="ID를 입력하세요" id="loginId" >
+							</div>
+							
+									<br>
+									
+									<div class="loginPw">
+										<h4><i>Password</i></h4>
+										<input type="password" placeholder="패스워드를 입력하세요" id="loginPw" name="loginPw" >
+									</div>
+									<div class="failmsg">
+									가입되지 않은 아이디이거나, 잘못된 비밀번호입니다.
+									</div>
+									<div class="login_etc">
+									<input type="checkbox" name="userType" value="구매회원" checked="checked" onclick='checkOnlyOne(this)'> 구매회원 
+									<input type="checkbox" name="userType" value="판매회원" onclick='checkOnlyOne(this)'>판매회원
+									</div>
+									<div class="findAction">
+									<a href = "FindId.jsp"><i style="font-size: 3pt; ">아이디</i></a> 
+									<a href = "FindPw.jsp"><i style="font-size: 3pt; ">비밀번호 찾기</i></a>
+									</div>
+									<div class="submit">
+									<input type="button" value="login" onclick="chkValue()">
+									</div>
+						</div>
+									<br>
+									<div class="hr-sect">아직 회원이 아니신가요?</div>
+									<br>
+				</form>
+				
+				<form action="AgreementTerms.jsp" method="post">
+				<div class="gosignup">
+					<input type="submit" value="회원가입">
+				</div>
+				</form>
+		</div>
+	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

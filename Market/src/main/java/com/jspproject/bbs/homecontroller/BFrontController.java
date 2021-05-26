@@ -391,7 +391,7 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "CustomerCart_View.do";
 			break;
-			// 장바구니 상품 선택 삭제
+		// 장바구니 상품 선택 삭제
 		case("/CartDelete.do"):
 			command = new BCartDeleteCommand();
 			command.execute(request, response, session);
