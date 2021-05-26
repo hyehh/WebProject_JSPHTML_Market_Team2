@@ -99,7 +99,7 @@
 				<h2>취소 완료</h2>
 				<p>정상적으로 취소 처리되었습니다.<br>다른 상품들을 구경해보세요.</p>
 			</div>
-			<form action="Product_View.do" method="post">
+			<form action="main.do" method="post">
 				<table border="0">
 					<caption>주문 취소 내역</caption>
 					<tr>
