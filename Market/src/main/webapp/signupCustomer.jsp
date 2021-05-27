@@ -166,80 +166,245 @@ $(function(){
 	}
 </script>
 
+<style type="text/css">
+	label.error{
+		   display: inline-block;
+		   color: red;
+		   font-size: 3pt;
+		   margin-top: 6px;
+		   margin-bottom: 5px;
+		   margin-left: 3px;
+		   margin-right: 3px;
+	}
+	#cId-error {
+		position: absolute;
+		margin-left: 70px;
+	}
+	#cPostalCode-error {
+		position: absolute;
+		margin-left: 100px;
+	}
+	#cAddress1-error {
+	}
+	
+	* {
+	  margin: 0;
+	  padding: 0;
+	  box-sizing: border-box;
+	  font-family: "Noto Sans KR", sans-serif;
+	}
+	table{
+		height: 500px;
+		width: 100%;
+		margin: auto;
+	}
+	
+	table tr td:nth-child(1) {
+		width: 30%;
+	}
+	table tr td:nth-child(2) {
+		width: 70%;
+	}
+	/*table tr:nth-child(2) td:nth-child(2) input:nth-child(2) {
+		position: fixed;
+		
+	}*/
+	
+	hr {
+		heignt: 1px;
+		background: #bbb;
+		background: -webkit-linear-gradient(left,#eee,#777, #eee);
+		background: -moz-linear-gradient(left,#eee,#777, #eee);
+		background: -ms-linear-gradient(left,#eee,#777, #eee);
+		background: -o-linear-gradient(left,#eee,#777, #eee);
+	    margin: auto;
+	 	margin-top: 20px;
+	 	margin-bottom: 20px;
+	    text-align: center;
+	    font-weight: 300;
+	    font-size: 28px;
+	}
+	/*td{
+	text-align: left;
+	font-size: 15pt;
+	tex
+	}*/
+	.wrap {
+	  width: 100%;
+	  height: 150vh;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  background: rgba(0, 0, 0, 0.1); 
+	}
+	.signup {
+	  width: 820px;
+	  height: 800px;
+	  background: white;
+	  border-radius: 20px;
+	  display: block;
+	  justify-content: center;
+	  align-items: center;
+	  flex-direction: column;
+	  text-align: center;
+	}
+	.signup form{
+		width: 600px;
+		height: 800px;
+		margin: auto;
+		margin-top: 70px;
+		margin-bottom: 100px;
+		align-items: center;
+	}
+	.customerTb tr{
+		text-align: left;
+		
+	}
+	.customerTb{
+		width: 500px;
+		heigt: 600px;
+		margin: auto;
+		
+	}
+	tbody{
+	widows: 480;
+	}
+	.infoTitle{
+		height: 31px;
+		margin-Top: 0px;
+		marhin-bottom:20px;
+		
+	}
+	.cId{
+	margin-top: 3px;
+	}
+	input[type=text]{
+	  width: 60%;
+	  height: 22px;
+	  border-radius: 30px;
+	  margin-top: 10px;
+	  padding: 0px 20px;
+	  border: 1px solid lightgray;
+	  outline: none;
+	}
+	input[type=password]{
+	  width: 50%;
+	  height: 22px;
+	  border-radius: 30px;
+	  margin-top: 10px;
+	  padding: 0px 20px;
+	  border: 1px solid lightgray;
+	  outline: none;
+	}
+	#cNumber{
+		width: 320px;
+	}
+	#cId-error.error{
+		margin-top:15px;	
+	}
+	#cPostalCode-error{
+		margin-top:15px;	
+	}
 
+
+
+	caption {
+		font-weight: bold;
+		font-size: 110%;
+		margin: 10px 0;
+	}
+	table tr td:nth-child(1) {
+		font-size: 10pt;
+	}
+	.signUpBtn {
+		margin-top: 50px;
+		padding: 6px 10px;
+		background-color: gray;
+		color: #fff;
+		border: none;
+		border-radius: 10px;
+	}
+</style>
 <body>
-<form name="signupCustomerForm" id="signupCustomerForm" action="signupCustomer.do">
-	<h3>회원가입</h3>
-	<hr style="width: 80%;">
-		<table>
-			<tr>
-				<td> <h4>구매 회원 기본정보</h4> </td>
-			</tr>
-			<tr>
-			
-				<td> <input type="text" name="textid" value="아이디*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="cId"	id="cId" placeholder="아이디를 입력하세요" onkeydown="inputcIdChk()">
-				<input type="button" name="Idcheck" value="중복체크" onclick=" opencIdChk(this.form.cId.value);">
-				<input type="hidden" name ="idDuplication" id="idDuplication" value="idUncheck" size="1">
-				</td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textpw" value="비밀번호*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="password" name="cPw" id="cPw" placeholder="비밀번호를 입력하세요"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textpwc" value="비밀번호 확인*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="password" name="cPwcheck" id="cPwcheck" placeholder="비밀번호 확인"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textname" value="이름*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="cName" id="cName" placeholder="이름을 입력하세요"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="texttel" value="전화번호*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="cTel" id="cTel" placeholder="-를 생략하고 입력"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textbirth" value="생년월일*" readonly="readonly" style="text-align: center"></td>
-				<td> <select name="cBirthY" id="cBirthY">
-					<%for(int i=2021; i>1900; i--){ %>
-					<option value="<%=i%>" selected="selected"><%=i%></option>
-					<%} %>
-					</select>
-					년
-					<select name="cBirthM" id="cBirthM">
-					<%for(int i=1; i<13; i++){ %>
-					<option value="<%=i%>" selected="selected"><%=i%></option>
-					<%} %>
-					</select>
-					월
-					<select name="cBirthD" id ="cBirthD">
-					<%for(int i=1; i<32; i++){ %>
-					<option value="<%=i%>" selected="selected"><%=i%></option>
-					<%} %>
-					</select>
-					일
-					</td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textemail" value="이메일*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="cEmail" id="cEmail" placeholder="이메일을 입력하세요"></td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textnickname" value="주소*" readonly="readonly" style="text-align: center"></td>
-				
-				<td><input type="text" name ="cPostalCode" id="cPostalCode" placeholder="우편번호" >
-					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" name="cAddress1" id="cAddress1" placeholder="도로명주소">
-					<span id="guide" style="color:#999;display:none"></span>
-					<input type="text" name="cAddress2" id="cAddress2" placeholder="상세주소">
-				</td>
-			</tr>		
-			
-		</table>
-			<input type="submit" value="회원가입">
-</form>
-
+<jsp:include page="headerFormDelete.jsp"></jsp:include>
+<div class="wrap">
+	<div class="signup">
+		<form name="signupCustomerForm" id="signupCustomerForm" action="signupCustomer.do">
+			<h3>회원가입</h3>
+			<hr style="width: 80%;">
+			<div class="customerTb">
+				<table>
+					<caption>구매 회원 기본정보</caption>
+					<tr>
+					
+						<td>아이디*</td>
+						<td>
+							<input type="text" name="cId"	id="cId" placeholder="아이디를 입력하세요" onkeydown="inputcIdChk()">
+							<input type="button" name="Idcheck" value="중복체크" onclick=" opencIdChk(this.form.cId.value);">
+							<input type="hidden" name ="idDuplication" id="idDuplication" value="idUncheck" size="1">
+						</td>
+					</tr>		
+					<tr>
+						<td>비밀번호*</td>
+						<td> <input type="password" name="cPw" id="cPw" placeholder="비밀번호를 입력하세요"> </td>
+					</tr>		
+					<tr>
+						<td>비밀번호 확인*</td>
+						<td> <input type="password" name="cPwcheck" id="cPwcheck" placeholder="비밀번호 확인"> </td>
+					</tr>		
+					<tr>
+						<td>이름*</td>
+						<td> <input type="text" name="cName" id="cName" placeholder="이름을 입력하세요"> </td>
+					</tr>		
+					<tr>
+						<td>전화번호*</td>
+						<td> <input type="text" name="cTel" id="cTel" placeholder="-를 생략하고 입력"> </td>
+					</tr>		
+					<tr>
+						<td>생년월일*</td>
+						<td>
+							<select name="cBirthY" id="cBirthY">
+								<%for(int i=2021; i>1900; i--){ %>
+								<option value="<%=i%>" selected="selected"><%=i%></option>
+								<%} %>
+								</select>
+								년
+								<select name="cBirthM" id="cBirthM">
+								<%for(int i=1; i<13; i++){ %>
+								<option value="<%=i%>" selected="selected"><%=i%></option>
+								<%} %>
+								</select>
+								월
+								<select name="cBirthD" id ="cBirthD">
+								<%for(int i=1; i<32; i++){ %>
+								<option value="<%=i%>" selected="selected"><%=i%></option>
+								<%} %>
+							</select>
+							일
+						</td>
+					</tr>		
+					<tr>
+						<td>이메일*</td>
+						<td> <input type="text" name="cEmail" id="cEmail" placeholder="이메일을 입력하세요"></td>
+					</tr>		
+					<tr>
+						<td>주소*</td>
+						
+						<td>
+							<input type="text" name ="cPostalCode" id="cPostalCode" placeholder="우편번호" >
+							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+							<input type="text" name="cAddress1" id="cAddress1" placeholder="도로명주소">
+							<span id="guide" style="color:#999;display:none"></span>
+							<input type="text" name="cAddress2" id="cAddress2" placeholder="상세주소">
+						</td>
+					</tr>		
+				</table>
+			</div>
+			<input type="submit" value="회원가입" class="signUpBtn">
+		</form>
+	</div>
+</div>
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

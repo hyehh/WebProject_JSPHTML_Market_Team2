@@ -1,12 +1,161 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <title>Insert title here</title>
+<style type="text/css">
+label.error{
+	   display: inline-block;
+	   color: red;
+	   font-size: 3pt;
+	   margin-top: 6px;
+	   margin-bottom: 5px;
+	   margin-left: 3px;
+	   margin-right: 3px;
+}
+#sId-error {
+	position: absolute;
+	margin-left: 70px;
+}
+#sPostalCode-error {
+	position: absolute;
+	margin-left: 100px;
+}
+#sAddress1-error {
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+}
+table{
+	height: 500px;
+	width: 100%;
+	margin: auto;
+}
+
+table tr td:nth-child(1) {
+	width: 30%;
+}
+table tr td:nth-child(2) {
+	width: 70%;
+}
+/*table tr:nth-child(2) td:nth-child(2) input:nth-child(2) {
+	position: fixed;
+	
+}*/
+
+hr {
+	heignt: 1px;
+	background: #bbb;
+	background: -webkit-linear-gradient(left,#eee,#777, #eee);
+	background: -moz-linear-gradient(left,#eee,#777, #eee);
+	background: -ms-linear-gradient(left,#eee,#777, #eee);
+	background: -o-linear-gradient(left,#eee,#777, #eee);
+    margin: auto;
+ 	margin-top: 20px;
+ 	margin-bottom: 20px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 28px;
+}
+/*td{
+text-align: left;
+font-size: 15pt;
+tex
+}*/
+.wrap {
+  width: 100%;
+  height: 150vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1); 
+}
+.signup {
+  width: 820px;
+  height: 800px;
+  background: white;
+  border-radius: 20px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.signup form{
+	width: 600px;
+	height: 800px;
+	margin: auto;
+	margin-top: 70px;
+	margin-bottom: 100px;
+	align-items: center;
+}
+.sellerTb tr{
+	text-align: legt;
+	
+}
+.sellerTb{
+	width: 500px;
+	heigt: 600px;
+	margin: auto;
+	
+}
+tbody{
+widows: 480;
+}
+.infoTitle{
+	height: 31px;
+	margin-Top: 0px;
+	marhin-bottom:20px;
+	
+}
+.sId{
+margin-top: 3px;
+}
+input[type=text]{
+  width: 60%;
+  height: 22px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+input[type=password]{
+  width: 50%;
+  height: 22px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+#sNumber{
+width: 320px;
+}
+#sId-error.error{
+margin-top:15px;	
+}
+#sPostalCode-error{
+margin-top:15px;	
+}
+.signUpBtn {
+	margin-top: 50px;
+	padding: 6px 10px;
+	background-color: gray;
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+}
+
+</style>
 </head>
+
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
 <!-- 주소 API 다음API에서 가져옴  -->
 <!-- 20021.05.14 최수훈 -->
@@ -39,6 +188,7 @@
         }).open();
     }
 </script>
+
 <!-- Jquery의 Validate를 이용한 정규식 및 로그인 확인 -->
 <script>
 $(function(){
@@ -58,7 +208,6 @@ $(function(){
 	          if(f){
 	             alert(form.sName.value + "님의 회원가입이 완료되었습니다!")
 	              return true;
-	             
 	          } else {
 	              return false;
 	          }
@@ -104,6 +253,9 @@ $(function(){
           sNumber: {
         	  required : true
           },
+	      pName :{
+	    	  required : false
+          }
       },
       
       //규칙체크 실패시 출력될 메시지
@@ -163,86 +315,98 @@ $(function(){
 </script>
 
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do" >
-	<h3>회원가입</h3>
-	<hr style="width: 80%;">
-		<table>
-			<tr>
-				<td> <h4>판매 회원 기본정보</h4> </td>
-			</tr>
-			<tr>
-				<td> <input type="text" name="textid" value="아이디*" readonly="readonly" style="text-align: center" onkeydown="inputIdChk()"></td>
-				<td> <input type="text" name="sId" id="sId" placeholder="아이디를 입력하세요" onkeydown="inputsIdChk()">
-				<input type="button" name="Idcheck" value="중복체크" onclick="opensIdChk(this.form.sId.value)">
-				<input type="hidden" name ="idDuplication"id="idDuplication" value="idUncheck" size="1">
-				</td>
-				
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textpw" value="비밀번호*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="password" name="sPw" id="sPw" placeholder="비밀번호를 입력하세요"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textpwc" value="비밀번호 확인*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="password" name="sPwcheck" id="sPwcheck" placeholder="비밀번호 확인"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textname" value="이름*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sName" id="sName" placeholder="이름을 입력하세요"> </td>
-				
-			</tr>		
-			<tr>
-				<td> <input type="text" name="texttel" value="전화번호*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sTel" id="sTel" placeholder="-를 생략하고 입력"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textbirth" value="생년월일*" readonly="readonly" style="text-align: center"></td>
-				<td> <select name="sBirthY">
-					<%for(int i=2021; i>1900; i--){ %>
-					<option value="<%=i%>" selected="selected"><%=i%></option>
-					<%} %>
-					</select>
-					년
-					<select name="sBirthM">
-					<%for(int i=1; i<13; i++){ %>
-					<option value="<%=i%>" selected="selected"><%=i%></option>
-					<%} %>
-					</select>
-					월
-					<select name="sBirthD">
-					<%for(int i=1; i<32; i++){ %>
-					<option value="<%=i%>" selected="selected"><%=i%></option>
-					<%} %>
-					</select>
-					일
-					</td>
-			<tr>
-				<td> <input type="text" name="textemail" value="이메일*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sEmail" id="sEmail" placeholder="이메일을 입력하세요"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textnickname" value="주소*" readonly="readonly" style="text-align: center"></td>
-				
-				<td><input type="text" name = "sPostalCode" id="sPostalCode" placeholder="우편번호" readonly="readonly">
-					<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" name = "sAddress1" id="sAddress1" placeholder="도로명주소" readonly="readonly">
-					<span id="guide" style="color:#999;display:none"></span>
-					<input type="text" name = "sAddress2" id="sAddress2" placeholder="상세주소">
-				</td>
-			</tr>
-			<tr>
-				<td> <input type="text" name="textShopname" value="상점이름*" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sShopName" id="sShopName" placeholder="상점이름을 입력하세요"> </td>
-			</tr>		
-			<tr>
-				<td> <input type="text" name="textRegistNum" value="사업자 등록 번호 *" readonly="readonly" style="text-align: center"></td>
-				<td> <input type="text" name="sNumber" id="sNumber" size="16" placeholder="사업자등록번호 10자리를 입력하세요(-생략)" > </td>
-			</tr>		
-			
-		</table>
-		<input type="submit" value="회원가입">
-	</form>
-	<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="headerFormDelete.jsp"></jsp:include>
+<div class="wrap">
+	<div class="signup">
+		<form name ="signupSellerForm" id="signupSellerForm" action="signupSeller.do">
+			<h3>회원가입</h3>
+			<hr>	
+				<div class="sellerTb">
+					<table>
+					<tr>
+						<h4>판매 회원 기본정보</h4>
+					</div>
+					</tr>
+					<tr>
+						<td  style="font-size: 10pt; size: 15;">아이디*</td>
+							<td > 
+								<input type="text" name="sId" id="sId" placeholder="아이디를 입력하세요" onkeydown="inputsIdChk()">
+								<input type="button" name="Idcheck" value="중복체크" onclick="opensIdChk(this.form.sId.value)">
+								<input type="hidden" name ="idDuplication"id="idDuplication" value="idUncheck" size="1">
+							</td>
+						</div>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					
+					</tr>
+					<tr>
+						<td style="font-size: 10pt;">비밀번호*</td>
+						<td> <input type="password" name="sPw" id="sPw" placeholder="비밀번호"> </td>
+					</tr>		
+					<tr>
+						<td style="font-size: 10pt;">비밀번호 확인*</td>
+						<td> <input type="password" name="sPwcheck" id="sPwcheck" placeholder="비밀번호 확인"> </td>
+					</tr>		
+					<tr>
+						<td style="font-size: 10pt;">이름*</td>
+						<td> <input type="text" name="sName" id="sName" placeholder="이름을 입력하세요"> </td>
+						
+					</tr>		
+					<tr>
+						<td style="font-size: 10pt;">전화번호*</td>
+						<td> <input type="text" name="sTel" id="sTel" placeholder="-를 생략하고 입력"> </td>
+					</tr>		
+					<tr>
+						<td style="font-size: 10pt;">생년월일*</td>
+						<td> <select name="sBirthY">
+							<%for(int i=2021; i>1900; i--){ %>
+							<option value="<%=i%>" selected="selected"><%=i%></option>
+							<%} %>
+							</select>
+							년
+							<select name="sBirthM">
+							<%for(int i=1; i<13; i++){ %>
+							<option value="<%=i%>" selected="selected"><%=i%></option>
+							<%} %>
+							</select>
+							월
+							<select name="sBirthD">
+							<%for(int i=1; i<32; i++){ %>
+							<option value="<%=i%>" selected="selected"><%=i%></option>
+							<%} %>
+							</select>
+							일
+							</td>
+					<tr>
+						<td style="font-size: 10pt;">이메일*</td>
+						<td> <input type="text" name="sEmail" id="sEmail" placeholder="이메일을 입력하세요"> </td>
+					</tr>		
+					<tr>
+						<td style="font-size: 10pt;">주소*</td>
+						
+						<td><input type="text" name = "sPostalCode" id="sPostalCode" placeholder="우편번호" readonly="readonly">
+							<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+							<input type="text" name = "sAddress1" id="sAddress1" placeholder="도로명주소" readonly="readonly">
+							<span id="guide" style="color:#999;display:none"></span>
+							<input type="text" name = "sAddress2" id="sAddress2" placeholder="상세주소">
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size: 10pt;">상점이름*</td>
+						<td> <input type="text" name="sShopName" id="sShopName" placeholder="상점이름을 입력하세요"> </td>
+					</tr>		
+					<tr>
+						<td style="font-size: 10pt;">사업자 등록 번호*</td>
+						<td> <input type="text" name="sNumber" id="sNumber" placeholder="사업자등록번호 10자리를 입력하세요(-생략)" size="30"> </td>
+					</tr>		
+				</table>
+			</div>
+			<input type="submit" value="회원가입" class="signUpBtn">
+		</form>
+	</div>
+</div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

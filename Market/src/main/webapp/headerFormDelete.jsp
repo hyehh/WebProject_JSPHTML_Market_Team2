@@ -8,20 +8,11 @@
 	<title>Insert tile here</title>
 	<link rel="stylesheet" href="css1.css">
 </head>
-
-<style type="text/css">
-	.search {
-		width: 200px;
-		height: 46px;
-		border: 2px solid red;
-		float: left;
-	}
-</style>
-
 <body>
 	<header>
 		<!-- 최상단 메뉴 -->
 		<div class="top">
+			<ul class="top_list">
 			<c:choose>
 				<c:when test="${empty userId}">
 					<li><a href="login.do">로그인</a></li>
@@ -33,6 +24,7 @@
 					<li><a href="logout.do">로그아웃</a></li>
 				</c:otherwise>
 			</c:choose>
+			</ul>
 		</div>
 		<!-- //최상단 메뉴 -->
 		
@@ -58,25 +50,6 @@
 					<li><a href="category.do?pCategory=식음료">식음료</a></li>
 				</ul>
 			</nav>
-			<div class="search">
-				<!-- <div>
-		            <a class="uk-navbar-toggle" href="#" uk-search-icon></a>
-		            <div class="uk-navbar-dropdown" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !nav">
-		
-		                <div class="uk-grid-small uk-flex-middle" uk-grid>
-		                    <div class="uk-width-expand">
-		                        <form action="search.do" class="uk-search uk-search-navbar uk-width-1-1">
-		                            <input class="uk-search-input" type="search" placeholder="Search" autofocus>
-		                        </form>
-		                    </div>
-		                    <div class="uk-width-auto">
-		                        <a class="uk-navbar-dropdown-close" href="#" uk-close></a>
-		                    </div>
-		                </div>
-		
-		            </div>
-		        </div> -->
-			</div>
 		</div>
 		<!-- //카테고리 -->
 	</header>
