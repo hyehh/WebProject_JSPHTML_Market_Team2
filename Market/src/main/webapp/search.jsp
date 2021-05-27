@@ -35,14 +35,12 @@
 		margin: 10px;
 		height: 225px;
 		background-color: #fff;
+		overflow: hidden;
 	}
 	.item_img img {
-		border: solid 1px;
 		width: 100%;
-		height: 100%;
 	}
 	.item_info {
-		border: solid 1px;
 		margin: 10px;
 		height: 70px;
 		background-color: #fff;
@@ -66,7 +64,7 @@
 					<a href="product.do?pCode=${dtoSearch.pCode }">
 						<li>
 							<div class="item_img">
-								<img alt="${dtoSearch.pName } 메인 이미지" src="resources/img/main_pCode${dtoSearch.pCode }.jpg">
+								<img alt="${dtoSearch.pName } 메인 이미지" src="${dtoSearch.pFilePath }">
 							</div>
 							<div class="item_info">
 								<p>${dtoSearch.pName }</p>
