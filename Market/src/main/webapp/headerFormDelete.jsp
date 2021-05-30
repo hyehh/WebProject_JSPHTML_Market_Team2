@@ -8,6 +8,15 @@
 	<title>Insert tile here</title>
 	<link rel="stylesheet" href="css1.css">
 </head>
+<style>
+	.logo{
+		width: 300px;
+		margin: auto;
+	}
+	.logo img {
+		width: 300px;
+	}
+</style>
 <body>
 	<header>
 		<!-- 최상단 메뉴 -->
@@ -29,8 +38,8 @@
 		<!-- //최상단 메뉴 -->
 		
 		<!-- 로고 -->
-		<div class="logo">
-			<a href="main.do"><h1>마감임박!!</h1></a>
+		<div class="logo" style="height: auto;">
+			<a href="main.do"><img alt="떨이마켓 로고" src="resources/img/logoImg.png"></a>
 		</div>
 		<!-- //로고 -->
 		

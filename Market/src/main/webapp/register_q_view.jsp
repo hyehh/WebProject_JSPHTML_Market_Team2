@@ -98,7 +98,7 @@
 		
 			<div class="register_q">
 			
-				<h1>상품명</h1>
+				<h1>문의 등록</h1>
 				
 				<div class="form">
 					<form name="qnaForm" action="register_q.do" method="post" enctype="multipart/form-data" accept-charset="UTF-8">

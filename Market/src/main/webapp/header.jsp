@@ -18,8 +18,17 @@
 	<link rel="stylesheet" href="css1.css">
 	<link rel="stylesheet" href="search.css">
 </head>
+<style>
+	.logo{
+		width: 300px;
+		margin: auto;
+	}
+	.logo img {
+		width: 300px;
+	}
+</style>
 <body>
-	<header>
+	<header style="height: auto;">
 		<!-- 최상단 메뉴 -->
 		<div class="top">
 			<ul class="top_list">
@@ -39,8 +48,8 @@
 		<!-- //최상단 메뉴 -->
 		
 		<!-- 로고 -->
-		<div class="logo">
-			<a href="main.do"><h1>마감임박!!</h1></a>
+		<div class="logo" style="height: 305px;">
+			<a href="main.do"><img alt="떨이마켓 로고" src="resources/img/logoImg.png"></a>
 		</div>
 		<!-- //로고 -->
 		
