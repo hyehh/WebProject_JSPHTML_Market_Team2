@@ -21,7 +21,7 @@
 		
 		<!-- 로고 -->
 		<div class="logo">
-			<a href="sellerStore.do"><h1>떨이마켓</h1></a>
+			<a href="sellerStore.do"><h1>마감임박!!</h1></a>
 		</div>
 		<!-- //로고 -->
 		
