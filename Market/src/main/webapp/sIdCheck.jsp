@@ -13,7 +13,10 @@
 <script type="text/javascript">
 		function sIdChk() {
 				var frm = document.sIdchkForm;
-				frm.action='signupsIdCheck.do';
+				if(frm.sId.value == ""){
+					alert('아이디를 입력해주세요!');
+					return false;
+				}
 				frm.submit();
 				return true;
 			}
@@ -101,7 +104,7 @@ $(function(){
 	</center>
 </div>
 
-<form name="sIdchkForm" id="sIdchkForm" method="post">
+<form name="sIdchkForm" id="sIdchkForm" action="signupsIdCheck.do" method="post">
 <div>
 	<center>
 		
