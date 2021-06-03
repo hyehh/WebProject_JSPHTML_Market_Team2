@@ -103,11 +103,11 @@
 			<tr>
 					<td colspan="3">
 					<input type = "submit" formaction="productlist.do" class="button buttonModify" 
-					value = "목록으로가기">
+					value = "목록으로가기" style="zoom: 1.0;">
 					<input type = "submit" formaction="productModify.do" class="buttonModify buttonModify" 
-					value = "수정">
+					value = "수정" style="zoom: 1.0;">
 					<input type = "submit" formaction="productDelete.do" class="buttonModify buttonModify" 
-					value = "삭제"></td>
+					value = "삭제" style="zoom: 1.0;"></td>
 
 				</tr>
 			</table>

@@ -30,6 +30,10 @@
 							<th colspan="3">문의내역</th>
 						</tr>
 						<tr><!-- B.bNumber, qTitle, C.cName, qAddDate, Q.qContent, Q.aContent  -->
+							<td>번호</td>
+							<td><input type = "text" name = "bNumber" readonly="readonly" value = "${selectQnA.qnACode }"></td>
+						</tr>
+						<tr><!-- B.bNumber, qTitle, C.cName, qAddDate, Q.qContent, Q.aContent  -->
 							<td>주문번호</td>
 							<td><input type = "text" name = "bNumber" readonly="readonly" value = "${selectQnA.bNumber }"></td>
 						</tr>
