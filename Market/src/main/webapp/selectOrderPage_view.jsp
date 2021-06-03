@@ -85,11 +85,11 @@
 		<tr>
 			<td>
 			<input type = "submit" name = "deliveryFor" value = "배송중" formaction="deliveryFor.do" 
-			class="buttonModify buttonModify">
+			class="buttonModify buttonModify" style="zoom: 1.0;">
 			</td>
 			<td>
 			<input type = "submit" name = "deliveryFinish" value = "배송완료" formaction="deliveryFinish.do" 
-			class="buttonModify buttonModify">
+			class="buttonModify buttonModify" style="zoom: 1.0;">
 			<td>
 		</tr>
 	</table>

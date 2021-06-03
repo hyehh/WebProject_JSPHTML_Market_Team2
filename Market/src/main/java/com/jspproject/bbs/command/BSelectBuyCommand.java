@@ -1,5 +1,7 @@
 package com.jspproject.bbs.command;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,8 +19,10 @@ public class BSelectBuyCommand implements BCommand {
 		BDaoBuy dao = new BDaoBuy();
 		BDtoBuy dto = dao.selectBuy(bNumber);
 		
+		ArrayList<BDtoBuy> dtos = dao.selectBuyPageList(bNumber);
 		
 		request.setAttribute("selectBuy", dto);
+		request.setAttribute("selectBuyList", dtos);
 	}
 
 }

@@ -131,7 +131,7 @@ public class BDao {
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				int qnaCode = resultSet.getInt("QnACode");
+				String qnaCode = resultSet.getString("QnACode");
 				String customer_cId = resultSet.getString("Customer_cId");
 				String qTitle = resultSet.getString("qTitle");
 				String qContent = resultSet.getString("qContent");

@@ -58,8 +58,8 @@ public class BDaoQnA {
 		}
 		
 
-		String queryList = "select B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B "
-				+ "join QnA as Q on B.Customer_cId = Q.Customer_cId group by QnACode order by QnACode desc limit ?, ?";
+		String queryList = "select qnACode, qTitle, qAddDate, qAnswerStatus from QnA\n"
+				+ "group by qnACode order by QnACode desc limit ?, ?";
 		
 		System.out.println(queryList);
 		try {
@@ -72,7 +72,7 @@ public class BDaoQnA {
 			System.out.println("두번째" + queryList);
 
 			while (resultset.next()) {
-				String bNumber = resultset.getString("bNumber");
+				String qnACode = resultset.getString("qnACode");
 				String qTitle = resultset.getString("qTitle");
 				Timestamp AddDate = resultset.getTimestamp("qAddDate");
 				String AnswerStatus = resultset.getString("qAnswerStatus");
@@ -84,7 +84,7 @@ public class BDaoQnA {
 					qAnswerStatus = AnswerStatus;
 				}
 
-				BDtoQnA dto = new BDtoQnA(bNumber, qTitle, qAddDate, qAnswerStatus);
+				BDtoQnA dto = new BDtoQnA(qnACode, qTitle, qAddDate, qAnswerStatus);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
@@ -307,9 +307,8 @@ public class BDaoQnA {
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B \n"
-					+ "join QnA as Q on B.Customer_cId = Q.Customer_cId where qAnswerStatus is null group by QnACode order by QnACode desc;\n"
-					+ " limit ?, ?";
+			String query = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus from BnS as B\n"
+					+ "join QnA as Q on B.Customer_cId = Q.Customer_cId where qAnswerStatus is null group by QnACode order by QnACode desc limit ?, ?";
 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, start);
@@ -362,7 +361,7 @@ public class BDaoQnA {
 		String aAddDate = null;
 		
 		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
-		System.out.println(query);
+		System.out.println("?????????????"+query);
 		
 		try {
 			connection = dataSource.getConnection();
@@ -389,9 +388,10 @@ public class BDaoQnA {
 
 		String querySelect = "select QnACode, B.bNumber, qTitle, cName, qAddDate, qContent, aDeleteDate, qAnswerStatus, aContent, aAddDate from QnA as Q\n"
 				+ "join BnS as B on Q.Customer_cId = B.Customer_cId\n"
-				+ "join Customer as C on Q.Customer_cId = C.cId where bNumber = ? group by QnACode order by QnACode desc";
+				+ "join Customer as C on Q.Customer_cId = C.cId where QnACode = ? group by QnACode order by QnACode desc";
 		try {
 			connection = dataSource.getConnection();
+			System.out.println(querySelect);
 
 			preparedStatement = connection.prepareStatement(querySelect);
 			preparedStatement.setString(1, selectCode);
@@ -399,7 +399,7 @@ public class BDaoQnA {
 			resultset = preparedStatement.executeQuery();
 //			select pCode, pCategory, pName, pPrice, pExpirationDate, pQuantity, pStatus from Product
 			if (resultset.next()) {
-				int qnACode = resultset.getInt("QnACode");
+				String qnACode = resultset.getString("QnACode");
 				String bNumber = resultset.getString("bNumber");
 				String qTitle = resultset.getString("qTitle");
 				String cName = resultset.getString("cName");
@@ -461,7 +461,7 @@ public class BDaoQnA {
 			connection = dataSource.getConnection();
 
 			String query = "update QnA as Q join BnS as B on Q.Customer_cId = B.Customer_cId\n"
-					+ "set aContent = ?, aEditeDate = now() where B.bNumber = ?";
+					+ "set aContent = ?, aEditeDate = now() where qnACode = ?";
 			preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setString(1, aContent);
@@ -492,7 +492,7 @@ public class BDaoQnA {
 			connection = dataSource.getConnection();
 
 			String query = "update QnA as Q join BnS as B on Q.Customer_cId = B.Customer_cId "
-					+ "set qAnswerStatus = '답변완료', aAddDate = now(), aContent = ? where bNumber = ?";
+					+ "set qAnswerStatus = '답변완료', aAddDate = now(), aContent = ? where qnACode = ?";
 			preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setString(1, aContent);
@@ -523,7 +523,7 @@ public class BDaoQnA {
 			connection = dataSource.getConnection();
 			
 			String query = "update QnA as Q join BnS as B on Q.Customer_cId = B.Customer_cId "
-					+ "set qAnswerStatus = null, aDeleteDate = now(), aContent = null where B.bNumber = ?";
+					+ "set qAnswerStatus = null, aDeleteDate = now(), aContent = null where qnACode = ?";
 			preparedStatement = connection.prepareStatement(query);
 			
 			preparedStatement.setString(1, qnACode);
@@ -553,12 +553,11 @@ public class BDaoQnA {
 			if (searchtxt == null){
 				searchtxtCheck = "";
 			} else {
-				searchtxtCheck = "where bNumber like '%" + searchtxt + "%' ";
+				searchtxtCheck = "where qTitle like '%" + searchtxt + "%' ";
 				
 			}
 		
-		String whereStatement = "select QnACode, B.bNumber, qTitle, qAddDate, qAnswerStatus "
-				+ "from BnS as B join QnA as Q on B.Customer_cId = Q.Customer_cId "
+		String whereStatement = "select QnACode, qTitle, qAddDate, qAnswerStatus from QnA "
 				+ searchtxtCheck + "order by QnACode desc limit ?, ?";
 		
 		System.out.println(whereStatement);

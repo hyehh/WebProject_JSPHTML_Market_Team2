@@ -759,6 +759,7 @@ public class BFrontController extends HttpServlet {
 		case ("/selectQnA.do"):
 			command = new BSelectQnACommand();
 			command.execute(request, response, session);
+			System.out.println("컨트롤" + request.getAttribute("qnACode"));
 			viewPage = "selectQnAPage_view.jsp";
 			break;
 		case ("/QnAAdd.do"):

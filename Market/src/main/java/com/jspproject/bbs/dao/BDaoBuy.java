@@ -33,14 +33,40 @@ public class BDaoBuy {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		String buyCancel;
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select bSeq, B.bNumber, pCategory, pName, bBuyDate, bBuyCancelDate from BnS as B "
-					+ "join Product as P on B.Product_pCode = P.pCode "
-					+ "where bBuyDate is not null limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+
+		String queryList = "select bSeq, B.bNumber, pCategory, pName, bBuyDate, bBuyCancelDate from BnS as B \n"
+				+ "join Product as P on B.Product_pCode = P.pCode \n"
+				+ "where bBuyDate is not null group by bNumber limit ?, ?";
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(queryList);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
 			resultset = preparedStatement.executeQuery();
@@ -88,15 +114,42 @@ public class BDaoBuy {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		int buyCount = 0;
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select * from BnS";
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
+		String queryCount = "select bSeq, B.bNumber, pCategory, pName, bBuyDate, bBuyCancelDate from BnS as B \n"
+				+ "join Product as P on B.Product_pCode = P.pCode \n"
+				+ "where bBuyDate is not null group by bNumber";
+		try {
+			connection = dataSource.getConnection();
+
 
 //			insert into Product (pPrice, pCategory, PExpirationDate, pName, pQuantity)
 //			value ('2000', 'food', '2021-05-13', '콜라', '1');
-			preparedStatement = connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(queryCount);
 			resultset = preparedStatement.executeQuery();
 
 			while (resultset.next()) {
@@ -127,15 +180,39 @@ public class BDaoBuy {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		int buyTure = 0;
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "SELECT * FROM Market.BnS where bBuyCancelDate is null";
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		String queryCount = "SELECT * FROM Market.BnS where bBuyCancelDate is null and bBuyDate is not null group by bNumber";
+		try {
+			connection = dataSource.getConnection();
+
 
 //			insert into Product (pPrice, pCategory, PExpirationDate, pName, pQuantity)
 //			value ('2000', 'food', '2021-05-13', '콜라', '1');
-			preparedStatement = connection.prepareStatement(query);
+			preparedStatement = connection.prepareStatement(queryCount);
 			resultset = preparedStatement.executeQuery();
 
 			while (resultset.next()) {
@@ -206,14 +283,40 @@ public class BDaoBuy {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		String buyCancel;
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate \n"
-					+ "from BnS as B left join Product as P on B.Product_pCode = P.pCode \n"
-					+ "where B.bBuyCancelDate is null limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
+		String queryList = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate "
+				+ "from BnS as B left join Product as P on B.Product_pCode = P.pCode "
+				+ "where B.bBuyCancelDate is null and B.bBuyDate is not null "
+				+ "group by bNumber limit ?, ?";
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(queryList);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
 			resultset = preparedStatement.executeQuery();
@@ -259,14 +362,42 @@ public class BDaoBuy {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		String buyCancel;
-
+		
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate "
-					+ "from BnS as B left join Product as P on B.Product_pCode = P.pCode "
-					+ "where B.bBuyCancelDate is not null limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+
+		String queryList = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate\n"
+				+ "from BnS as B left join Product as P on B.Product_pCode = P.pCode\n"
+				+ "where B.bBuyCancelDate is not null and B.bBuyDate is not null\n"
+				+ "group by bNumber limit ?, ?";
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(queryList);
 			preparedStatement.setInt(1, start);
 			preparedStatement.setInt(2, end);
 			resultset = preparedStatement.executeQuery();
@@ -325,12 +456,37 @@ public class BDaoBuy {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
 		String buyCancel;
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
-			String whereStatement = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate "
-					+ "from BnS as B left join Product as P on B.Product_pCode = P.pCode "
-					+ "where B.bBuyDate is not null" + searchCheck + searchtxtCheck + " limit ?, ?";
+
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+
+		String whereStatement = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate from BnS as B left join Product as P on B.Product_pCode = P.pCode \n"
+				+ "where B.bBuyDate is not null" + searchCheck + searchtxtCheck + " group by bNumber limit ?, ?";
+		try {
+			connection = dataSource.getConnection();
 			System.out.println("도대체 어디서 출력되는거야 ?" + whereStatement);
 
 			preparedStatement = connection.prepareStatement(whereStatement);
@@ -388,13 +544,37 @@ public class BDaoBuy {
 			searchtxtCheck = " like '%" + searchtxt + "%'";
 
 		}
-
+		
+		String query = "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES'";
+		System.out.println(query);
+		
 		try {
 			connection = dataSource.getConnection();
 
-			String whereStatement = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate "
-					+ "from BnS as B left join Product as P on B.Product_pCode = P.pCode "
-					+ "where B.bBuyDate is not null" + searchCheck + searchtxtCheck;
+			preparedStatement = connection.prepareStatement(query);
+			resultset = preparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
+		String whereStatement = "select B.bNumber, P.pCategory, P.pName, B.bBuyDate, B.bBuyCancelDate from BnS as B left join Product as P on B.Product_pCode = P.pCode "
+				+ "where B.bBuyDate is not null" + searchCheck + searchtxtCheck+ " group by bNumber";
+		try {
+			connection = dataSource.getConnection();
+
 
 			preparedStatement = connection.prepareStatement(whereStatement);
 			resultset = preparedStatement.executeQuery();
@@ -432,8 +612,10 @@ public class BDaoBuy {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "select bNumber, pCategory, pName, bReviewContent, bReviewScore, bBuyDate, bReviewWriteDate, bReviewDeleteDate, bBuyCancelDate "
-					+ "from BnS join Product on BnS.Product_pCode = Product.pCode where bNumber = ?";
+			String query = "select bNumber, cId, cName, cTel, bReviewContent, bReviewScore, bBuyDate, bReviewWriteDate, bReviewDeleteDate, bBuyCancelDate \n"
+					+ "from BnS as B join Product on B.Product_pCode = Product.pCode \n"
+					+ "join Customer as C on B.Customer_cId = C.cId\n"
+					+ "where bNumber = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, selecCode);
 
@@ -441,8 +623,9 @@ public class BDaoBuy {
 //			select pCode, pCategory, pName, pPrice, pExpirationDate, pQuantity, pStatus from Product
 			if (resultset.next()) {
 				String bNumber = resultset.getString("bNumber");
-				String pCategory = resultset.getString("pCategory");
-				String pName = resultset.getString("pName");
+				String cId = resultset.getString("cId");
+				String cName = resultset.getString("cName");
+				String cTel = resultset.getString("cTel");
 				String bReviewContent = resultset.getString("bReviewContent");
 				int bReviewScore = resultset.getInt("bReviewScore");
 				Timestamp BuyDate = resultset.getTimestamp("bBuyDate");
@@ -458,9 +641,10 @@ public class BDaoBuy {
 				} else {
 					buyCancel = "주문완료";
 				}
+				
+				dto = new BDtoBuy(bNumber, cId, bReviewContent, bReviewScore, buyCancel, bBuyDate, bReviewWriteDate, bReviewDeleteDate, cName, cTel);
+				
 
-				dto = new BDtoBuy(bNumber, pCategory, pName, bReviewContent, bReviewScore, bBuyDate, bBuyCancelDate,
-						bReviewWriteDate, bReviewDeleteDate, buyCancel);
 
 			}
 		} catch (Exception e) {
@@ -478,6 +662,60 @@ public class BDaoBuy {
 			}
 		}
 		return dto;
+	}
+	
+	
+	public ArrayList<BDtoBuy> selectBuyPageList(String getName) {
+		ArrayList<BDtoBuy> dtos = new ArrayList<BDtoBuy>();
+		BDtoBuy dto = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultset = null;
+		String buyCancel = null;
+
+		try {
+			connection = dataSource.getConnection();
+
+			String query = "select pName, pCategory, bQuantity, bBuyCancelDate from Product as P \n"
+					+ "join BnS as B on B.Product_pCode = P.pCode where bNumber = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, getName);
+			
+			resultset = preparedStatement.executeQuery();
+
+			while (resultset.next()) {
+				String pName = resultset.getString("pName");
+				String pCategory = resultset.getString("pCategory");
+				int bQuantity = resultset.getInt("bQuantity");
+				Timestamp bBuyCancelDate = resultset.getTimestamp("bBuyCancelDate");
+				
+				if (bBuyCancelDate != null) {
+					buyCancel = "취소";
+				} else {
+					buyCancel = "주문완료";
+				}
+				
+				dto = new BDtoBuy(pCategory, pName, buyCancel, bQuantity);
+				
+				dtos.add(dto);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultset != null)
+					resultset.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dtos;
+
 	}
 
 }

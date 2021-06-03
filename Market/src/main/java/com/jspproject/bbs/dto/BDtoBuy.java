@@ -27,6 +27,10 @@ public class BDtoBuy {
 	Timestamp bBuyCancelDate;
 	Timestamp bReviewWriteDate;
 	Timestamp bReviewDeleteDate;
+	String cName;
+	String cTel;
+	int bQuantity;
+	
 	
 	
 	public BDtoBuy() {
@@ -78,18 +82,31 @@ public class BDtoBuy {
 		this.bCancelDate = bCancelDate;
 	}
 
-	public BDtoBuy(String bNumber, String pCategory, String pName, String bState) {
+	
+	
+
+	public BDtoBuy(String pCategory, String pName, String buyCancel, int bQuantity) {
 		super();
-		this.bNumber = bNumber;
 		this.pCategory = pCategory;
 		this.pName = pName;
-		this.bState = bState;
+		this.buyCancel = buyCancel;
+		this.bQuantity = bQuantity;
 	}
-	
-	
-	
-	
-	
+
+	public BDtoBuy(String bNumber, String cId, String bReviewContent, int bReviewScore, String buyCancel,
+			String bBuyDate, Timestamp bReviewWriteDate, Timestamp bReviewDeleteDate, String cName, String cTel) {
+		super();
+		this.bNumber = bNumber;
+		this.cId = cId;
+		this.bReviewContent = bReviewContent;
+		this.bReviewScore = bReviewScore;
+		this.buyCancel = buyCancel;
+		this.bBuyDate = bBuyDate;
+		this.bReviewWriteDate = bReviewWriteDate;
+		this.bReviewDeleteDate = bReviewDeleteDate;
+		this.cName = cName;
+		this.cTel = cTel;
+	}
 
 	public BDtoBuy(String bNumber, String pCategory, String pName, String bReviewContent, int bReviewScore,
 			String bBuyDate, Timestamp bBuyCancelDate, Timestamp bReviewWriteDate, Timestamp bReviewDeleteDate, String buyCancel) {
@@ -296,6 +313,30 @@ public class BDtoBuy {
 
 	public void setbReviewDeleteDate(Timestamp bReviewDeleteDate) {
 		this.bReviewDeleteDate = bReviewDeleteDate;
+	}
+
+	public String getcName() {
+		return cName;
+	}
+
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+
+	public String getcTel() {
+		return cTel;
+	}
+
+	public void setcTel(String cTel) {
+		this.cTel = cTel;
+	}
+
+	public int getbQuantity() {
+		return bQuantity;
+	}
+
+	public void setbQuantity(int bQuantity) {
+		this.bQuantity = bQuantity;
 	}
 	
 	

@@ -15,7 +15,7 @@ public class BproductlistnBnsCommand implements BCommand {
 		BDaoAddProduct dao = new BDaoAddProduct();
 		
 		int maxCode = dao.getCode();
-		String sId = Share.userId;
+		String sId = "admin";
 		
 		System.out.println("맥스코드와 함께라면" + maxCode + sId);
 		

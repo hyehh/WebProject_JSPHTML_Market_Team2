@@ -27,22 +27,22 @@ function addProduct(){
 	}
 	
 	if (name == ""){
-		alert("이름?");
+		alert("이름을 입력하세요.");
 		form.pName.focus();
 		return false;
 	}
 	if (price == ""){
-		alert("이름?");
+		alert("가격을 입력하세요.");
 		form.pName.focus();
 		return false;
 	}
 	if (priceDC == ""){
-		alert("이름?");
+		alert("할인이 적용된 가격을 입력하세요.");
 		form.pName.focus();
 		return false;
 	}
 	if (prodctEA == ""){
-		alert("이름?");
+		alert("판매수량을 입력하세요.");
 		form.pName.focus();
 		return false;
 	}
@@ -75,7 +75,6 @@ function addProduct(){
 						<td>
 							<select name = "pCategory">
 								<option value = ""> 선택</option>
-								<option value = "생활용품"> 생활용품</option>
 								<option value = "주방용품"> 주방용품</option>
 								<option value = "세탁용품"> 세탁용품</option>
 								<option value = "청소용품"> 청소용품</option>
@@ -133,7 +132,6 @@ function addProduct(){
 						}
 				%>
 						</select> 일
-						<input type = "button" value="확인"  class="button buttonModify">
 						</td>
 					</tr>
 					<!-- <tr>

@@ -22,7 +22,6 @@ public class BSelectProductCommand implements BCommand {
 		BDaoProduct dao = new BDaoProduct();
 		BProductDto dto = dao.selectProduct(pCode);
 		ArrayList<String> category = new ArrayList<String>();
-		category.add("생활용품");
 		category.add("주방용품");
 		category.add("세탁용품");
 		category.add("청소용품");

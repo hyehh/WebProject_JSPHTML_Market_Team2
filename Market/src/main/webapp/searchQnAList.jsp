@@ -39,7 +39,7 @@
 					</tr>
 					<tr>
 						<td>검색 ${searchtxt }</td>
-						<td>주문번호</td>
+						<td>제목</td>
 						<td colspan="2"><input type = "text" name = "searchTxt" size = "30"
 						value = "${searchtxt == null ? null : searchtxt }"></td>
 						<td><input type = "submit" value = "검색" class="button button5" style="zoom: 0.3;"></td>

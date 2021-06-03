@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,14 @@
 <title>주문 상세보기</title>
 <link rel="stylesheet" href="selectPage.css">
 </head>
+<style>
+.mainTable table:nth-child(2) tr td:nth-child(1),
+.mainTable table:nth-child(2) tr td:nth-child(2),
+.mainTable table:nth-child(2) tr td:nth-child(3),
+.mainTable table:nth-child(2) tr td:nth-child(4)  {
+	width: 200px;
+}
+</style>
 <body>
 	<%@include file = "headerSeller.jsp" %>
 	<br>
@@ -20,20 +29,42 @@
 		</tr>
 			<tr><!-- bNumber, pCategory, pName, bState, bReviewContent, bReviewScore, bDate, bReviewRegistrationDate, bReviewEditDate, bReviewCancelDate, bCancelDate -->
 				<td>주문 번호 </td>
-				<td><input class="form-control" type = "text" name = "bNumber" value = "${selectBuy.bNumber }" readonly="readonly"></td>
+				<td><input type = "text" name = "bNumber" value = "${selectBuy.bNumber }" readonly="readonly"></td>
 			</tr>
 			<tr>
-				<td>상품 종류 </td>
-				<td><input type = "text" name = "pCategory" readonly="readonly" value = "${selectBuy.pCategory }" size = "10"></td>
+				<td>주문자 아이디</td>
+				<td><input type = "text" name = "pCategory" readonly="readonly" value = "${selectBuy.cId }" size = "10"></td>
 			</tr>
 			<tr>
-				<td>상품명</td>
-				<td><input type = "text" name = "pName" readonly="readonly" value = "${selectBuy.pName }"></td>
+				<td>주문자명</td>
+				<td><input type = "text" name = "pName" readonly="readonly" value = "${selectBuy.cName }"></td>
 			</tr>
 			<tr>
+				<td>주문자 번호</td>
+				<td><input type = "text" name = "pName" readonly="readonly" value = "${selectBuy.cTel }"></td>
+			</tr>
+			</table>
+			<table>
+			<tr>
+				<th colspan="4">구매리스트</th>
+			</tr>
+			<tr>
+				<td>상품 종류</td>
+				<td>상품 이름</td>
+				<td>구매 수량</td>
 				<td>주문 현황</td>
-				<td><input type = "text" name = "buyCancel" readonly="readonly" value = "${selectBuy.buyCancel }"></td>
+				<%-- <td><input type = "text" name = "buyCancel" readonly="readonly" value = "${selectBuy.buyCancel }"></td> --%>
 			</tr>
+			<c:forEach items = "${selectBuyList }" var = "list">
+			<tr>
+				<td>${list.pCategory }</td>
+				<td>${list.pName }</td>
+				<td>${list.bQuantity }</td>
+				<td>${list.buyCancel }</td>
+			</tr>
+			</c:forEach>
+			</table>
+			<table style="margin: auto;">
 			<tr>
 				<td>리뷰</td>
 				<td><textarea rows="10" cols="50" readonly="readonly" name = "bReviewContent">${selectBuy.bReviewContent }</textarea>
@@ -61,7 +92,7 @@
 			<tr>
 				<td colspan="2"><a href="buyList.do"><button
 								type="button" class="buttonModify buttonModify">목록으로가기</button></a>
-				<input type = "submit" value = "배송관리" formaction="buyToDeliver.do" class="buttonModify buttonModify">
+				<input type = "submit" value = "배송관리" formaction="buyToDeliver.do" class="buttonModify buttonModify" style="zoom: 1.0;">
 			</tr>
 		</table>
 	</form>

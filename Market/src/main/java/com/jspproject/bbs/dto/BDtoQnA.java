@@ -22,17 +22,17 @@ public class BDtoQnA {
 	String aTitle;
 	String pName;
 	Timestamp aDeleteDate;
-	int qnACode;
+	String qnACode;
 	
 	
 	public BDtoQnA() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BDtoQnA(int qnaCode, String customer_cId, String qTitle, String qContent, String qAddDate, String aAddDate,
+	public BDtoQnA(String qnACode, String customer_cId, String qTitle, String qContent, String qAddDate, String aAddDate,
 			String aContent, String answer, String qFilePath) {
 		super();
-		this.qnaCode = qnaCode;
+		this.qnACode = qnACode;
 		this.customer_cId = customer_cId;
 		this.qTitle = qTitle;
 		this.qContent = qContent;
@@ -81,10 +81,10 @@ public class BDtoQnA {
 		this.pName = pName;
 	}
 
-	public BDtoQnA(int qnaCode, String qContent, String qAddDate, String bNumber, String qTitle, String qAnswerStatus,
+	public BDtoQnA(String qnACode, String qContent, String qAddDate, String bNumber, String qTitle, String qAnswerStatus,
 			String cName, String aContent, Timestamp aDeleteDate, String aAddDate) {
 		super();
-		this.qnaCode = qnaCode;
+		this.qnACode = qnACode;
 		this.qContent = qContent;
 		this.qAddDate = qAddDate;
 		this.bNumber = bNumber;
@@ -97,11 +97,11 @@ public class BDtoQnA {
 	}
 
 	
-	public BDtoQnA(String bNumber, String qTitle, String qAddDate, String qAnswerStatus) {
+	public BDtoQnA(String qnACode, String qTitle, String qAddDate, String qAnswerStatus) {
 		super();
 		this.qTitle = qTitle;
 		this.qAddDate = qAddDate;
-		this.bNumber = bNumber;
+		this.qnACode = qnACode;
 		this.qAnswerStatus = qAnswerStatus;
 	}
 
@@ -249,11 +249,11 @@ public class BDtoQnA {
 		this.aDeleteDate = aDeleteDate;
 	}
 
-	public int getQnACode() {
+	public String getQnACode() {
 		return qnACode;
 	}
 
-	public void setQnACode(int qnACode) {
+	public void setQnACode(String qnACode) {
 		this.qnACode = qnACode;
 	}
 	

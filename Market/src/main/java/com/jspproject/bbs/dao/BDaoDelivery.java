@@ -199,9 +199,10 @@ public class BDaoDelivery {
 		}
 		
 		
-		String queryCount = "select D.bNumber, pCategory, pName, dCondition from Delivery as D "
-				+ "join Product as P on P.pCode = D.Product_pCode where D.dEndDate is not null "
-				+ "group by D.bNumber";
+		String queryCount = "select D.bNumber, pCategory, pName, dCondition from Delivery as D\n"
+				+ "join Product as P on P.pCode = D.Product_pCode\n"
+				+ "join BnS as B on D.bNumber = B.bNumber where bBuyCancelDate is null and dCondition = '배송완료'\n"
+				+ "group by B.bNumber";
 		try {
 			connection = dataSource.getConnection();
 			
@@ -262,9 +263,10 @@ public class BDaoDelivery {
 		}
 		
 		
-		String queryCount = "select D.bNumber, pCategory, pName, dCondition from Delivery as D "
-				+ "join Product as P on P.pCode = D.Product_pCode where D.dEndDate is null "
-				+ "group by D.bNumber";
+		String queryCount = "select D.bNumber, pCategory, pName, dCondition from Delivery as D\n"
+				+ "join Product as P on P.pCode = D.Product_pCode\n"
+				+ "join BnS as B on D.bNumber = B.bNumber where bBuyCancelDate is null and dCondition = '배송중'\n"
+				+ "group by B.bNumber";
 		
 		try {
 			connection = dataSource.getConnection();
@@ -808,7 +810,7 @@ public class BDaoDelivery {
 		try {
 			connection = dataSource.getConnection();
 
-			String query = "update Delivery set dCondition = '배송완료', dStartDate = now() \n"
+			String query = "update Delivery set dCondition = '배송완료', dEndDate = now() "
 					+ "where bNumber = ?";
 			System.out.println(query);
 			preparedStatement = connection.prepareStatement(query);

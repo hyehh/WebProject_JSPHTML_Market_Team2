@@ -69,7 +69,6 @@
 					<th>가격</th>
 					<th>할인가격</th>
 					<th>유통기한</th>
-					<th>수량</th>
 					<th>품절여부</th>
 					<th>등록일</th>
 				</tr>
@@ -82,7 +81,6 @@
 					<td>${dto.pPrice }</td>
 					<td>${dto.pPriceDC }</td>
 					<td>${dto.pExpirationDate }</td>
-					<td>${dto.pProductEA }</td>
 					<td>${dto.pStatus }</td>
 					<td>${dto.pAddDate }</td>
 				</tr>

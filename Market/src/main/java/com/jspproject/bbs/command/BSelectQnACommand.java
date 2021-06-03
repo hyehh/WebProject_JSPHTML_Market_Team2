@@ -12,9 +12,10 @@ public class BSelectQnACommand implements BCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		String bNumber = request.getParameter("bNumber");
+		String qnACode = request.getParameter("qnACode");
 		BDaoQnA dao = new BDaoQnA();
-		BDtoQnA dto = dao.selectQnA(bNumber);
+		BDtoQnA dto = dao.selectQnA(qnACode);
+		System.out.println(qnACode);
 		
 		request.setAttribute("selectQnA", dto);
 	}
